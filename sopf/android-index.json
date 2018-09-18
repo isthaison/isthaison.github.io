@@ -12,11 +12,11 @@
     "image": "./assets/images/splash_its.png",
     "resizeMode": "contain",
     "backgroundColor": "#ffffff",
-    "imageUrl": "https://isthaison.github.io/sopf/assets/e0d40b5ed3efc384bc17a76fb494a06f"
+    "imageUrl": "http://portal.feavn.com.vn:82/ITSService_Test/HostApp/ExpoJS/QC/dist/assets/e0d40b5ed3efc384bc17a76fb494a06f"
   },
   "notification": {
     "icon": "./assets/images/icon_notification.PNG",
-    "iconUrl": "https://isthaison.github.io/sopf/assets/43daacdae1aaabe611cc0c5af9bca6b8"
+    "iconUrl": "http://portal.feavn.com.vn:82/ITSService_Test/HostApp/ExpoJS/QC/dist/assets/43daacdae1aaabe611cc0c5af9bca6b8"
   },
   "updates": { "fallbackToCacheTimeout": 0 },
   "ios": {
@@ -29,10 +29,10 @@
     "versionCode": 1,
     "icon": "./assets/images/icon_android.png",
     "googleServicesFile": "{\n  \"project_info\": {\n    \"project_number\": \"760246032450\",\n    \"firebase_url\": \"https://fea-qc.firebaseio.com\",\n    \"project_id\": \"fea-qc\",\n    \"storage_bucket\": \"fea-qc.appspot.com\"\n  },\n  \"client\": [\n    {\n      \"client_info\": {\n        \"mobilesdk_app_id\": \"1:760246032450:android:890db8426dd3d289\",\n        \"android_client_info\": {\n          \"package_name\": \"com.feavn.feaqc\"\n        }\n      },\n      \"oauth_client\": [\n        {\n          \"client_id\": \"760246032450-54hrgldas7doj2f39aruff6ungvane3s.apps.googleusercontent.com\",\n          \"client_type\": 3\n        }\n      ],\n      \"api_key\": [\n        {\n          \"current_key\": \"AIzaSyDOWrhRvziTiVsVLEZAD631jltwSQj7AZY\"\n        }\n      ],\n      \"services\": {\n        \"analytics_service\": {\n          \"status\": 1\n        },\n        \"appinvite_service\": {\n          \"status\": 1,\n          \"other_platform_oauth_client\": []\n        },\n        \"ads_service\": {\n          \"status\": 2\n        }\n      }\n    }\n  ],\n  \"configuration_version\": \"1\"\n}",
-    "iconUrl": "https://isthaison.github.io/sopf/assets/4df8851fd9ea4519dc73acc209e39296"
+    "iconUrl": "http://portal.feavn.com.vn:82/ITSService_Test/HostApp/ExpoJS/QC/dist/assets/4df8851fd9ea4519dc73acc209e39296"
   },
   "locales": {},
-  "iconUrl": "https://isthaison.github.io/sopf/assets/3ca2cb02d977c1a9a34a242d69e41a6b",
+  "iconUrl": "http://portal.feavn.com.vn:82/ITSService_Test/HostApp/ExpoJS/QC/dist/assets/3ca2cb02d977c1a9a34a242d69e41a6b",
   "bundledAssets": [
     "asset_744ce60078c17d86006dd0edabcd59a7.ttf",
     "asset_5221f35630f5b71e53c3196d3ff681a1.ttf",
@@ -61,11 +61,12 @@
     "asset_02bc1fa7c0313217bde2d65ccbff40c9.png",
     "asset_35ba0eaec5a4f5ed12ca16fabeae451d.png"
   ],
-  "assetUrlOverride": "./assets",
-  "publishedTime": "2018-09-18T10:55:53.046Z",
-  "commitTime": "2018-09-18T10:55:53.046Z",
-  "revisionId": "PJQJ39dYjV",
+  "assetUrlOverride": "http://portal.feavn.com.vn:82/ITSService_Test/HostApp/ExpoJS/QC/dist/assets/",
+  "publishedTime": "2018-09-18T10:02:07.171Z",
+  "commitTime": "2018-09-18T10:02:07.171Z",
+  "revisionId": "B6z2AJDeLa",
+  "developer": { "tool": "exp" },
   "id": "@isthaison/FEAQC",
-  "bundleUrl": "https://isthaison.github.io/sopf/bundles/android-e9071725f7a6b01083a83473c0aeb154.js",
+  "bundleUrl": "http://portal.feavn.com.vn:82/ITSService_Test/HostApp/ExpoJS/QC/dist/bundles/android-ea26b5cb42e8e49b22727a564274e040.js",
   "platform": "android"
 }
