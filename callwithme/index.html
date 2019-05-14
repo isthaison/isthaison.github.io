@@ -117,18 +117,18 @@
                   $partnerId.val(),
                   localMediaStream
                 );
-                // display("connect to partner: " + mediaConnection.peer);
-                // mediaConnection.on("stream", function(stream) {
-                //   display("stream");
-                //   loadvideoPartner(stream);
-                // });
+                display("connect to partner: " + mediaConnection.peer);
+                mediaConnection.on("stream", function(stream) {
+                  display("stream");
+                  loadvideoPartner(stream);
+                });
 
-                // mediaConnection.on("close", function() {
-                //   display("close");
-                // });
-                // mediaConnection.on("error", function(err) {
-                //   display(err);
-                // });
+                mediaConnection.on("close", function() {
+                  display("close");
+                });
+                mediaConnection.on("error", function(err) {
+                  display(err);
+                });
               } catch (error) {
                 display(error);
               }
