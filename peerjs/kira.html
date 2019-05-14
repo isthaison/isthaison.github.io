@@ -73,7 +73,7 @@
          */
         function initialize() {
           // Create own peer object with connection to shared PeerJS server
-          peer = new Peer('kira', {
+          peer = new Peer('kira1', {
             host: "10.20.84.41",
             port: 9000,
             path: "/api"
@@ -133,6 +133,7 @@
             navigator.webkitGetUserMedia ||
             navigator.mozGetUserMedia;
           peer.on("call", function(call) {
+            console.log('call')
             getUserMedia(
               { video: true, audio: true },
               function(stream) {
