@@ -6,17 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div>
-      <input type="text" id="js-myself-id" placeholder="Input your ID" />
-      <button id="js-open">Open</button>
+    <video
+      width="100%"
+      height="auto"
+      autoplay
+      playsinline
+      style="background-color: azure"
+      id="video-partner"
+    ></video>
+    <div style="position: absolute;bottom:0;left:0;">
+      <div>
+        <input type="text" id="js-myself-id" placeholder="Input your ID" />
+        <button id="js-open">Open</button>
+      </div>
+      <div>
+        <input type="text" id="js-partner-id" placeholder="Input partner ID" />
+        <button id="js-connect">Connect</button>
+      </div>
     </div>
-    <div>
-      <input type="text" id="js-partner-id" placeholder="Input partner ID" />
-      <button id="js-connect">Connect</button>
-    </div>
-    <div>
+
+    <div style="position:absolute;top: 0;left:0; width: 100%;">
       <video
-        width="200"
+        width="20%"
         height="auto"
         autoplay
         playsinline
@@ -24,18 +35,11 @@
         id="video-myself"
       ></video>
     </div>
-    <div>
-      <video
-        width="200"
-        height="auto"
-        autoplay
-        playsinline
-        style="background-color: azure"
-        id="video-partner"
-      ></video>
-    </div>
 
-    <div id="display"></div>
+    <div
+      id="display"
+      style="position: absolute;top:0px;right:0px; font-size: 0.6rem; width: 40%;"
+    ></div>
     <script src="./libs/jquery.min.js"></script>
     <script src="./libs/peerjs.min.js"></script>
     <script>
