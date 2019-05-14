@@ -60,7 +60,7 @@
             return unsupported();
           } else {
             navigator.getUserMedia(
-              { video: true, audio: false },
+              { video: true, audio: true },
               function(stream) {
                 display("Had get audio and video");
                 localMediaStream = stream;
