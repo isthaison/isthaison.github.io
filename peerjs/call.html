@@ -30,7 +30,6 @@
     <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
     <script>
       (function(global) {
-        // Compatibility
         navigator.getUserMedia =
           navigator.getUserMedia ||
           navigator.webkitGetUserMedia ||
@@ -48,18 +47,22 @@
         var $connect = $("#js-connect");
         var videoMyself = document.querySelector("#js-video-myself");
         var videoPartner = document.querySelector("#js-video-partner");
-
+        console.log(navigator.getUserMedia);
         $(function() {
           if (!navigator.getUserMedia) {
             return unsupported();
           } else {
-            navigator.getUserMedia({ video: true, audio: true }, function(
-              stream
-            ) {
-              videoMyself.src = URL.createObjectURL(stream);
-              videoMyself.play();
-              localMediaStream = stream;
-            });
+            navigator.getUserMedia(
+              { video: true, audio: true },
+              function(stream) {
+                videoMyself.src = URL.createObjectURL(stream);
+                videoMyself.play();
+                localMediaStream = stream;
+              },
+              function() {
+                display("Error getting audio stream from getUserMedia")
+              }
+            );
 
             $open.on("click", function(e) {
               // create peer object
