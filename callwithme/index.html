@@ -16,8 +16,6 @@
       id="video-partner"
     ></video>
     <div>
-
-
       <input type="text" id="js-myself-id" placeholder="My ID" />
       <button id="js-open">Connect server</button>
     </div>
@@ -79,7 +77,11 @@
 
             $open.on("click", function(e) {
               try {
-                peerClient = new Peer($myselfId.val());
+                peerClient = new Peer($myselfId.val(), {
+                  host: "callwithme.herokuapp.com",
+                  port: 443,
+                  path: "/"
+                });
                 display("Create new Peer: " + peerClient.id);
                 peerClient.on("open", function(id) {
                   display("open peer ID is: " + id);
