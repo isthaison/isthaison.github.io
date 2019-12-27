@@ -23,14 +23,14 @@
             function(stream) {
               window.alert('PASS');
 
-              const video = document.createElement('video');
-// Older browsers may not have srcObject
-if ('srcObject' in video) {
-  video.srcObject = stream;
-} else {
-  // Avoid using this in new browsers, as it is going away.
-  video.src = URL.createObjectURL(stream);
-}
+              var video = document.querySelector('video');
+            // Older browsers may not have srcObject
+            if ('srcObject' in video) {
+              video.srcObject = stream;
+            } else {
+              // Avoid using this in new browsers, as it is going away.
+              video.src = URL.createObjectURL(stream);
+            }
 
 
               video.onloadedmetadata = function(e) {
