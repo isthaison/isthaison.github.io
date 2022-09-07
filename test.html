@@ -34,10 +34,10 @@
     }
 
     .palette .item {
-        width: 70px;
-        height: 70px;
+        display: flex;
         z-index: 6;
         position: relative;
+        flex: 0;
     }
 
     .panzoom .item-map {
@@ -51,9 +51,7 @@
         background: rgba(0, 0, 255, 0.3);
         cursor: pointer;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
+
     }
 
     .workspace .item-map .item__group.active {
