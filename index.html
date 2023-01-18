@@ -1,1585 +1,1367 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext");
 
-<!-- Mirrored from trimatrixlab.com/store/flatrica/index-video-slide.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 May 2019 14:19:29 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="author" content="Trimatrix Lab">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    html {
+        position: relative;
+        overflow-x: hidden !important;
+    }
 
+    * {
+        box-sizing: border-box;
+    }
 
-    <title>Flatrica | Material CV/Resume</title>
-    <link rel="icon" href="images/site/fav-icon.png">
+    body {
+        font-family: "Quicksand", sans-serif;
+        color: #324e63;
+    }
 
-    <!--APPLE TOUCH ICON-->
-    <link rel="apple-touch-icon" href="images/site/apple-touch-icon.png">
+    a,
+    a:hover {
+        text-decoration: none;
+    }
 
+    .icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        stroke-width: 0;
+        stroke: currentColor;
+        fill: currentColor;
+    }
 
-    <!-- GOOGLE FONT -->
-    <link href='https://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+    .wrapper {
+        width: 100%;
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        padding: 50px 20px;
+        padding-top: 100px;
+        display: flex;
+        background-image: linear-gradient(-20deg, #ff2846 0%, #6944ff 100%);
+        display: flex;
+        background-image: linear-gradient(-20deg, #ff2846 0%, #6944ff 100%);
+    }
 
+    @media screen and (max-width: 768px) {
+        .wrapper {
+            height: auto;
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+    }
 
-    <!-- MATERIAL ICON FONT -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- FONT AWESOME -->
-    <link href="stylesheets/vendors/font-awesome.min.css" rel="stylesheet">
+    .profile-card {
+        width: 100%;
+        min-height: 460px;
+        margin: auto;
+        box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
+        background: #fff;
+        border-radius: 12px;
+        max-width: 700px;
+        position: relative;
+    }
 
+    .profile-card.active .profile-card__cnt {
+        filter: blur(6px);
+    }
 
-    <!-- ANIMATION -->
-    <link href="stylesheets/vendors/animate.min.css" rel="stylesheet">
+    .profile-card.active .profile-card-message,
+    .profile-card.active .profile-card__overlay {
+        opacity: 1;
+        pointer-events: auto;
+        transition-delay: 0.1s;
+    }
 
-    <!-- MAGNIFICENT POPUP -->
-    <link href="stylesheets/vendors/magnific-popup.css" rel="stylesheet">
+    .profile-card.active .profile-card-form {
+        transform: none;
+        transition-delay: 0.1s;
+    }
 
-    <!-- SWIPER -->
-    <link href="stylesheets/vendors/swiper.min.css" rel="stylesheet">
+    .profile-card__img {
+        width: 150px;
+        height: 150px;
+        margin-left: auto;
+        margin-right: auto;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        z-index: 4;
+        box-shadow: 0px 5px 50px 0px #6c44fc, 0px 0px 0px 7px rgba(107, 74, 255, 0.5);
+    }
 
+    @media screen and (max-width: 576px) {
+        .profile-card__img {
+            width: 120px;
+            height: 120px;
+        }
+    }
 
-    <!-- MATERIALIZE -->
-    <link href="stylesheets/vendors/materialize.css" rel="stylesheet">
-    <!-- BOOTSTRAP -->
-    <link href="stylesheets/vendors/bootstrap.min.css" rel="stylesheet">
+    .profile-card__img img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
 
+    .profile-card__cnt {
+        margin-top: -35px;
+        text-align: center;
+        padding: 0 20px;
+        padding-bottom: 40px;
+        transition: all 0.3s;
+    }
 
+    .profile-card__name {
+        font-weight: 700;
+        font-size: 24px;
+        color: #6944ff;
+        margin-bottom: 15px;
+    }
 
-    <!-- CUSTOM STYLE -->
-    <link href="stylesheets/style.css" id="switch_style" rel="stylesheet">
-    <!--TOGGLE-->
-    <link href="toggle/toggle.css" rel="stylesheet">
+    .profile-card__txt {
+        font-size: 18px;
+        font-weight: 500;
+        color: #324e63;
+        margin-bottom: 15px;
+    }
 
-</head>
-<body>
+    .profile-card__txt strong {
+        font-weight: 700;
+    }
 
+    .profile-card-loc {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 600;
+    }
 
-<!--==========================================
-                  PRE-LOADER
-===========================================-->
-<div id="loading">
-    <div id="loading-center">
-        <div id="loading-center-absolute">
-            <div class="box-holder animated bounceInDown">
-                <span class="load-box"><span class="box-inner"></span></span>
-            </div>
-            <!-- NAME & STATUS -->
-            <div class="text-holder text-center">
-                <h2>JOHN DOE</h2>
-                <h6>Software Engineer & UI/UX Expert</h6>
-            </div>
-        </div>
-    </div>
-</div>
+    .profile-card-loc__icon {
+        display: inline-flex;
+        font-size: 27px;
+        margin-right: 10px;
+    }
 
-<!--==========================================
-                    HEADER
-===========================================-->
-<header id="home">
-    <nav id="theMenu" class="menu">
+    .profile-card-inf {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        margin-top: 35px;
+    }
 
-        <!--MENU-->
-        <div id="menu-options" class="menu-wrap">
+    .profile-card-inf__item {
+        padding: 10px 35px;
+        min-width: 150px;
+    }
 
-            <!--PERSONAL LOGO-->
-            <div class="logo-flat">
-                <img alt="personal-logo" class="img-responsive" src="images/profile/john.png">
-            </div>
-            <br>
+    @media screen and (max-width: 768px) {
+        .profile-card-inf__item {
+            padding: 10px 20px;
+            min-width: 120px;
+        }
+    }
 
-            <!--OPTIONS-->
-            <a href="#home"><i class="title-icon fa fa-user"></i>Home</a>
-            <a href="#about"><i class="title-icon fa fa-dashboard"></i>About</a>
-            <a href="#education"><i class="title-icon fa fa-graduation-cap"></i>Education</a>
-            <a href="#skills"><i class="title-icon fa fa-sliders"></i>Skills</a>
-            <a href="#experience"><i class="title-icon fa fa-suitcase"></i>Experience</a>
-            <a href="#portfolios"><i class="title-icon fa fa-archive"></i>Portfolios</a>
-            <a href="#interest"><i class="title-icon fa fa-heart"></i>Interest</a>
-            <a href="#testimonials"><i class="title-icon fa fa-users"></i>Testimonials</a>
-            <a href="#pricing-table"><i class="title-icon fa fa-money"></i>Pricing</a>
-            <a href="#blog"><i class="title-icon fa fa-pencil-square"></i>Blog</a>
-            <a href="#contact"><i class="title-icon fa fa-envelope"></i>Contact</a>
-        </div>
+    .profile-card-inf__title {
+        font-weight: 700;
+        font-size: 27px;
+        color: #324e63;
+    }
 
-        <!-- MENU BUTTON -->
-        <div id="menuToggle">
-            <div class="toggle-normal">
-                <i class="material-icons top-bar">remove</i>
-                <i class="material-icons middle-bar">remove</i>
-                <i class="material-icons bottom-bar">remove</i>
-            </div>
-        </div>
-    </nav>
+    .profile-card-inf__txt {
+        font-weight: 500;
+        margin-top: 7px;
+    }
 
-    <!--HEADER BACKGROUND-->
-    <div class="header-background section"></div>
+    .profile-card-social {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
 
-</header>
+    .profile-card-social__item {
+        display: inline-flex;
+        width: 55px;
+        height: 55px;
+        margin: 15px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background: #405de6;
+        box-shadow: 0px 7px 30px rgba(43, 98, 169, 0.5);
+        position: relative;
+        font-size: 21px;
+        flex-shrink: 0;
+        transition: all 0.3s;
+    }
 
+    @media screen and (max-width: 768px) {
+        .profile-card-social__item {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+        }
+    }
 
-<!--==========================================
-                   V-CARD
-===========================================-->
-<div id="v-card-holder" class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+    @media screen and (min-width: 768px) {
+        .profile-card-social__item:hover {
+            transform: scale(1.2);
+        }
+    }
 
-                <!-- V-CARD -->
-                <div id="v-card" class="card">
+    .profile-card-social__item.facebook {
+        background: linear-gradient(45deg, #3b5998, #0078d7);
+        box-shadow: 0px 4px 30px rgba(43, 98, 169, 0.5);
+    }
 
-                    <!-- PROFILE PICTURE -->
-                    <div id="profile" class="right">
-                        <img alt="profile-image" class="img-responsive" src="images/profile/profile.png">
-                        <div class="slant"></div>
+    .profile-card-social__item.twitter {
+        background: linear-gradient(45deg, #1da1f2, #0e71c8);
+        box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.7);
+    }
 
-                        <!--EMPTY PLUS BUTTON-->
-                        <!--<div class="btn-floating btn-large add-btn"><i class="material-icons">add</i></div>-->
+    .profile-card-social__item.instagram {
+        background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        box-shadow: 0px 4px 30px rgba(120, 64, 190, 0.6);
+    }
 
-                        <!--VIDEO PLAY BUTTON-->
-                        <div id="button-holder" class="btn-holder">
-                            <div id="play-btn" class="btn-floating btn-large btn-play">
-                                <i id="icon-play" class="material-icons">play_arrow</i>
-                            </div>
-                        </div>
-                    </div>
-                    <!--VIDEO CLOSE BUTTON-->
-                    <div id="close-btn" class="btn-floating icon-close">
-                        <i class="fa fa-close"></i>
-                    </div>
+    .profile-card-social__item.behance {
+        background: linear-gradient(45deg, #1769ff, #213fca);
+        box-shadow: 0px 4px 30px rgba(27, 86, 231, 0.7);
+    }
 
-                    <div class="card-content">
+    .profile-card-social__item.github {
+        background: linear-gradient(45deg, #333333, #626b73);
+        box-shadow: 0px 4px 30px rgba(63, 65, 67, 0.6);
+    }
 
-                        <!-- NAME & STATUS -->
-                        <div class="info-headings">
-                            <h4 class="text-uppercase left">John DOE</h4>
-                            <h6 class="text-capitalize left">Software Engineer & UI/UX Expert</h6>
-                        </div>
+    .profile-card-social__item.codepen {
+        background: linear-gradient(45deg, #324e63, #414447);
+        box-shadow: 0px 4px 30px rgba(55, 75, 90, 0.6);
+    }
 
-                        <!-- CONTACT INFO -->
-                        <div class="infos">
-                            <ul class="profile-list">
-                                <li class="clearfix">
-                                    <span class="title"><i class="material-icons">email</i></span>
-                                    <span class="content">email@mailprovider.com</span>
-                                </li>
-                                <li class="clearfix">
-                                    <span class="title"><i class="material-icons">language</i></span>
-                                    <span class="content">yourpersonalwebsite.com</span>
-                                </li>
-                                <li class="clearfix">
-                                    <span class="title"><i class="fa fa-skype" aria-hidden="true"></i></span>
-                                    <span class="content">yourusername@skype.com</span>
-                                </li>
-                                <li class="clearfix">
-                                    <span class="title"><i class="material-icons">phone</i></span>
-                                    <span class="content">+152 25634 254 846</span>
-                                </li>
-                                <li class="clearfix">
-                                    <span class="title"><i class="material-icons">place</i></span>
-                                    <span class="content">LampStreet 34/3, London, UK</span>
-                                </li>
+    .profile-card-social__item.link {
+        background: linear-gradient(45deg, #d5135a, #f05924);
+        box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.6);
+    }
 
-                            </ul>
-                        </div>
+    .profile-card-social .icon-font {
+        display: inline-flex;
+    }
 
-                        <!--LINKS-->
-                        <div class="links">
-                            <!-- FACEBOOK-->
-                            <a href="#" id="first_one"
-                               class="social btn-floating indigo"><i
-                                    class="fa fa-facebook"></i></a>
-                            <!-- TWITTER-->
-                            <a href="#" class="social  btn-floating blue"><i
-                                    class="fa fa-twitter"></i></a>
-                            <!-- GOOGLE+-->
-                            <a href="#" class="social  btn-floating red"><i
-                                    class="fa fa-google-plus"></i></a>
-                            <!-- LINKEDIN-->
-                            <a href="#" class="social  btn-floating blue darken-3"><i
-                                    class="fa fa-linkedin"></i></a>
-                            <!-- RSS-->
-                            <a href="#" class="social  btn-floating orange darken-3"><i
-                                    class="fa fa-rss"></i></a>
-                        </div>
-                    </div>
-                    <!--HTML 5 VIDEO-->
-                    <video id="html-video" class="video" poster="images/poster/poster.jpg" controls>
-                        <!--SERVER HOSTED VIDEO-->
-                        <source src="videos/bs.webm" type="video/webm">
-                        <source src="videos/as.mp4" type="video/mp4">
-                    </video>
+    .profile-card-ctr {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+    }
 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--==========================================
-                   ABOUT
-===========================================-->
-<div id="about" class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <!-- DETAILS -->
-                <div id="about-card" class="card">
-                    <div class="card-content">
-                        <!-- ABOUT PARAGRAPH -->
-                        <p>
-                            Hello! I’m John Doe. Senior Web Developer with over 13 years of experience
-                            specializing in front end development. Experienced with all stages of the
-                            development cycle for dynamic web projects.Having an in-depth knowledge
-                            including advanced HTML5, CSS, CSS3, SASS, LESS, JSON, XML, Java, JavaScript,
-                            JQuery, Angular JS. Strong background in management and leadership.
-                        </p>
-                    </div>
+    @media screen and (max-width: 576px) {
+        .profile-card-ctr {
+            flex-wrap: wrap;
+        }
+    }
 
-                    <!-- BUTTONS -->
-                    <div id="about-btn" class="card-action">
-                        <div class="about-btn">
-                            <!-- DOWNLOAD CV BUTTON -->
-                            <a href="#" class="btn waves-effect">Download CV</a>
-                            <!-- CONTACT BUTTON -->
-                            <a href="#contact" class="btn waves-effect">Contact Me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    .profile-card__button {
+        background: none;
+        border: none;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 700;
+        font-size: 19px;
+        margin: 15px 35px;
+        padding: 15px 40px;
+        min-width: 201px;
+        border-radius: 50px;
+        min-height: 55px;
+        color: #fff;
+        cursor: pointer;
+        backface-visibility: hidden;
+        transition: all 0.3s;
+    }
 
+    @media screen and (max-width: 768px) {
+        .profile-card__button {
+            min-width: 170px;
+            margin: 15px 25px;
+        }
+    }
 
-<!--==========================================
-                   EDUCATION
-===========================================-->
-<section id="education" class="section">
-    <div class="container">
-        <!-- SECTION TITLE -->
-        <div class="section-title">
-            <h4 class="text-uppercase text-center"><img src="images/icons/book.png" alt="demo">Education</h4>
-        </div>
+    @media screen and (max-width: 576px) {
+        .profile-card__button {
+            min-width: inherit;
+            margin: 0;
+            margin-bottom: 16px;
+            width: 100%;
+            max-width: 300px;
+        }
 
-        <div id="timeline-education">
+        .profile-card__button:last-child {
+            margin-bottom: 0;
+        }
+    }
 
-            <!-- FIRST TIMELINE -->
-            <div class="timeline-block">
-                <!-- DOT -->
-                <div class="timeline-dot"><h6>P</h6></div>
-                <!-- TIMELINE CONTENT -->
-                <div class="card timeline-content">
-                    <div class="card-content">
-                        <!-- TIMELINE TITLE -->
-                        <h6 class="timeline-title">Preparatory Education</h6>
-                        <!-- TIMELINE TITLE INFO -->
-                        <div class="timeline-info">
-                            <h6>
-                                <small>Fedrick School</small>
-                            </h6>
-                            <h6>
-                                <small>Jan 1997 - Mar 2000</small>
-                            </h6>
-                        </div>
-                        <!-- TIMELINE PARAGRAPH -->
-                        <p>
-                            I completed my preparatory education from this prestigious institution.
-                            I successful completed all the credits without any fallout and got A grade overall.
-                        </p>
-                        <!-- BUTTON TRIGGER MODAL -->
-                        <a href="#" class="modal-dot" data-toggle="modal" data-target="#myModal-1">
-                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+    .profile-card__button:focus {
+        outline: none !important;
+    }
 
-            <!-- SECOND TIMELINE -->
-            <div class="timeline-block">
-                <!-- DOT -->
-                <div class="timeline-dot"><h6>H</h6></div>
-                <!-- TIMELINE CONTENT -->
-                <div class="card timeline-content">
-                    <div class="card-content">
-                        <!-- TIMELINE TITLE -->
-                        <h6 class="timeline-title">High School</h6>
-                        <!-- TIMELINE TITLE INFO -->
-                        <div class="timeline-info">
-                            <h6>
-                                <small>RedStreet College</small>
-                            </h6>
-                            <h6>
-                                <small>Jan 2000 - Mar 2005</small>
-                            </h6>
-                        </div>
-                        <!-- TIMELINE PARAGRAPH -->
-                        <p>
-                            I completed my high school degree from this prestigious institution.
-                            I successful completed all the credits without any fallout and got A grade overall.
-                        </p>
-                    </div>
-                </div>
-            </div>
+    @media screen and (min-width: 768px) {
+        .profile-card__button:hover {
+            transform: translateY(-5px);
+        }
+    }
 
-            <!-- THIRD TIMELINE -->
-            <div class="timeline-block">
-                <!-- DOT -->
-                <div class="timeline-dot"><h6>C</h6></div>
-                <!-- TIMELINE CONTENT -->
-                <div class="card timeline-content">
-                    <div class="card-content">
-                        <!-- TIMELINE TITLE -->
-                        <h6 class="timeline-title">Computer Science</h6>
-                        <!-- TIMELINE TITLE INFO -->
-                        <div class="timeline-info">
-                            <h6>
-                                <small>Down Street College</small>
-                            </h6>
-                            <h6>
-                                <small>Jan 2006 - Mar 2008</small>
-                            </h6>
-                        </div>
-                        <!-- TIMELINE PARAGRAPH -->
-                        <p>
-                            I completed my computer science degree from this prestigious institution.
-                            I successful completed all the credits without any fallout and got A grade overall.
-                        </p>
+    .profile-card__button:first-child {
+        margin-left: 0;
+    }
 
-                    </div>
-                </div>
-            </div>
+    .profile-card__button:last-child {
+        margin-right: 0;
+    }
 
-            <!-- FOURTH TIMELINE -->
-            <div class="timeline-block">
-                <!-- DOT -->
-                <div class="timeline-dot"><i class="fa fa-graduation-cap"></i></div>
-                <!-- TIMELINE CONTENT -->
-                <div class="card timeline-content">
-                    <div class="card-content">
-                        <!-- TIMELINE TITLE -->
-                        <h6 class="timeline-title">Software Engineering</h6>
-                        <!-- TIMELINE TITLE INFO -->
-                        <div class="timeline-info">
-                            <h6>
-                                <small>Oxford University</small>
-                            </h6>
-                            <h6>
-                                <small>Jan 2009 - Mar 2010</small>
-                            </h6>
-                        </div>
-                        <!-- TIMELINE PARAGRAPH -->
-                        <p>
-                            I completed this degree from this prestigious institution.
-                            I successful completed all the credits without any fallout and got A grade overall.
-                        </p>
+    .profile-card__button.button--blue {
+        background: linear-gradient(45deg, #1da1f2, #0e71c8);
+        box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.4);
+    }
 
-                    </div>
-                </div>
-            </div>
-            <!-- FIFTH TIMELINE -->
-            <div class="timeline-block">
-                <!-- DOT -->
-                <div class="timeline-dot"><h6>U</h6></div>
-                <!-- TIMELINE CONTENT -->
-                <div class="card timeline-content">
-                    <div class="card-content">
-                        <!-- TIMELINE TITLE -->
-                        <h6 class="timeline-title">UI/UX Workshop</h6>
-                        <!-- TIMELINE TITLE INFO -->
-                        <div class="timeline-info">
-                            <h6>
-                                <small>IT Next Academy</small>
-                            </h6>
-                            <h6>
-                                <small>Jan 2010 - Mar 2011</small>
-                            </h6>
-                        </div>
-                        <!-- TIMELINE PARAGRAPH -->
-                        <p>
-                            I completed this course from this prestigious institution.
-                            I successful completed all the credits without any fallout and got A grade overall.
-                        </p>
-                        <!-- BUTTON TRIGGER MODAL -->
-                        <a href="#" class="modal-dot" data-toggle="modal" data-target="#myModal-2">
-                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- SIXTH TIMELINE -->
-            <div class="timeline-block">
-                <!-- DOT -->
-                <div class="timeline-dot"><i class="fa fa-globe"></i></div>
-                <!-- TIMELINE CONTENT -->
-                <div class="card timeline-content">
-                    <div class="card-content">
-                        <!-- TIMELINE TITLE -->
-                        <h6 class="timeline-title">Web Development</h6>
-                        <!-- TIMELINE TITLE INFO -->
-                        <div class="timeline-info">
-                            <h6>
-                                <small>Lipro University</small>
-                            </h6>
-                            <h6>
-                                <small>Jan 2011 - Mar 2012</small>
-                            </h6>
-                        </div>
-                        <!-- TIMELINE PARAGRAPH -->
-                        <p>
-                            I completed this course from this prestigious institution.
-                            I successful completed all the credits without any fallout and got A grade overall.
-                        </p>
-                        <!-- BUTTON TRIGGER MODAL -->
-                        <a href="#" class="modal-dot" data-toggle="modal" data-target="#myModal-3">
-                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+    .profile-card__button.button--blue:hover {
+        box-shadow: 0px 7px 30px rgba(19, 127, 212, 0.75);
+    }
 
-        </div>
-    </div>
-</section>
+    .profile-card__button.button--orange {
+        background: linear-gradient(45deg, #d5135a, #f05924);
+        box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.35);
+    }
 
+    .profile-card__button.button--orange:hover {
+        box-shadow: 0px 7px 30px rgba(223, 45, 70, 0.75);
+    }
 
-<!--==========================================
-                   SKILLS
-===========================================-->
-<section id="skills" class="section">
-    <div class="container">
-        <!-- SECTION TITLE -->
-        <div class="section-title">
-            <h4 class="text-uppercase text-center"><img src="images/icons/mixer.png" alt="demo">Skills</h4>
-        </div>
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div id="skills-card" class="card">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <!-- FIRST SKILL SECTION -->
-                                <div class="skills-title">
-                                    <h6 class="text-center">Professional</h6>
-                                </div>
-                                <!-- FIRST SKILL BAR -->
-                                <div class="skillbar" data-percent="90%">
-                                    <div class="skillbar-title"><span>HTML5</span></div>
-                                    <div class="skillbar-bar"></div>
-                                    <div class="skill-bar-percent">90%</div>
-                                </div>
-                                <!-- SECOND SKILL BAR  -->
-                                <div class="skillbar" data-percent="90%">
-                                    <div class="skillbar-title"><span>CSS3</span></div>
-                                    <div class="skillbar-bar"></div>
-                                    <div class="skill-bar-percent">90%</div>
-                                </div>
-                                <!-- THIRD SKILL BAR  -->
-                                <div class="skillbar" data-percent="70%">
-                                    <div class="skillbar-title"><span>jQuery</span></div>
-                                    <div class="skillbar-bar"></div>
-                                    <div class="skill-bar-percent">70%</div>
-                                </div>
-                                <!-- FOURTH SKILL BAR  -->
-                                <div class="skillbar" data-percent="68%">
-                                    <div class="skillbar-title"><span>PHP</span></div>
-                                    <div class="skillbar-bar"></div>
-                                    <div class="skill-bar-percent">68%</div>
-                                </div>
-                            </div>
+    .profile-card__button.button--gray {
+        box-shadow: none;
+        background: #dcdcdc;
+        color: #142029;
+    }
 
+    .profile-card-message {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-top: 130px;
+        padding-bottom: 100px;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s;
+    }
 
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <!-- SECOND SKILL SECTION -->
-                                <div class="skills-title">
-                                    <h6 class="text-center">Personal</h6>
-                                </div>
-                                <!-- FIRST SKILL BAR -->
-                                <div class="skillbar" data-percent="80%">
-                                    <div class="skillbar-title"><span>Communication</span></div>
-                                    <div class="skillbar-bar"></div>
-                                    <div class="skill-bar-percent">80%</div>
-                                </div>
-                                <!-- SECOND SKILL BAR  -->
-                                <div class="skillbar" data-percent="60%">
-                                    <div class="skillbar-title"><span>Teamwork</span></div>
-                                    <div class="skillbar-bar"></div>
-                                    <div class="skill-bar-percent">60%</div>
-                                </div>
-                                <!-- THIRD SKILL BAR  -->
-                                <div class="skillbar" data-percent="70%">
-                                    <div class="skillbar-title"><span>Creativity</span></div>
-                                    <div class="skillbar-bar"></div>
-                                    <div class="skill-bar-percent">70%</div>
-                                </div>
-                                <!-- FOURTH SKILL BAR  -->
-                                <div class="skillbar" data-percent="70%">
-                                    <div class="skillbar-title"><span>Dedication</span></div>
-                                    <div class="skillbar-bar"></div>
-                                    <div class="skill-bar-percent">70%</div>
-                                </div>
-                            </div>
+    .profile-card-form {
+        box-shadow: 0 4px 30px rgba(15, 22, 56, 0.35);
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        height: 100%;
+        background: #fff;
+        border-radius: 10px;
+        padding: 35px;
+        transform: scale(0.8);
+        position: relative;
+        z-index: 3;
+        transition: all 0.3s;
+    }
 
+    @media screen and (max-width: 768px) {
+        .profile-card-form {
+            max-width: 90%;
+            height: auto;
+        }
+    }
 
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <!-- THIRD SKILL SECTION -->
-                                <div class="skills-title">
-                                    <h6 class="text-center">Software</h6>
-                                </div>
-                                <!-- FIRST SKILL BAR -->
-                                <div class="skillbar" data-percent="80%">
-                                    <div class="skillbar-title"><span>Adobe Illustrator</span></div>
-                                    <div class="skillbar-bar"></div>
-                                    <div class="skill-bar-percent">80%</div>
-                                </div>
-                                <!-- SECOND SKILL BAR  -->
-                                <div class="skillbar" data-percent="70%">
-                                    <div class="skillbar-title"><span>Adobe InDesign</span></div>
-                                    <div class="skillbar-bar"></div>
-                                    <div class="skill-bar-percent">70%</div>
-                                </div>
-                                <!-- THIRD SKILL BAR  -->
-                                <div class="skillbar" data-percent="60%">
-                                    <div class="skillbar-title"><span>PHP Storm</span></div>
-                                    <div class="skillbar-bar"></div>
-                                    <div class="skill-bar-percent">60%</div>
-                                </div>
-                                <!-- FOURTH SKILL BAR  -->
-                                <div class="skillbar" data-percent="80%">
-                                    <div class="skillbar-title"><span>Dev Console</span></div>
-                                    <div class="skillbar-bar"></div>
-                                    <div class="skill-bar-percent">80%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    @media screen and (max-width: 576px) {
+        .profile-card-form {
+            padding: 20px;
+        }
+    }
 
+    .profile-card-form__bottom {
+        justify-content: space-between;
+        display: flex;
+    }
 
-<!--==========================================
-                   EXPERIENCE
-===========================================-->
-<section id="experience" class="section">
-    <div class="container">
-        <!-- SECTION TITLE -->
-        <div class="section-title">
-            <h4 class="text-uppercase text-center"><img src="images/icons/layers.png" alt="demo">Experience</h4>
+    @media screen and (max-width: 576px) {
+        .profile-card-form__bottom {
+            flex-wrap: wrap;
+        }
+    }
+
+    .profile-card textarea {
+        width: 100%;
+        resize: none;
+        height: 210px;
+        margin-bottom: 20px;
+        border: 2px solid #dcdcdc;
+        border-radius: 10px;
+        padding: 15px 20px;
+        color: #324e63;
+        font-weight: 500;
+        font-family: "Quicksand", sans-serif;
+        outline: none;
+        transition: all 0.3s;
+    }
+
+    .profile-card textarea:focus {
+        outline: none;
+        border-color: #8a979e;
+    }
+
+    .profile-card__overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        opacity: 0;
+        background: rgba(22, 33, 72, 0.35);
+        border-radius: 12px;
+        transition: all 0.3s;
+    }
+</style>
+<div class="wrapper">
+    <div class="profile-card js-profile-card">
+        <div class="profile-card__img">
+            <img src="https://res.cloudinary.com/muhammederdem/image/upload/v1537638518/Ba%C5%9Fl%C4%B1ks%C4%B1z-1.jpg"
+                alt="profile card">
         </div>
 
-        <div id="timeline-experience">
+        <div class="profile-card__cnt js-profile-cnt">
+            <div class="profile-card__name">Muhammed Erdem</div>
+            <div class="profile-card__txt">Front-end Developer from <strong>Mesopotamia</strong></div>
+            <div class="profile-card-loc">
+                <span class="profile-card-loc__icon">
+                    <svg class="icon">
+                        <use xlink:href="#icon-location"></use>
+                    </svg>
+                </span>
 
-            <!-- FIRST TIMELINE -->
-            <div class="timeline-block">
-                <!-- DOT -->
-                <div class="timeline-dot"><h6>D</h6></div>
-                <!-- TIMELINE CONTENT -->
-                <div class="card timeline-content">
-                    <div class="card-content">
-                        <!-- TIMELINE TITLE -->
-                        <h6 class="timeline-title">Designer</h6>
-                        <!-- TIMELINE TITLE INFO -->
-                        <div class="timeline-info">
-                            <h6>
-                                <small>RulerSoft</small>
-                            </h6>
-                            <h6>
-                                <small>Jan 2010 - Mar 2012</small>
-                            </h6>
-                        </div>
-                        <!-- TIMELINE PARAGRAPH -->
-                        <p>
-                            I started my designing carrier here, spent tow years learning and working
-                            in various designing aspects..
-                        </p>
-                        <!-- BUTTON TRIGGER MODAL -->
-                        <a href="#" class="modal-dot" data-toggle="modal" data-target="#myModal-4">
-                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                        </a>
-                    </div>
+                <span class="profile-card-loc__txt">
+                    Istanbul, Turkey
+                </span>
+            </div>
+
+            <div class="profile-card-inf">
+                <div class="profile-card-inf__item">
+                    <div class="profile-card-inf__title">1598</div>
+                    <div class="profile-card-inf__txt">Followers</div>
+                </div>
+
+                <div class="profile-card-inf__item">
+                    <div class="profile-card-inf__title">65</div>
+                    <div class="profile-card-inf__txt">Following</div>
+                </div>
+
+                <div class="profile-card-inf__item">
+                    <div class="profile-card-inf__title">123</div>
+                    <div class="profile-card-inf__txt">Articles</div>
+                </div>
+
+                <div class="profile-card-inf__item">
+                    <div class="profile-card-inf__title">85</div>
+                    <div class="profile-card-inf__txt">Works</div>
                 </div>
             </div>
 
-            <!-- SECOND TIMELINE -->
-            <div class="timeline-block">
-                <!-- DOT -->
-                <div class="timeline-dot"><h6>F</h6></div>
-                <!-- TIMELINE CONTENT -->
-                <div class="card timeline-content">
-                    <div class="card-content">
-                        <!-- TIMELINE TITLE -->
-                        <h6 class="timeline-title">Frontend Developer</h6>
-                        <!-- TIMELINE TITLE INFO -->
-                        <div class="timeline-info">
-                            <h6>
-                                <small>Micro IT</small>
-                            </h6>
-                            <h6>
-                                <small>Jan 2012 - Mar 2014</small>
-                            </h6>
-                        </div>
-                        <!-- TIMELINE PARAGRAPH -->
-                        <p>
-                            I started my frontend carrier here, spent tow years learning and working
-                            in various frontend aspects. I worked on about 40+ projects local and online.
-                        </p>
+            <div class="profile-card-social">
+                <a href="https://www.facebook.com/iaMuhammedErdem" class="profile-card-social__item facebook"
+                    target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-facebook"></use>
+                        </svg>
+                    </span>
+                </a>
 
-                    </div>
-                </div>
+                <a href="https://twitter.com/iaMuhammedErdem" class="profile-card-social__item twitter" target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-twitter"></use>
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="https://www.instagram.com/iamuhammederdem" class="profile-card-social__item instagram"
+                    target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-instagram"></use>
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="https://www.behance.net/iaMuhammedErdem" class="profile-card-social__item behance"
+                    target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-behance"></use>
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="https://github.com/muhammederdem" class="profile-card-social__item github" target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-github"></use>
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="https://codepen.io/JavaScriptJunkie" class="profile-card-social__item codepen" target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-codepen"></use>
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="http://muhammederdem.com.tr/" class="profile-card-social__item link" target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-link"></use>
+                        </svg>
+                    </span>
+                </a>
+
             </div>
 
-            <!-- THIRD TIMELINE -->
-            <div class="timeline-block">
-                <!-- DOT -->
-                <div class="timeline-dot"><h6>U</h6></div>
-                <!-- TIMELINE CONTENT -->
-                <div class="card timeline-content">
-                    <div class="card-content">
-                        <!-- TIMELINE TITLE -->
-                        <h6 class="timeline-title">UI/UX Expert</h6>
-                        <!-- TIMELINE TITLE INFO -->
-                        <div class="timeline-info">
-                            <h6>
-                                <small>Libra IT Solutions</small>
-                            </h6>
-                            <h6>
-                                <small>Jan 2014 - Mar 2015</small>
-                            </h6>
-                        </div>
-                        <!-- TIMELINE PARAGRAPH -->
-                        <p>
-                            I started my expertise carrier here, spent tow years learning and working
-                            in various UX/UI aspects. I worked on about 70+ projects local and online.
-                        </p>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- FOURTH TIMELINE -->
-            <div class="timeline-block">
-                <!-- DOT -->
-                <div class="timeline-dot"><h6>S</h6></div>
-                <!-- TIMELINE CONTENT -->
-                <div class="card timeline-content">
-                    <div class="card-content">
-                        <!-- TIMELINE TITLE -->
-                        <h6 class="timeline-title">Senior Developer</h6>
-                        <!-- TIMELINE TITLE INFO -->
-                        <div class="timeline-info">
-                            <h6>
-                                <small>WebStyle Technologies</small>
-                            </h6>
-                            <h6>
-                                <small>Jan 2016 - Continue..</small>
-                            </h6>
-                        </div>
-                        <!-- TIMELINE PARAGRAPH -->
-                        <p>
-                            I recently joined here, currently working on various development
-                            aspects. I already worked on about..
-                        </p>
-                        <!-- BUTTON TRIGGER MODAL -->
-                        <a href="#" class="modal-dot" data-toggle="modal" data-target="#myModal-5">
-                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
+            <div class="profile-card-ctr">
+                <button class="profile-card__button button--blue js-message-btn">Message</button>
+                <button class="profile-card__button button--orange">Follow</button>
             </div>
         </div>
-    </div>
-</section>
 
-<!--==========================================
-                  MODALS
-===========================================-->
-<section>
-    <!--MODAL ONE-->
-    <div class="modal fade" id="myModal-1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-1">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <!--MODAL HEADER-->
-                <div class="modal-header  text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true"><i class="fa fa-close"></i></span></button>
-                    <h4 class="modal-title" id="myModalLabel-1">GRADUATION AT ASHTON UNI</h4>
-                    <h6>
-                        <small>Jan 2014 - Mar 2015</small>
-                    </h6>
-                </div>
-                <!--MODAL BODY-->
-                <div class="modal-body">
-                    <img class="img-responsive" alt="graduation" src="images/timeline/demo-gra.jpg">
-                    <p>
-                        I have learned a great many things from participating in varsity football.
-                        It has changed my entire outlook on and attitude toward life. Before my
-                        freshman year at [high-school], I was shy, had low self-esteem and turned
-                        away from seemingly impossible challenges. Football has altered all of these
-                        qualities. On the first day of freshman practice, the team warmed up with a
-                        game of touch football. The players were split up and the game began. However,
-                        during the game, I noticed that I didn't run as hard as I could, nor did I try
-                        to evade my defender and get open. The fact of the matter is that I really did
-                        not want to be thrown the ball. I didn't want to be the one at fault if I dropped
-                        the ball and the play didn't succeed. I did not want the responsibility of helping
-                        the team because I was too afraid of making a mistake. That aspect of my character
-                        led the first years of my high school life. All the while, I went to practice.
-                    </p>
-                </div>
-                <!--MODAL FOOTER-->
-                <div class="modal-footer">
-                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--MODAL TWO-->
-    <div class="modal fade" id="myModal-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-2">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <!--MODAL HEADER-->
-                <div class="modal-header  text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true"><i class="fa fa-close"></i></span></button>
-                    <h4 class="modal-title" id="myModalLabel-2">EDUCATION AT Y</h4>
-                    <h6>
-                        <small>Jan 2014 - Mar 2015</small>
-                    </h6>
-                </div>
-                <!--MODAL BODY-->
-                <div class="modal-body">
-                    <p>
-                        I have learned a great many things from participating in varsity football.
-                        It has changed my entire outlook on and attitude toward life. Before my
-                        freshman year at [high-school], I was shy, had low self-esteem and turned
-                        away from seemingly impossible challenges. Football has altered all of these
-                        qualities. On the first day of freshman practice, the team warmed up with a
-                        game of touch football. The players were split up and the game began. However,
-                    </p>
-                </div>
-                <!--MODAL FOOTER-->
-                <div class="modal-footer">
-                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--MODAL THREE-->
-    <div class="modal fade" id="myModal-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-3">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <!--MODAL HEADER-->
-                <div class="modal-header  text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true"><i class="fa fa-close"></i></span></button>
-                    <h4 class="modal-title" id="myModalLabel-3">EDUCATION AT Z</h4>
-                    <h6>
-                        <small>Jan 2014 - Mar 2015</small>
-                    </h6>
-                </div>
-                <!--MODAL BODY-->
-                <div class="modal-body">
-                    <img class="img-responsive" alt="graduation" src="images/timeline/demo-gra.jpg">
-                    <p>
-                        I have learned a great many things from participating in varsity football.
-                        It has changed my entire outlook on and attitude toward life. Before my
-                        freshman year at [high-school], I was shy, had low self-esteem and turned
-                        away from seemingly impossible challenges. Football has altered all of these
-                        qualities. On the first day of freshman practice, the team warmed up with a
-                        game of touch football. The players were split up and the game began. However,
-                    </p>
-                </div>
-                <!--MODAL FOOTER-->
-                <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--MODAL FOUR-->
-    <div class="modal fade" id="myModal-4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-4">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <!--MODAL HEADER-->
-                <div class="modal-header  text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true"><i class="fa fa-close"></i></span></button>
-                    <h4 class="modal-title" id="myModalLabel-4">EXPERIENCE AT Z</h4>
-                    <h6>
-                        <small>Jan 2014 - Mar 2015</small>
-                    </h6>
-                </div>
-                <!--MODAL BODY-->
-                <div class="modal-body">
-                    <p>
-                        I have learned a great many things from participating in varsity football.
-                        It has changed my entire outlook on and attitude toward life. Before my
-                        freshman year at [high-school], I was shy, had low self-esteem and turned
-                        away from seemingly impossible challenges. Football has altered all of these
-                        qualities. On the first day of freshman practice, the team warmed up with a
-                        game of touch football. The players were split up and the game began. However,
-                    </p>
-                </div>
-                <!--MODAL FOOTER-->
-                <div class="modal-footer">
-                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--MODAL FIVE-->
-    <div class="modal fade" id="myModal-5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-5">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <!--MODAL HEADER-->
-                <div class="modal-header  text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true"><i class="fa fa-close"></i></span></button>
-                    <h4 class="modal-title" id="myModalLabel-5">EXPERIENCE AT M</h4>
-                    <h6>
-                        <small>Jan 2014 - Mar 2015</small>
-                    </h6>
-                </div>
-                <!--MODAL BODY-->
-                <div class="modal-body">
-                    <p>
-                        I have learned a great many things from participating in varsity football.
-                        It has changed my entire outlook on and attitude toward life. Before my
-                        freshman year at [high-school], I was shy, had low self-esteem and turned
-                        away from seemingly impossible challenges. Football has altered all of these
-                        qualities. On the first day of freshman practice, the team warmed up with a
-                        game of touch football. The players were split up and the game began. However,
-                    </p>
-                </div>
-                <!--MODAL FOOTER-->
-                <div class="modal-footer">
-                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!--==========================================
-                  PORTFOLIOS
-===========================================-->
-<section id="portfolios" class="section">
-    <div class="container">
-        <!-- SECTION TITLE -->
-        <div class="section-title">
-            <h4 class="text-uppercase text-center"><img src="images/icons/safe.png" alt="demo">Portfolios</h4>
-        </div>
-        <div id="portfolios-card" class="row">
-
-            <!--OPTIONS-->
-            <ul class="nav nav-tabs">
-                <!--ALL CATEGORIES-->
-                <li class="active waves-effect list-shuffle"><a id="all-sample" class="active" href="#all"
-                                                                data-toggle="tab">ALL</a>
-                    <!--CATEGORIES-->
-                <li class="waves-effect list-shuffle"><a class="cate" href="#a" data-toggle="tab">LOGO</a></li>
-                <li class="waves-effect list-shuffle"><a class="cate" href="#b" data-toggle="tab">DRIBBLE</a></li>
-                <li class="waves-effect list-shuffle"><a class="cate" href="#c" data-toggle="tab">WEBSITES</a></li>
-            </ul>
-
-            <!--CATEGORIES CONTENT-->
-            <div class="tab-content">
-
-                <!--All CATEGORIES-->
-                <div id="all"></div>
-
-                <!--CATEGORY 1-->
-                <div id="a">
-
-                    <!--CATEGORY CONTENT ONE BIG-->
-                    <div class="col-md-4 col-sm-12 col-xs-12 grid big inLeft">
-                        <figure class="port-effect-scale">
-                            <img src="images/portfolios/big-1.jpg" class="img-responsive" alt="portfolio-demo"/>
-                            <figcaption>
-                                <h2>Lightbox <span> IMAGE</span></h2>
-                                <p>Two Hover Effect For Portfolio Grid Blocks. Its Scale</p>
-                                <a href="images/portfolios/big-1.jpg" class="popup-image" data-effect="mfp-3d-unfold">View
-                                    more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-
-                    <!--CATEGORY CONTENT TWO SMALL-->
-                    <div class="col-md-4 col-sm-6 col-xs-12 grid inRight">
-                        <figure class="port-effect-scale">
-                            <img src="images/portfolios/portfolio-1.jpg" class="img-responsive" alt="portfolio-demo"/>
-                            <figcaption>
-                                <h2><i class="fa fa-play-circle" aria-hidden="true"></i>Lightbox <span> Video</span>
-                                </h2>
-                                <p>I designed this for a client for his cafe.</p>
-                                <a class="popup-vimeo" href="https://vimeo.com/45830194">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-
-                    <!--CATEGORY CONTENT THREE SMALL-->
-                    <div class="col-md-4 col-sm-6 col-xs-12 grid inRight">
-                        <figure class="port-effect-up">
-                            <img src="images/portfolios/portfolio-2.jpg" class="img-responsive" alt="portfolio-demo"/>
-                            <figcaption>
-                                <h2>Lightbox <span> IMAGE</span></h2>
-                                <p>Two Hover Effect For Portfolio Grid Blocks. Its Up</p>
-                                <a href="images/portfolios/portfolio-2.jpg" class="popup-image"
-                                   data-effect="mfp-move-horizontal">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-
+        <div class="profile-card-message js-message">
+            <form class="profile-card-form">
+                <div class="profile-card-form__container">
+                    <textarea placeholder="Say something..."></textarea>
                 </div>
 
-                <!--CATEGORY 2-->
-                <div id="b">
+                <div class="profile-card-form__bottom">
+                    <button class="profile-card__button button--blue js-message-close">
+                        Send
+                    </button>
 
-                    <!--CATEGORY CONTENT ONE BIG-->
-                    <div class="col-md-4 col-sm-12 col-xs-12 grid big inRight">
-                        <figure class="port-effect-up">
-                            <img src="images/portfolios/big-2.jpg" class="img-responsive" alt="portfolio-demo"/>
-                            <figcaption>
-                                <h2>Lightbox <span> IMAGE</span></h2>
-                                <p>Effect also available for Lightbox Image Check The Doc</p>
-                                <a href="images/portfolios/big-2.jpg" class="popup-image"
-                                   data-effect="mfp-move-from-top">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-
-                    <!--CATEGORY CONTENT TWO SMALL-->
-                    <div class="col-md-4 col-sm-6 col-xs-12 grid inLeft">
-                        <figure class="port-effect-scale">
-                            <img src="images/portfolios/portfolio-3.jpg" class="img-responsive" alt="portfolio-demo"/>
-                            <figcaption>
-                                <h2>Lightbox <span> IMAGE</span></h2>
-                                <p>Used latest material design to make this sample</p>
-                                <a href="images/portfolios/portfolio-3.jpg" class="popup-image"
-                                   data-effect="mfp-3d-unfold">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-
-
-                    <!--CATEGORY CONTENT THREE SMALL-->
-                    <div class="col-md-4 col-sm-6 col-xs-12 grid inLeft">
-                        <figure class="port-effect-up">
-                            <img src="images/portfolios/portfolio-4.jpg" class="img-responsive" alt="portfolio-demo"/>
-                            <figcaption>
-                                <h2>Lightbox <span> IMAGE</span></h2>
-                                <p>I designed this for a client for his cafe.</p>
-                                <a href="images/portfolios/portfolio-4.jpg" class="popup-image"
-                                   data-effect="mfp-with-fade">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-
-                </div>
-
-                <!--CATEGORY 3-->
-                <div id="c">
-                    <!--CATEGORY CONTENT ONE SMALL-->
-                    <div class="col-md-4 col-sm-6 col-xs-12 grid inLeft">
-                        <figure class="port-effect-up">
-                            <img src="images/portfolios/big-1.jpg" class="img-responsive" alt="portfolio-demo"/>
-                            <figcaption>
-                                <h2>Single <span> PAGE</span></h2>
-                                <p>Showcase Your Portfolio in Details on a Single Page</p>
-                                <a href="single-portfolio.html">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <!--CATEGORY CONTENT TWO SMALL-->
-                    <div class="col-md-4 col-sm-6 col-xs-12 grid inRight">
-                        <figure class="port-effect-up">
-                            <img src="images/portfolios/big-2.jpg" class="img-responsive" alt="portfolio-demo"/>
-                            <figcaption>
-                                <h2>Single <span> PAGE</span></h2>
-                                <p>Showcase Your Portfolio in Details on a Single Page</p>
-                                <a href="single-portfolio.html">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <!--CATEGORY CONTENT THREE SMALL-->
-                    <div class="col-md-4 col-sm-6 col-xs-12 grid inRight">
-                        <figure class="port-effect-up">
-                            <img src="images/portfolios/portfolio-1.jpg" class="img-responsive" alt="portfolio-demo"/>
-                            <figcaption>
-                                <h2>Single <span> PAGE</span></h2>
-                                <p>Showcase Your Portfolio in Details on a Single Page</p>
-                                <a href="single-portfolio.html">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-
-                    <!--CATEGORY CONTENT FOUR SMALL-->
-                    <div class="col-md-4 col-sm-6 col-xs-12 grid inLeft">
-                        <figure class="port-effect-up">
-                            <img src="images/portfolios/portfolio-2.jpg" class="img-responsive" alt="portfolio-demo"/>
-                            <figcaption>
-                                <h2>Single <span> PAGE</span></h2>
-                                <p>Showcase Your Portfolio in Details on a Single Page</p>
-                                <a href="single-portfolio.html">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <!--CATEGORY CONTENT FIVE SMALL-->
-                    <div class="col-md-4 col-sm-6 col-xs-12 grid inRight">
-                        <figure class="port-effect-up">
-                            <img src="images/portfolios/portfolio-3.jpg" class="img-responsive" alt="portfolio-demo"/>
-                            <figcaption>
-                                <h2>Single <span> PAGE</span></h2>
-                                <p>Showcase Your Portfolio in Details on a Single Page</p>
-                                <a href="single-portfolio.html">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <!--CATEGORY CONTENT SIX SMALL-->
-                    <div class="col-md-4 col-sm-6 col-xs-12 grid inLeft">
-                        <figure class="port-effect-up">
-                            <img src="images/portfolios/portfolio-4.jpg" class="img-responsive" alt="portfolio-demo"/>
-                            <figcaption>
-                                <h2>Single <span> PAGE</span></h2>
-                                <p>Showcase Your Portfolio in Details on a Single Page</p>
-                                <a href="single-portfolio.html">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </div>
-            </div>
-            <!--PORTFOLIOS ADD GALLERY BUTTON-->
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <button id="add-more" class="center-block btn-large waves-effect"><i id="port-add-icon"
-                                                                                         class="fa fa-plus"></i>
+                    <button class="profile-card__button button--gray js-message-close">
+                        Cancel
                     </button>
                 </div>
-            </div>
+            </form>
+
+            <div class="profile-card__overlay js-message-close"></div>
         </div>
+
     </div>
-</section>
 
-<!--==========================================
-                   INTEREST
-===========================================-->
-<section id="interest" class="section">
-    <div class="container">
-        <!-- SECTION TITLE -->
-        <div class="section-title">
-            <h4 class="text-uppercase text-center"><img src="images/icons/heart.png" alt="demo">Interest</h4>
-        </div>
-
-        <div id="interest-card" class="card">
-            <!--INTEREST TEXT-->
-            <div class="card-content">
-                <p>
-                    First of all I love music, country music is my favorite. Love watching
-                    football, movies and playing games with my buddies. I spend quite a lot of time
-                    in traveling and photography, these keeps me fresh for working environment.
-                    I also spend time volunteering at the Red Cross in London, UK each month.
-                </p>
-            </div>
-
-            <!--INTEREST ICONS-->
-            <div class="row no-gutters">
-
-                <!--INTEREST ICON ONE-->
-                <div class="col-md-2 col-sm-4 col-xs-6  box text-center">
-                    <div class="interest-icon">
-                        <i class="fa fa-music"></i>
-                        <span>Music</span>
-                    </div>
-                </div>
-                <!--INTEREST ICON TWO-->
-                <div class="col-md-2 col-sm-4 col-xs-6 box text-center">
-                    <div class="interest-icon-even">
-                        <i class="fa fa-gamepad"></i>
-                        <span>Gaming</span>
-                    </div>
-                </div>
-                <!--INTEREST ICON THREE-->
-                <div class="col-md-2 col-sm-4 col-xs-6 box text-center">
-                    <div class="interest-icon">
-                        <i class="fa fa-camera"></i>
-                        <span>Photography</span>
-                    </div>
-                </div>
-                <!--INTEREST ICON FOUR-->
-                <div class="col-md-2 col-sm-4 col-xs-6 box text-center">
-                    <div class="interest-icon-even">
-                        <i class="fa fa-futbol-o"></i>
-                        <span>Football</span>
-                    </div>
-                </div>
-                <!--INTEREST ICON FIVE-->
-                <div class="col-md-2 col-sm-4 col-xs-6 box text-center">
-                    <div class="interest-icon">
-                        <i class="fa fa-plane"></i>
-                        <span>Traveling</span>
-                    </div>
-                </div>
-                <!--INTEREST ICON SIX-->
-                <div class="col-md-2 col-sm-4 col-xs-6 box text-center">
-                    <div class="interest-icon-even">
-                        <i class="fa fa-film"></i>
-                        <span>Movies</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!--==========================================
-             TESTIMONIALS AND CLIENTS
-===========================================-->
-<section id="testimonials" class="section">
-    <div class="container">
-        <!-- SECTION TITLE -->
-        <div class="section-title">
-            <h4 class="text-uppercase text-center"><img src="images/icons/handshake.png" alt="demo">Testimonials</h4>
-        </div>
-        <div id="testimonials-card" class="row card">
-            <div class="col-md-12 col-xs-12">
-
-                <!-- SLIDER STRUCTURE -->
-                <div id="clients-slider"
-                     class="swiper-container swiper-container-clients">
-                    <div class="swiper-wrapper">
-                        <!-- SLIDE ONE -->
-                        <div class="swiper-slide">
-                            <div class="col-md-12">
-                                <!--CLIENT IMAGE-->
-                                <div class="client-img center-block">
-                                    <img alt="client-image" class="center-block" src="images/clients/client-1.png">
-                                </div>
-                                <!--CLIENT QUOTE-->
-                                <blockquote>
-                                    I work with John on several web development projects and I find him to be extremely
-                                    creative and a technical Front End Developer. Jone expertise involves building
-                                    complex
-                                    Responsive Design layouts using HTML 5, CSS3, and JavaScript.
-                                    I work with John on several web development projects and I find him to be extremely
-                                    creative and a technical Front End Developer. Jone expertise involves building
-                                    complex
-                                    Responsive Design layouts using HTML 5, CSS3, and JavaScript.
-                                    <cite>Mike, CEO, IT World.</cite>
-                                </blockquote>
-                            </div>
-                        </div>
-
-                        <!-- SLIDE TWO -->
-                        <div class="swiper-slide">
-                            <div class="col-md-12">
-                                <!--CLIENT IMAGE-->
-                                <div class="client-img center-block">
-                                    <img alt="client-image" class="center-block" src="images/clients/client-2.png">
-                                </div>
-                                <!--CLIENT QUOTE-->
-                                <blockquote>
-                                    I work with John on several web development projects and I find him to be extremely
-                                    creative and a technical Front End Developer.
-                                    <cite>Mike, CEO, IT World.</cite>
-                                </blockquote>
-                            </div>
-                        </div>
-
-                        <!-- SLIDE THREE -->
-                        <div class="swiper-slide">
-                            <div class="col-md-12">
-                                <!--CLIENT IMAGE-->
-                                <div class="client-img center-block">
-                                    <img alt="client-image" class="center-block" src="images/clients/client-3.png">
-                                </div>
-                                <!--CLIENT QUOTE-->
-                                <blockquote>
-                                    I work with John on several web development projects and I find him to be extremely
-                                    creative and a technical Front End Developer. Jone expertise involves building
-                                    complex
-                                    Responsive Design layouts using HTML 5, CSS3, and JavaScript.
-                                    <cite>Mike, CEO, IT World.</cite>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination swiper-pagination-clients"></div>
-                </div>
-            </div>
-        </div>
-        <div id="clients">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="clients-wrap">
-                            <!--CLIENT LOGO'S-->
-                            <ul id="clients-list" class="clearfix">
-                                <li><img src="images/logos/logo1.png" alt="client-logo"></li>
-                                <li><img src="images/logos/logo2.png" alt="client-logo"></li>
-                                <li><img src="images/logos/logo3.png" alt="client-logo"></li>
-                                <li><img src="images/logos/logo4.png" alt="client-logo"></li>
-                                <li><img src="images/logos/logo5.png" alt="client-logo"></li>
-                                <li><img src="images/logos/logo6.png" alt="client-logo"></li>
-                                <li><img src="images/logos/logo7.png" alt="client-logo"></li>
-                                <li><img src="images/logos/logo8.png" alt="client-logo"></li>
-                                <li><img src="images/logos/logo9.png" alt="client-logo"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!--==========================================
-             PRICING TABLE
-===========================================-->
-<section id="pricing-table" class="section">
-    <div class="container">
-        <!--SECTION TITLE-->
-        <div class="section-title">
-            <h4 class="text-uppercase text-center"><img src="images/icons/lightning.png" alt="demo">Pricing</h4>
-        </div>
-        <!--PRICING TABLES-->
-        <div id="pricing-card" class="row">
-            <!--PRICING ONE-->
-            <div id="p-one" class="col-md-4 col-sm-4 col-xs-12">
-                <div class="pricing">
-                    <div class="card">
-                        <!--PRICING TOP-->
-                        <div class="pricing-top">
-                            <p><sup>$</sup><em>50</em>/mo</p>
-                            <span>Starter</span>
-                        </div>
-                        <!--PRICING DETAILS-->
-                        <div class="pricing-bottom text-center text-capitalize">
-                            <ul>
-                                <li>2 GB Bandwidth</li>
-                                <li>5 GB Disk Space</li>
-                                <li>5 Databases</li>
-                                <li>Free Domain</li>
-                                <li>5 Subdomain</li>
-                            </ul>
-                        </div>
-                        <!--BUTTON-->
-                        <div class="card-action text-center">
-                            <a class="waves-effect btn">Purchase</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--PRICING TWO-->
-            <div id="p-three" class="col-md-4 col-sm-4 col-xs-12">
-                <div class="pricing">
-                    <div class="card">
-                        <!--PRICING TOP-->
-                        <div class="pricing-top">
-                            <p><sup>$</sup><em>200</em>/mo</p>
-                            <span>Ultimate</span>
-                        </div>
-                        <!--PRICING DETAILS-->
-                        <div class="pricing-bottom text-center text-capitalize">
-                            <ul>
-                                <li>∞ Bandwidth</li>
-                                <li>∞ Disk Space</li>
-                                <li>∞ Databases</li>
-                                <li>Free Domain</li>
-                                <li>∞ Subdomain</li>
-                            </ul>
-                        </div>
-                        <!--BUTTON-->
-                        <div class="card-action text-center">
-                            <a class="waves-effect btn">Purchase</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--PRICING THREE-->
-            <div id="p-two" class="col-md-4 col-sm-4 col-xs-12">
-                <div class="pricing">
-                    <div class="card">
-                        <!--PRICING TOP-->
-                        <div class="pricing-top">
-                            <p><sup>$</sup><em>100</em>/mo</p>
-                            <span>Business</span>
-                        </div>
-                        <!--PRICING DETAILS-->
-                        <div class="pricing-bottom text-center text-capitalize">
-                            <ul>
-                                <li>5 GB Bandwidth</li>
-                                <li>25 GB Disk Space</li>
-                                <li>10 Databases</li>
-                                <li>Free Domain</li>
-                                <li>15 Subdomain</li>
-                            </ul>
-                        </div>
-                        <!--BUTTON-->
-                        <div class="card-action text-center">
-                            <a class="waves-effect btn">Purchase</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!--==========================================
-             BLOG
-===========================================-->
-<section id="blog" class="section">
-    <div class="container">
-        <!-- SECTION TITLE -->
-        <div class="section-title">
-            <h4 class="text-uppercase text-center"><img src="images/icons/post-it.png" alt="demo">Blog</h4>
-        </div>
-        <div id="blog-card" class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="card">
-                    <!--BLOG ODD-->
-                    <div class="blog odd">
-                        <!--IMAGE-->
-                        <div class="image">
-                            <img alt="blog-image" src="images/blog/blog-2.png"/>
-                            <div class="image-overlay">
-                                <div class="comments">
-                                    <i class="fa fa-user"></i> John Doe
-                                    <i class="fa fa-clock-o"></i>
-                                    <time datetime="2045-08-16">August 7, 2020</time>
-                                    <i class="fa fa-comments"></i> 168
-                                </div>
-                            </div>
-                        </div>
-                        <!--DETAILS-->
-                        <div class="content">
-                            <ol class="breadcrumb">
-                                <li><a href="#">Frontend</a></li>
-                                <li><a href="#">Design</a></li>
-                                <li class="active">Material</li>
-                            </ol>
-                            <h6>Material Design</h6>
-                            <p>
-                                Web design encompasses many different skills and disciplines in the production
-                                of websites.Web design include web graphic design, interface design etc.
-                            </p>
-                            <a class="forward" href="single-blog.html">Read More</a>
-                        </div>
-                    </div>
-                    <!--BLOG EVEN-->
-                    <div class="blog even">
-                        <!--IMAGE-->
-                        <div class="image">
-                            <img alt="blog-image" src="images/blog/blog-1.png"/>
-                            <div class="image-overlay">
-                                <div class="comments">
-                                    <i class="fa fa-user"></i> John Doe
-                                    <i class="fa fa-clock-o"></i>
-                                    <time datetime="2045-08-16">August 7, 2020</time>
-                                    <i class="fa fa-comments"></i> 168
-                                </div>
-                            </div>
-                        </div>
-                        <!--DETAILS-->
-                        <div class="content">
-                            <ol class="breadcrumb">
-                                <li><a href="#">Backend</a></li>
-                                <li><a href="#">Dev</a></li>
-                                <li class="active">Shortcuts</li>
-                            </ol>
-                            <h6>Development Shortcut</h6>
-                            <p>
-                                Web development is a broad term for the work involved in developing a web site
-                                for the Internet or an intranet. Now lets get a bit deeper in this topic
-                            </p>
-                            <a class="forward" href="single-blog.html">Read More</a>
-                        </div>
-                    </div>
-                    <!--BLOG ODD-->
-                    <div class="blog odd">
-                        <!--IMAGE-->
-                        <div class="image">
-                            <img alt="blog-image" src="images/blog/blog-3.png"/>
-                            <div class="image-overlay">
-                                <div class="comments">
-                                    <i class="fa fa-user"></i> John Doe
-                                    <i class="fa fa-clock-o"></i>
-                                    <time datetime="2045-08-16">August 7, 2020</time>
-                                    <i class="fa fa-comments"></i> 168
-                                </div>
-                            </div>
-                        </div>
-                        <!--DETAILS-->
-                        <div class="content">
-                            <ol class="breadcrumb">
-                                <li><a href="#">Frontend</a></li>
-                                <li><a href="#">Specs</a></li>
-                                <li class="active">UI</li>
-                            </ol>
-                            <h6>A Good UI</h6>
-                            <p>
-                                The user interface (UI), in the industrial design field of human–machine
-                                interaction, is the space where interactions between humans and machines occur.
-                            </p>
-                            <a class="forward" href="single-blog.html">Read More</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!--==========================================
-                  CONTACT
-===========================================-->
-<section id="contact" class="section">
-    <div class="container">
-        <!-- SECTION TITLE -->
-        <div class="section-title">
-            <h4 class="text-uppercase text-center"><img src="images/icons/envelope.png" alt="demo">Contact</h4>
-        </div>
-        <div class="row">
-            <div id="contact-card" class="col-md-5 col-sm-12 col-xs-12">
-                <!-- CONTACT FORM -->
-                <div class="card">
-                    <div class="card-content">
-                        <form id="contact-form" name="c-form">
-                            <!-- NAME -->
-                            <div class="input-field">
-                                <input id="first_name" type="text" class="validate" name="first_name" required>
-                                <label for="first_name">Name</label>
-                            </div>
-                            <!--SUBJECT-->
-                            <div class="input-field">
-                                <input id="sub" type="text" class="validate" name="sub">
-                                <label for="sub">Subject</label>
-                            </div>
-                            <!--EMAIL-->
-                            <div class="input-field">
-                                <input id="email" type="email" class="validate" name="email" required>
-                                <label for="email">Email</label>
-                            </div>
-                            <!--MESSAGE-->
-                            <div class="input-field">
-                                <textarea id="textarea1" class="materialize-textarea" name="message"
-                                          required></textarea>
-                                <label for="textarea1">Message</label>
-                            </div>
-                            <!-- SEND BUTTON -->
-                            <div class="contact-send">
-                                <button id="submit" name="contactSubmit" type="submit" value="Submit"
-                                        class="btn waves-effect">Send
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <!--FORM LOADER-->
-                    <div id="form-loader" class="progress is-hidden">
-                        <div class="indeterminate"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-7 col-sm-12 col-xs-12">
-                <!-- CONTACT MAP -->
-                <div id="map-card" class="card">
-                    <!-- MAP -->
-                    <div id="myMap"></div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!--==========================================
-                     SCROLL TO TOP
-===========================================-->
-<div id="scroll-top">
-    <div id="scrollup"><i class="fa fa-angle-up"></i></div>
 </div>
 
-<!--==========================================
-                      FOOTER
-===========================================-->
+<svg hidden="hidden">
+    <defs>
+        <symbol id="icon-codepen" viewBox="0 0 32 32">
+            <title>codepen</title>
+            <path
+                d="M31.872 10.912v-0.032c0-0.064 0-0.064 0-0.096v-0.064c0-0.064 0-0.064-0.064-0.096 0 0 0-0.064-0.064-0.064 0-0.064-0.064-0.064-0.064-0.096 0 0 0-0.064-0.064-0.064 0-0.064-0.064-0.064-0.064-0.096l-0.192-0.192v-0.064l-0.064-0.064-14.592-9.696c-0.448-0.32-1.056-0.32-1.536 0l-14.528 9.696-0.32 0.32c0 0-0.064 0.064-0.064 0.096 0 0 0 0.064-0.064 0.064 0 0.064-0.064 0.064-0.064 0.096 0 0 0 0.064-0.064 0.064 0 0.064 0 0.064-0.064 0.096v0.064c0 0.064 0 0.064 0 0.096v0.064c0 0.064 0 0.096 0 0.16v9.696c0 0.064 0 0.096 0 0.16v0.064c0 0.064 0 0.064 0 0.096v0.064c0 0.064 0 0.064 0.064 0.096 0 0 0 0.064 0.064 0.064 0 0.064 0.064 0.064 0.064 0.096 0 0 0 0.064 0.064 0.064 0 0.064 0.064 0.064 0.064 0.096l0.256 0.256 0.064 0.032 14.528 9.728c0.224 0.16 0.48 0.224 0.768 0.224s0.544-0.064 0.768-0.224l14.528-9.728 0.32-0.32c0 0 0.064-0.064 0.064-0.096 0 0 0-0.064 0.064-0.064 0-0.064 0.064-0.064 0.064-0.096 0 0 0-0.064 0.064-0.064 0-0.064 0-0.064 0.064-0.096v-0.032c0-0.064 0-0.064 0-0.096v-0.064c0-0.064 0-0.096 0-0.16v-9.664c0-0.064 0-0.096 0-0.224zM17.312 4l10.688 7.136-4.768 3.168-5.92-3.936v-6.368zM14.56 4v6.368l-5.92 3.968-4.768-3.168 10.688-7.168zM2.784 13.664l3.392 2.304-3.392 2.304c0 0 0-4.608 0-4.608zM14.56 28l-10.688-7.136 4.768-3.2 5.92 3.936v6.4zM15.936 19.2l-4.832-3.232 4.832-3.232 4.832 3.232-4.832 3.232zM17.312 28v-6.432l5.92-3.936 4.8 3.168-10.72 7.2zM29.12 18.272l-3.392-2.304 3.392-2.304v4.608z">
+            </path>
+        </symbol>
 
-<footer>
-    <div class="container">
-        <!--FOOTER DETAILS-->
-        <p class="text-center">
-            © Material CV. All right reserved by
-            <a href="http://trimatrixlab.com/" target="_blank">
-                <strong>Trimatrixlab</strong>
-            </a>
-        </p>
+        <symbol id="icon-github" viewBox="0 0 32 32">
+            <title>github</title>
+            <path
+                d="M16.192 0.512c-8.832 0-16 7.168-16 16 0 7.072 4.576 13.056 10.944 15.168 0.8 0.16 1.088-0.352 1.088-0.768 0-0.384 0-1.632-0.032-2.976-4.448 0.96-5.376-1.888-5.376-1.888-0.736-1.856-1.792-2.336-1.792-2.336-1.44-0.992 0.096-0.96 0.096-0.96 1.6 0.128 2.464 1.664 2.464 1.664 1.44 2.432 3.744 1.728 4.672 1.344 0.128-1.024 0.544-1.728 1.024-2.144-3.552-0.448-7.296-1.824-7.296-7.936 0-1.76 0.64-3.168 1.664-4.288-0.16-0.416-0.704-2.016 0.16-4.224 0 0 1.344-0.416 4.416 1.632 1.28-0.352 2.656-0.544 4-0.544s2.72 0.192 4 0.544c3.040-2.080 4.384-1.632 4.384-1.632 0.864 2.208 0.32 3.84 0.16 4.224 1.024 1.12 1.632 2.56 1.632 4.288 0 6.144-3.744 7.488-7.296 7.904 0.576 0.512 1.088 1.472 1.088 2.976 0 2.144-0.032 3.872-0.032 4.384 0 0.416 0.288 0.928 1.088 0.768 6.368-2.112 10.944-8.128 10.944-15.168 0-8.896-7.168-16.032-16-16.032z">
+            </path>
+            <path
+                d="M6.24 23.488c-0.032 0.064-0.16 0.096-0.288 0.064-0.128-0.064-0.192-0.16-0.128-0.256 0.032-0.096 0.16-0.096 0.288-0.064 0.128 0.064 0.192 0.16 0.128 0.256v0z">
+            </path>
+            <path
+                d="M6.912 24.192c-0.064 0.064-0.224 0.032-0.32-0.064s-0.128-0.256-0.032-0.32c0.064-0.064 0.224-0.032 0.32 0.064s0.096 0.256 0.032 0.32v0z">
+            </path>
+            <path
+                d="M7.52 25.12c-0.096 0.064-0.256 0-0.352-0.128s-0.096-0.32 0-0.384c0.096-0.064 0.256 0 0.352 0.128 0.128 0.128 0.128 0.32 0 0.384v0z">
+            </path>
+            <path
+                d="M8.384 26.016c-0.096 0.096-0.288 0.064-0.416-0.064s-0.192-0.32-0.096-0.416c0.096-0.096 0.288-0.064 0.416 0.064 0.16 0.128 0.192 0.32 0.096 0.416v0z">
+            </path>
+            <path
+                d="M9.6 26.528c-0.032 0.128-0.224 0.192-0.384 0.128-0.192-0.064-0.288-0.192-0.256-0.32s0.224-0.192 0.416-0.128c0.128 0.032 0.256 0.192 0.224 0.32v0z">
+            </path>
+            <path
+                d="M10.912 26.624c0 0.128-0.16 0.256-0.352 0.256s-0.352-0.096-0.352-0.224c0-0.128 0.16-0.256 0.352-0.256 0.192-0.032 0.352 0.096 0.352 0.224v0z">
+            </path>
+            <path
+                d="M12.128 26.4c0.032 0.128-0.096 0.256-0.288 0.288s-0.352-0.032-0.384-0.16c-0.032-0.128 0.096-0.256 0.288-0.288s0.352 0.032 0.384 0.16v0z">
+            </path>
+        </symbol>
+
+        <symbol id="icon-location" viewBox="0 0 32 32">
+            <title>location</title>
+            <path
+                d="M16 31.68c-0.352 0-0.672-0.064-1.024-0.16-0.8-0.256-1.44-0.832-1.824-1.6l-6.784-13.632c-1.664-3.36-1.568-7.328 0.32-10.592 1.856-3.2 4.992-5.152 8.608-5.376h1.376c3.648 0.224 6.752 2.176 8.608 5.376 1.888 3.264 2.016 7.232 0.352 10.592l-6.816 13.664c-0.288 0.608-0.8 1.12-1.408 1.408-0.448 0.224-0.928 0.32-1.408 0.32zM15.392 2.368c-2.88 0.192-5.408 1.76-6.912 4.352-1.536 2.688-1.632 5.92-0.288 8.672l6.816 13.632c0.128 0.256 0.352 0.448 0.64 0.544s0.576 0.064 0.832-0.064c0.224-0.096 0.384-0.288 0.48-0.48l6.816-13.664c1.376-2.752 1.248-5.984-0.288-8.672-1.472-2.56-4-4.128-6.88-4.32h-1.216zM16 17.888c-3.264 0-5.92-2.656-5.92-5.92 0-3.232 2.656-5.888 5.92-5.888s5.92 2.656 5.92 5.92c0 3.264-2.656 5.888-5.92 5.888zM16 8.128c-2.144 0-3.872 1.728-3.872 3.872s1.728 3.872 3.872 3.872 3.872-1.728 3.872-3.872c0-2.144-1.76-3.872-3.872-3.872z">
+            </path>
+            <path
+                d="M16 32c-0.384 0-0.736-0.064-1.12-0.192-0.864-0.288-1.568-0.928-1.984-1.728l-6.784-13.664c-1.728-3.456-1.6-7.52 0.352-10.912 1.888-3.264 5.088-5.28 8.832-5.504h1.376c3.744 0.224 6.976 2.24 8.864 5.536 1.952 3.36 2.080 7.424 0.352 10.912l-6.784 13.632c-0.32 0.672-0.896 1.216-1.568 1.568-0.48 0.224-0.992 0.352-1.536 0.352zM15.36 0.64h-0.064c-3.488 0.224-6.56 2.112-8.32 5.216-1.824 3.168-1.952 7.040-0.32 10.304l6.816 13.632c0.32 0.672 0.928 1.184 1.632 1.44s1.472 0.192 2.176-0.16c0.544-0.288 1.024-0.736 1.28-1.28l6.816-13.632c1.632-3.264 1.504-7.136-0.32-10.304-1.824-3.104-4.864-5.024-8.384-5.216h-1.312zM16 29.952c-0.16 0-0.32-0.032-0.448-0.064-0.352-0.128-0.64-0.384-0.8-0.704l-6.816-13.664c-1.408-2.848-1.312-6.176 0.288-8.96 1.536-2.656 4.16-4.32 7.168-4.512h1.216c3.040 0.192 5.632 1.824 7.2 4.512 1.6 2.752 1.696 6.112 0.288 8.96l-6.848 13.632c-0.128 0.288-0.352 0.512-0.64 0.64-0.192 0.096-0.384 0.16-0.608 0.16zM15.424 2.688c-2.784 0.192-5.216 1.696-6.656 4.192-1.504 2.592-1.6 5.696-0.256 8.352l6.816 13.632c0.096 0.192 0.256 0.32 0.448 0.384s0.416 0.064 0.608-0.032c0.16-0.064 0.288-0.192 0.352-0.352l6.816-13.664c1.312-2.656 1.216-5.792-0.288-8.352-1.472-2.464-3.904-4-6.688-4.16h-1.152zM16 18.208c-3.424 0-6.24-2.784-6.24-6.24 0-3.424 2.816-6.208 6.24-6.208s6.24 2.784 6.24 6.24c0 3.424-2.816 6.208-6.24 6.208zM16 6.4c-3.072 0-5.6 2.496-5.6 5.6 0 3.072 2.528 5.6 5.6 5.6s5.6-2.496 5.6-5.6c0-3.104-2.528-5.6-5.6-5.6zM16 16.16c-2.304 0-4.16-1.888-4.16-4.16s1.888-4.16 4.16-4.16c2.304 0 4.16 1.888 4.16 4.16s-1.856 4.16-4.16 4.16zM16 8.448c-1.952 0-3.552 1.6-3.552 3.552s1.6 3.552 3.552 3.552c1.952 0 3.552-1.6 3.552-3.552s-1.6-3.552-3.552-3.552z">
+            </path>
+        </symbol>
+
+        <symbol id="icon-facebook" viewBox="0 0 32 32">
+            <title>facebook</title>
+            <path d="M19 6h5v-6h-5c-3.86 0-7 3.14-7 7v3h-4v6h4v16h6v-16h5l1-6h-6v-3c0-0.542 0.458-1 1-1z"></path>
+        </symbol>
+
+        <symbol id="icon-instagram" viewBox="0 0 32 32">
+            <title>instagram</title>
+            <path
+                d="M16 2.881c4.275 0 4.781 0.019 6.462 0.094 1.563 0.069 2.406 0.331 2.969 0.55 0.744 0.288 1.281 0.638 1.837 1.194 0.563 0.563 0.906 1.094 1.2 1.838 0.219 0.563 0.481 1.412 0.55 2.969 0.075 1.688 0.094 2.194 0.094 6.463s-0.019 4.781-0.094 6.463c-0.069 1.563-0.331 2.406-0.55 2.969-0.288 0.744-0.637 1.281-1.194 1.837-0.563 0.563-1.094 0.906-1.837 1.2-0.563 0.219-1.413 0.481-2.969 0.55-1.688 0.075-2.194 0.094-6.463 0.094s-4.781-0.019-6.463-0.094c-1.563-0.069-2.406-0.331-2.969-0.55-0.744-0.288-1.281-0.637-1.838-1.194-0.563-0.563-0.906-1.094-1.2-1.837-0.219-0.563-0.481-1.413-0.55-2.969-0.075-1.688-0.094-2.194-0.094-6.463s0.019-4.781 0.094-6.463c0.069-1.563 0.331-2.406 0.55-2.969 0.288-0.744 0.638-1.281 1.194-1.838 0.563-0.563 1.094-0.906 1.838-1.2 0.563-0.219 1.412-0.481 2.969-0.55 1.681-0.075 2.188-0.094 6.463-0.094zM16 0c-4.344 0-4.887 0.019-6.594 0.094-1.7 0.075-2.869 0.35-3.881 0.744-1.056 0.412-1.95 0.956-2.837 1.85-0.894 0.888-1.438 1.781-1.85 2.831-0.394 1.019-0.669 2.181-0.744 3.881-0.075 1.713-0.094 2.256-0.094 6.6s0.019 4.887 0.094 6.594c0.075 1.7 0.35 2.869 0.744 3.881 0.413 1.056 0.956 1.95 1.85 2.837 0.887 0.887 1.781 1.438 2.831 1.844 1.019 0.394 2.181 0.669 3.881 0.744 1.706 0.075 2.25 0.094 6.594 0.094s4.888-0.019 6.594-0.094c1.7-0.075 2.869-0.35 3.881-0.744 1.050-0.406 1.944-0.956 2.831-1.844s1.438-1.781 1.844-2.831c0.394-1.019 0.669-2.181 0.744-3.881 0.075-1.706 0.094-2.25 0.094-6.594s-0.019-4.887-0.094-6.594c-0.075-1.7-0.35-2.869-0.744-3.881-0.394-1.063-0.938-1.956-1.831-2.844-0.887-0.887-1.781-1.438-2.831-1.844-1.019-0.394-2.181-0.669-3.881-0.744-1.712-0.081-2.256-0.1-6.6-0.1v0z">
+            </path>
+            <path
+                d="M16 7.781c-4.537 0-8.219 3.681-8.219 8.219s3.681 8.219 8.219 8.219 8.219-3.681 8.219-8.219c0-4.537-3.681-8.219-8.219-8.219zM16 21.331c-2.944 0-5.331-2.387-5.331-5.331s2.387-5.331 5.331-5.331c2.944 0 5.331 2.387 5.331 5.331s-2.387 5.331-5.331 5.331z">
+            </path>
+            <path
+                d="M26.462 7.456c0 1.060-0.859 1.919-1.919 1.919s-1.919-0.859-1.919-1.919c0-1.060 0.859-1.919 1.919-1.919s1.919 0.859 1.919 1.919z">
+            </path>
+        </symbol>
+
+        <symbol id="icon-twitter" viewBox="0 0 32 32">
+            <title>twitter</title>
+            <path
+                d="M32 7.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z">
+            </path>
+        </symbol>
+
+        <symbol id="icon-behance" viewBox="0 0 32 32">
+            <title>behance</title>
+            <path
+                d="M9.281 6.412c0.944 0 1.794 0.081 2.569 0.25 0.775 0.162 1.431 0.438 1.988 0.813 0.55 0.375 0.975 0.875 1.287 1.5 0.3 0.619 0.45 1.394 0.45 2.313 0 0.994-0.225 1.819-0.675 2.481-0.456 0.662-1.119 1.2-2.006 1.625 1.213 0.35 2.106 0.962 2.706 1.831 0.6 0.875 0.887 1.925 0.887 3.163 0 1-0.194 1.856-0.575 2.581-0.387 0.731-0.912 1.325-1.556 1.781-0.65 0.462-1.4 0.8-2.237 1.019-0.831 0.219-1.688 0.331-2.575 0.331h-9.544v-19.688h9.281zM8.719 14.363c0.769 0 1.406-0.181 1.906-0.55 0.5-0.363 0.738-0.963 0.738-1.787 0-0.456-0.081-0.838-0.244-1.131-0.169-0.294-0.387-0.525-0.669-0.688-0.275-0.169-0.588-0.281-0.956-0.344-0.356-0.069-0.731-0.1-1.113-0.1h-4.050v4.6h4.388zM8.956 22.744c0.425 0 0.831-0.038 1.213-0.125 0.387-0.087 0.731-0.219 1.019-0.419 0.287-0.194 0.531-0.45 0.706-0.788 0.175-0.331 0.256-0.756 0.256-1.275 0-1.012-0.287-1.738-0.856-2.175-0.569-0.431-1.325-0.644-2.262-0.644h-4.7v5.419h4.625z">
+            </path>
+            <path
+                d="M22.663 22.675c0.587 0.575 1.431 0.863 2.531 0.863 0.788 0 1.475-0.2 2.044-0.6s0.913-0.825 1.044-1.262h3.45c-0.556 1.719-1.394 2.938-2.544 3.675-1.131 0.738-2.519 1.113-4.125 1.113-1.125 0-2.131-0.181-3.038-0.538-0.906-0.363-1.663-0.869-2.3-1.531-0.619-0.663-1.106-1.45-1.45-2.375-0.337-0.919-0.512-1.938-0.512-3.038 0-1.069 0.175-2.063 0.525-2.981 0.356-0.925 0.844-1.719 1.494-2.387s1.413-1.2 2.313-1.588c0.894-0.387 1.881-0.581 2.975-0.581 1.206 0 2.262 0.231 3.169 0.706 0.9 0.469 1.644 1.1 2.225 1.887s0.994 1.694 1.25 2.706c0.256 1.012 0.344 2.069 0.275 3.175h-10.294c0 1.119 0.375 2.188 0.969 2.756zM27.156 15.188c-0.462-0.512-1.256-0.794-2.212-0.794-0.625 0-1.144 0.106-1.556 0.319-0.406 0.213-0.738 0.475-0.994 0.787-0.25 0.313-0.425 0.65-0.525 1.006-0.1 0.344-0.163 0.663-0.181 0.938h6.375c-0.094-1-0.438-1.738-0.906-2.256z">
+            </path>
+            <path d="M20.887 8h7.981v1.944h-7.981v-1.944z"></path>
+        </symbol>
+
+        <symbol id="icon-link" viewBox="0 0 32 32">
+            <title>link</title>
+            <path
+                d="M17.984 11.456c-0.704 0.704-0.704 1.856 0 2.56 2.112 2.112 2.112 5.568 0 7.68l-5.12 5.12c-2.048 2.048-5.632 2.048-7.68 0-1.024-1.024-1.6-2.4-1.6-3.84s0.576-2.816 1.6-3.84c0.704-0.704 0.704-1.856 0-2.56s-1.856-0.704-2.56 0c-1.696 1.696-2.624 3.968-2.624 6.368 0 2.432 0.928 4.672 2.656 6.4 1.696 1.696 3.968 2.656 6.4 2.656s4.672-0.928 6.4-2.656l5.12-5.12c3.52-3.52 3.52-9.248 0-12.8-0.736-0.672-1.888-0.672-2.592 0.032z">
+            </path>
+            <path
+                d="M29.344 2.656c-1.696-1.728-3.968-2.656-6.4-2.656s-4.672 0.928-6.4 2.656l-5.12 5.12c-3.52 3.52-3.52 9.248 0 12.8 0.352 0.352 0.8 0.544 1.28 0.544s0.928-0.192 1.28-0.544c0.704-0.704 0.704-1.856 0-2.56-2.112-2.112-2.112-5.568 0-7.68l5.12-5.12c2.048-2.048 5.632-2.048 7.68 0 1.024 1.024 1.6 2.4 1.6 3.84s-0.576 2.816-1.6 3.84c-0.704 0.704-0.704 1.856 0 2.56s1.856 0.704 2.56 0c1.696-1.696 2.656-3.968 2.656-6.4s-0.928-4.704-2.656-6.4z">
+            </path>
+        </symbol>
+    </defs>
+</svg>
+<script>
+    var messageBox = document.querySelector(".js-message");
+    var btn = document.querySelector(".js-message-btn");
+    var card = document.querySelector(".js-profile-card");
+    var closeBtn = document.querySelectorAll(".js-message-close");
+
+    btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        card.classList.add("active");
+    });
+
+    closeBtn.forEach(function (element, index) {
+        console.log(element);
+        element.addEventListener("click", function (e) {
+            e.preventDefault();
+            card.classList.remove("active");
+        });
+    });
+
+</script><style>
+    @import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext");
+
+    html {
+        position: relative;
+        overflow-x: hidden !important;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Quicksand", sans-serif;
+        color: #324e63;
+    }
+
+    a,
+    a:hover {
+        text-decoration: none;
+    }
+
+    .icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        stroke-width: 0;
+        stroke: currentColor;
+        fill: currentColor;
+    }
+
+    .wrapper {
+        width: 100%;
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        padding: 50px 20px;
+        padding-top: 100px;
+        display: flex;
+        background-image: linear-gradient(-20deg, #ff2846 0%, #6944ff 100%);
+        display: flex;
+        background-image: linear-gradient(-20deg, #ff2846 0%, #6944ff 100%);
+    }
+
+    @media screen and (max-width: 768px) {
+        .wrapper {
+            height: auto;
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+    }
+
+    .profile-card {
+        width: 100%;
+        min-height: 460px;
+        margin: auto;
+        box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
+        background: #fff;
+        border-radius: 12px;
+        max-width: 700px;
+        position: relative;
+    }
+
+    .profile-card.active .profile-card__cnt {
+        filter: blur(6px);
+    }
+
+    .profile-card.active .profile-card-message,
+    .profile-card.active .profile-card__overlay {
+        opacity: 1;
+        pointer-events: auto;
+        transition-delay: 0.1s;
+    }
+
+    .profile-card.active .profile-card-form {
+        transform: none;
+        transition-delay: 0.1s;
+    }
+
+    .profile-card__img {
+        width: 150px;
+        height: 150px;
+        margin-left: auto;
+        margin-right: auto;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        z-index: 4;
+        box-shadow: 0px 5px 50px 0px #6c44fc, 0px 0px 0px 7px rgba(107, 74, 255, 0.5);
+    }
+
+    @media screen and (max-width: 576px) {
+        .profile-card__img {
+            width: 120px;
+            height: 120px;
+        }
+    }
+
+    .profile-card__img img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .profile-card__cnt {
+        margin-top: -35px;
+        text-align: center;
+        padding: 0 20px;
+        padding-bottom: 40px;
+        transition: all 0.3s;
+    }
+
+    .profile-card__name {
+        font-weight: 700;
+        font-size: 24px;
+        color: #6944ff;
+        margin-bottom: 15px;
+    }
+
+    .profile-card__txt {
+        font-size: 18px;
+        font-weight: 500;
+        color: #324e63;
+        margin-bottom: 15px;
+    }
+
+    .profile-card__txt strong {
+        font-weight: 700;
+    }
+
+    .profile-card-loc {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .profile-card-loc__icon {
+        display: inline-flex;
+        font-size: 27px;
+        margin-right: 10px;
+    }
+
+    .profile-card-inf {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        margin-top: 35px;
+    }
+
+    .profile-card-inf__item {
+        padding: 10px 35px;
+        min-width: 150px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .profile-card-inf__item {
+            padding: 10px 20px;
+            min-width: 120px;
+        }
+    }
+
+    .profile-card-inf__title {
+        font-weight: 700;
+        font-size: 27px;
+        color: #324e63;
+    }
+
+    .profile-card-inf__txt {
+        font-weight: 500;
+        margin-top: 7px;
+    }
+
+    .profile-card-social {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .profile-card-social__item {
+        display: inline-flex;
+        width: 55px;
+        height: 55px;
+        margin: 15px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background: #405de6;
+        box-shadow: 0px 7px 30px rgba(43, 98, 169, 0.5);
+        position: relative;
+        font-size: 21px;
+        flex-shrink: 0;
+        transition: all 0.3s;
+    }
+
+    @media screen and (max-width: 768px) {
+        .profile-card-social__item {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .profile-card-social__item:hover {
+            transform: scale(1.2);
+        }
+    }
+
+    .profile-card-social__item.facebook {
+        background: linear-gradient(45deg, #3b5998, #0078d7);
+        box-shadow: 0px 4px 30px rgba(43, 98, 169, 0.5);
+    }
+
+    .profile-card-social__item.twitter {
+        background: linear-gradient(45deg, #1da1f2, #0e71c8);
+        box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.7);
+    }
+
+    .profile-card-social__item.instagram {
+        background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        box-shadow: 0px 4px 30px rgba(120, 64, 190, 0.6);
+    }
+
+    .profile-card-social__item.behance {
+        background: linear-gradient(45deg, #1769ff, #213fca);
+        box-shadow: 0px 4px 30px rgba(27, 86, 231, 0.7);
+    }
+
+    .profile-card-social__item.github {
+        background: linear-gradient(45deg, #333333, #626b73);
+        box-shadow: 0px 4px 30px rgba(63, 65, 67, 0.6);
+    }
+
+    .profile-card-social__item.codepen {
+        background: linear-gradient(45deg, #324e63, #414447);
+        box-shadow: 0px 4px 30px rgba(55, 75, 90, 0.6);
+    }
+
+    .profile-card-social__item.link {
+        background: linear-gradient(45deg, #d5135a, #f05924);
+        box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.6);
+    }
+
+    .profile-card-social .icon-font {
+        display: inline-flex;
+    }
+
+    .profile-card-ctr {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+    }
+
+    @media screen and (max-width: 576px) {
+        .profile-card-ctr {
+            flex-wrap: wrap;
+        }
+    }
+
+    .profile-card__button {
+        background: none;
+        border: none;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 700;
+        font-size: 19px;
+        margin: 15px 35px;
+        padding: 15px 40px;
+        min-width: 201px;
+        border-radius: 50px;
+        min-height: 55px;
+        color: #fff;
+        cursor: pointer;
+        backface-visibility: hidden;
+        transition: all 0.3s;
+    }
+
+    @media screen and (max-width: 768px) {
+        .profile-card__button {
+            min-width: 170px;
+            margin: 15px 25px;
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        .profile-card__button {
+            min-width: inherit;
+            margin: 0;
+            margin-bottom: 16px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .profile-card__button:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .profile-card__button:focus {
+        outline: none !important;
+    }
+
+    @media screen and (min-width: 768px) {
+        .profile-card__button:hover {
+            transform: translateY(-5px);
+        }
+    }
+
+    .profile-card__button:first-child {
+        margin-left: 0;
+    }
+
+    .profile-card__button:last-child {
+        margin-right: 0;
+    }
+
+    .profile-card__button.button--blue {
+        background: linear-gradient(45deg, #1da1f2, #0e71c8);
+        box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.4);
+    }
+
+    .profile-card__button.button--blue:hover {
+        box-shadow: 0px 7px 30px rgba(19, 127, 212, 0.75);
+    }
+
+    .profile-card__button.button--orange {
+        background: linear-gradient(45deg, #d5135a, #f05924);
+        box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.35);
+    }
+
+    .profile-card__button.button--orange:hover {
+        box-shadow: 0px 7px 30px rgba(223, 45, 70, 0.75);
+    }
+
+    .profile-card__button.button--gray {
+        box-shadow: none;
+        background: #dcdcdc;
+        color: #142029;
+    }
+
+    .profile-card-message {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-top: 130px;
+        padding-bottom: 100px;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s;
+    }
+
+    .profile-card-form {
+        box-shadow: 0 4px 30px rgba(15, 22, 56, 0.35);
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        height: 100%;
+        background: #fff;
+        border-radius: 10px;
+        padding: 35px;
+        transform: scale(0.8);
+        position: relative;
+        z-index: 3;
+        transition: all 0.3s;
+    }
+
+    @media screen and (max-width: 768px) {
+        .profile-card-form {
+            max-width: 90%;
+            height: auto;
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        .profile-card-form {
+            padding: 20px;
+        }
+    }
+
+    .profile-card-form__bottom {
+        justify-content: space-between;
+        display: flex;
+    }
+
+    @media screen and (max-width: 576px) {
+        .profile-card-form__bottom {
+            flex-wrap: wrap;
+        }
+    }
+
+    .profile-card textarea {
+        width: 100%;
+        resize: none;
+        height: 210px;
+        margin-bottom: 20px;
+        border: 2px solid #dcdcdc;
+        border-radius: 10px;
+        padding: 15px 20px;
+        color: #324e63;
+        font-weight: 500;
+        font-family: "Quicksand", sans-serif;
+        outline: none;
+        transition: all 0.3s;
+    }
+
+    .profile-card textarea:focus {
+        outline: none;
+        border-color: #8a979e;
+    }
+
+    .profile-card__overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        opacity: 0;
+        background: rgba(22, 33, 72, 0.35);
+        border-radius: 12px;
+        transition: all 0.3s;
+    }
+</style>
+<div class="wrapper">
+    <div class="profile-card js-profile-card">
+        <div class="profile-card__img">
+            <img src="https://res.cloudinary.com/muhammederdem/image/upload/v1537638518/Ba%C5%9Fl%C4%B1ks%C4%B1z-1.jpg"
+                alt="profile card">
+        </div>
+
+        <div class="profile-card__cnt js-profile-cnt">
+            <div class="profile-card__name">Muhammed Erdem</div>
+            <div class="profile-card__txt">Front-end Developer from <strong>Mesopotamia</strong></div>
+            <div class="profile-card-loc">
+                <span class="profile-card-loc__icon">
+                    <svg class="icon">
+                        <use xlink:href="#icon-location"></use>
+                    </svg>
+                </span>
+
+                <span class="profile-card-loc__txt">
+                    Istanbul, Turkey
+                </span>
+            </div>
+
+            <div class="profile-card-inf">
+                <div class="profile-card-inf__item">
+                    <div class="profile-card-inf__title">1598</div>
+                    <div class="profile-card-inf__txt">Followers</div>
+                </div>
+
+                <div class="profile-card-inf__item">
+                    <div class="profile-card-inf__title">65</div>
+                    <div class="profile-card-inf__txt">Following</div>
+                </div>
+
+                <div class="profile-card-inf__item">
+                    <div class="profile-card-inf__title">123</div>
+                    <div class="profile-card-inf__txt">Articles</div>
+                </div>
+
+                <div class="profile-card-inf__item">
+                    <div class="profile-card-inf__title">85</div>
+                    <div class="profile-card-inf__txt">Works</div>
+                </div>
+            </div>
+
+            <div class="profile-card-social">
+                <a href="https://www.facebook.com/iaMuhammedErdem" class="profile-card-social__item facebook"
+                    target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-facebook"></use>
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="https://twitter.com/iaMuhammedErdem" class="profile-card-social__item twitter" target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-twitter"></use>
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="https://www.instagram.com/iamuhammederdem" class="profile-card-social__item instagram"
+                    target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-instagram"></use>
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="https://www.behance.net/iaMuhammedErdem" class="profile-card-social__item behance"
+                    target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-behance"></use>
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="https://github.com/muhammederdem" class="profile-card-social__item github" target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-github"></use>
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="https://codepen.io/JavaScriptJunkie" class="profile-card-social__item codepen" target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-codepen"></use>
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="http://muhammederdem.com.tr/" class="profile-card-social__item link" target="_blank">
+                    <span class="icon-font">
+                        <svg class="icon">
+                            <use xlink:href="#icon-link"></use>
+                        </svg>
+                    </span>
+                </a>
+
+            </div>
+
+            <div class="profile-card-ctr">
+                <button class="profile-card__button button--blue js-message-btn">Message</button>
+                <button class="profile-card__button button--orange">Follow</button>
+            </div>
+        </div>
+
+        <div class="profile-card-message js-message">
+            <form class="profile-card-form">
+                <div class="profile-card-form__container">
+                    <textarea placeholder="Say something..."></textarea>
+                </div>
+
+                <div class="profile-card-form__bottom">
+                    <button class="profile-card__button button--blue js-message-close">
+                        Send
+                    </button>
+
+                    <button class="profile-card__button button--gray js-message-close">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+
+            <div class="profile-card__overlay js-message-close"></div>
+        </div>
+
     </div>
-</footer>
 
-
-<!-- FOR TOGGLE -->
-<div id="color-palate" class="popout card">
-    <div id="color-toggle" class="toggle text-center"><i class="fa fa-cog fa-spin"></i></div>
-    <div class="colors text-center">
-        <p class="text-center">Pick a Color</p>
-        <ul>
-            <li id="blue" class="color1"></li>
-            <li id="teal" class="color2"></li>
-            <li id="gray" class="color3"></li>
-            <li id="green" class="color4"></li>
-            <li id="purple" class="color5"></li>
-            <li id="brown" class="color6"></li>
-            <li id="red" class="color7"></li>
-            <li id="pink" class="color8"></li>
-        </ul>
-        <p class="text-center">Blend & Dark</p>
-        <ul>
-            <li id="blue-blend" class="color1"></li>
-            <li id="green-blend" class="color4"></li>
-            <li id="dark_gray" class="color10"></li>
-        </ul>
-    </div>
 </div>
 
-<!-- FOR TOGGLE -->
-<div class="popout card" style="width: 88px;height: auto;border-radius: 17px !important;font-size:12px;padding-right: 11px;top: 101px;right: -16px;">
-    <div class="colors text-center">
-        <p class="text-center">Get This Video</p>
-        <a href="https://videohive.net/item/resume-presentation/15929594?ref=trimatrixlab">Here!</a>
-    </div>
-</div>
+<svg hidden="hidden">
+    <defs>
+        <symbol id="icon-codepen" viewBox="0 0 32 32">
+            <title>codepen</title>
+            <path
+                d="M31.872 10.912v-0.032c0-0.064 0-0.064 0-0.096v-0.064c0-0.064 0-0.064-0.064-0.096 0 0 0-0.064-0.064-0.064 0-0.064-0.064-0.064-0.064-0.096 0 0 0-0.064-0.064-0.064 0-0.064-0.064-0.064-0.064-0.096l-0.192-0.192v-0.064l-0.064-0.064-14.592-9.696c-0.448-0.32-1.056-0.32-1.536 0l-14.528 9.696-0.32 0.32c0 0-0.064 0.064-0.064 0.096 0 0 0 0.064-0.064 0.064 0 0.064-0.064 0.064-0.064 0.096 0 0 0 0.064-0.064 0.064 0 0.064 0 0.064-0.064 0.096v0.064c0 0.064 0 0.064 0 0.096v0.064c0 0.064 0 0.096 0 0.16v9.696c0 0.064 0 0.096 0 0.16v0.064c0 0.064 0 0.064 0 0.096v0.064c0 0.064 0 0.064 0.064 0.096 0 0 0 0.064 0.064 0.064 0 0.064 0.064 0.064 0.064 0.096 0 0 0 0.064 0.064 0.064 0 0.064 0.064 0.064 0.064 0.096l0.256 0.256 0.064 0.032 14.528 9.728c0.224 0.16 0.48 0.224 0.768 0.224s0.544-0.064 0.768-0.224l14.528-9.728 0.32-0.32c0 0 0.064-0.064 0.064-0.096 0 0 0-0.064 0.064-0.064 0-0.064 0.064-0.064 0.064-0.096 0 0 0-0.064 0.064-0.064 0-0.064 0-0.064 0.064-0.096v-0.032c0-0.064 0-0.064 0-0.096v-0.064c0-0.064 0-0.096 0-0.16v-9.664c0-0.064 0-0.096 0-0.224zM17.312 4l10.688 7.136-4.768 3.168-5.92-3.936v-6.368zM14.56 4v6.368l-5.92 3.968-4.768-3.168 10.688-7.168zM2.784 13.664l3.392 2.304-3.392 2.304c0 0 0-4.608 0-4.608zM14.56 28l-10.688-7.136 4.768-3.2 5.92 3.936v6.4zM15.936 19.2l-4.832-3.232 4.832-3.232 4.832 3.232-4.832 3.232zM17.312 28v-6.432l5.92-3.936 4.8 3.168-10.72 7.2zM29.12 18.272l-3.392-2.304 3.392-2.304v4.608z">
+            </path>
+        </symbol>
 
-<!--==========================================
-                  SCRIPTS
-===========================================-->
-<script src="javascript/vendors/jquery-2.1.3.min.js"></script>
-<script src="javascript/vendors/bootstrap.min.js"></script>
-<script src="javascript/vendors/materialize.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBI14J_PNWVd-m0gnUBkjmhoQyNyd7nllA"></script>
-<script src="javascript/vendors/markerwithlabel.min.js"></script>
-<script src="javascript/vendors/retina.min.js"></script>
-<script src="javascript/vendors/scrollreveal.min.js"></script>
-<script src="javascript/vendors/swiper.jquery.min.js"></script>
-<script src="javascript/vendors/jquery.magnific-popup.min.js"></script>
-<script src="javascript/custom.js"></script>
-<script src="toggle/js.js"></script>
+        <symbol id="icon-github" viewBox="0 0 32 32">
+            <title>github</title>
+            <path
+                d="M16.192 0.512c-8.832 0-16 7.168-16 16 0 7.072 4.576 13.056 10.944 15.168 0.8 0.16 1.088-0.352 1.088-0.768 0-0.384 0-1.632-0.032-2.976-4.448 0.96-5.376-1.888-5.376-1.888-0.736-1.856-1.792-2.336-1.792-2.336-1.44-0.992 0.096-0.96 0.096-0.96 1.6 0.128 2.464 1.664 2.464 1.664 1.44 2.432 3.744 1.728 4.672 1.344 0.128-1.024 0.544-1.728 1.024-2.144-3.552-0.448-7.296-1.824-7.296-7.936 0-1.76 0.64-3.168 1.664-4.288-0.16-0.416-0.704-2.016 0.16-4.224 0 0 1.344-0.416 4.416 1.632 1.28-0.352 2.656-0.544 4-0.544s2.72 0.192 4 0.544c3.040-2.080 4.384-1.632 4.384-1.632 0.864 2.208 0.32 3.84 0.16 4.224 1.024 1.12 1.632 2.56 1.632 4.288 0 6.144-3.744 7.488-7.296 7.904 0.576 0.512 1.088 1.472 1.088 2.976 0 2.144-0.032 3.872-0.032 4.384 0 0.416 0.288 0.928 1.088 0.768 6.368-2.112 10.944-8.128 10.944-15.168 0-8.896-7.168-16.032-16-16.032z">
+            </path>
+            <path
+                d="M6.24 23.488c-0.032 0.064-0.16 0.096-0.288 0.064-0.128-0.064-0.192-0.16-0.128-0.256 0.032-0.096 0.16-0.096 0.288-0.064 0.128 0.064 0.192 0.16 0.128 0.256v0z">
+            </path>
+            <path
+                d="M6.912 24.192c-0.064 0.064-0.224 0.032-0.32-0.064s-0.128-0.256-0.032-0.32c0.064-0.064 0.224-0.032 0.32 0.064s0.096 0.256 0.032 0.32v0z">
+            </path>
+            <path
+                d="M7.52 25.12c-0.096 0.064-0.256 0-0.352-0.128s-0.096-0.32 0-0.384c0.096-0.064 0.256 0 0.352 0.128 0.128 0.128 0.128 0.32 0 0.384v0z">
+            </path>
+            <path
+                d="M8.384 26.016c-0.096 0.096-0.288 0.064-0.416-0.064s-0.192-0.32-0.096-0.416c0.096-0.096 0.288-0.064 0.416 0.064 0.16 0.128 0.192 0.32 0.096 0.416v0z">
+            </path>
+            <path
+                d="M9.6 26.528c-0.032 0.128-0.224 0.192-0.384 0.128-0.192-0.064-0.288-0.192-0.256-0.32s0.224-0.192 0.416-0.128c0.128 0.032 0.256 0.192 0.224 0.32v0z">
+            </path>
+            <path
+                d="M10.912 26.624c0 0.128-0.16 0.256-0.352 0.256s-0.352-0.096-0.352-0.224c0-0.128 0.16-0.256 0.352-0.256 0.192-0.032 0.352 0.096 0.352 0.224v0z">
+            </path>
+            <path
+                d="M12.128 26.4c0.032 0.128-0.096 0.256-0.288 0.288s-0.352-0.032-0.384-0.16c-0.032-0.128 0.096-0.256 0.288-0.288s0.352 0.032 0.384 0.16v0z">
+            </path>
+        </symbol>
 
+        <symbol id="icon-location" viewBox="0 0 32 32">
+            <title>location</title>
+            <path
+                d="M16 31.68c-0.352 0-0.672-0.064-1.024-0.16-0.8-0.256-1.44-0.832-1.824-1.6l-6.784-13.632c-1.664-3.36-1.568-7.328 0.32-10.592 1.856-3.2 4.992-5.152 8.608-5.376h1.376c3.648 0.224 6.752 2.176 8.608 5.376 1.888 3.264 2.016 7.232 0.352 10.592l-6.816 13.664c-0.288 0.608-0.8 1.12-1.408 1.408-0.448 0.224-0.928 0.32-1.408 0.32zM15.392 2.368c-2.88 0.192-5.408 1.76-6.912 4.352-1.536 2.688-1.632 5.92-0.288 8.672l6.816 13.632c0.128 0.256 0.352 0.448 0.64 0.544s0.576 0.064 0.832-0.064c0.224-0.096 0.384-0.288 0.48-0.48l6.816-13.664c1.376-2.752 1.248-5.984-0.288-8.672-1.472-2.56-4-4.128-6.88-4.32h-1.216zM16 17.888c-3.264 0-5.92-2.656-5.92-5.92 0-3.232 2.656-5.888 5.92-5.888s5.92 2.656 5.92 5.92c0 3.264-2.656 5.888-5.92 5.888zM16 8.128c-2.144 0-3.872 1.728-3.872 3.872s1.728 3.872 3.872 3.872 3.872-1.728 3.872-3.872c0-2.144-1.76-3.872-3.872-3.872z">
+            </path>
+            <path
+                d="M16 32c-0.384 0-0.736-0.064-1.12-0.192-0.864-0.288-1.568-0.928-1.984-1.728l-6.784-13.664c-1.728-3.456-1.6-7.52 0.352-10.912 1.888-3.264 5.088-5.28 8.832-5.504h1.376c3.744 0.224 6.976 2.24 8.864 5.536 1.952 3.36 2.080 7.424 0.352 10.912l-6.784 13.632c-0.32 0.672-0.896 1.216-1.568 1.568-0.48 0.224-0.992 0.352-1.536 0.352zM15.36 0.64h-0.064c-3.488 0.224-6.56 2.112-8.32 5.216-1.824 3.168-1.952 7.040-0.32 10.304l6.816 13.632c0.32 0.672 0.928 1.184 1.632 1.44s1.472 0.192 2.176-0.16c0.544-0.288 1.024-0.736 1.28-1.28l6.816-13.632c1.632-3.264 1.504-7.136-0.32-10.304-1.824-3.104-4.864-5.024-8.384-5.216h-1.312zM16 29.952c-0.16 0-0.32-0.032-0.448-0.064-0.352-0.128-0.64-0.384-0.8-0.704l-6.816-13.664c-1.408-2.848-1.312-6.176 0.288-8.96 1.536-2.656 4.16-4.32 7.168-4.512h1.216c3.040 0.192 5.632 1.824 7.2 4.512 1.6 2.752 1.696 6.112 0.288 8.96l-6.848 13.632c-0.128 0.288-0.352 0.512-0.64 0.64-0.192 0.096-0.384 0.16-0.608 0.16zM15.424 2.688c-2.784 0.192-5.216 1.696-6.656 4.192-1.504 2.592-1.6 5.696-0.256 8.352l6.816 13.632c0.096 0.192 0.256 0.32 0.448 0.384s0.416 0.064 0.608-0.032c0.16-0.064 0.288-0.192 0.352-0.352l6.816-13.664c1.312-2.656 1.216-5.792-0.288-8.352-1.472-2.464-3.904-4-6.688-4.16h-1.152zM16 18.208c-3.424 0-6.24-2.784-6.24-6.24 0-3.424 2.816-6.208 6.24-6.208s6.24 2.784 6.24 6.24c0 3.424-2.816 6.208-6.24 6.208zM16 6.4c-3.072 0-5.6 2.496-5.6 5.6 0 3.072 2.528 5.6 5.6 5.6s5.6-2.496 5.6-5.6c0-3.104-2.528-5.6-5.6-5.6zM16 16.16c-2.304 0-4.16-1.888-4.16-4.16s1.888-4.16 4.16-4.16c2.304 0 4.16 1.888 4.16 4.16s-1.856 4.16-4.16 4.16zM16 8.448c-1.952 0-3.552 1.6-3.552 3.552s1.6 3.552 3.552 3.552c1.952 0 3.552-1.6 3.552-3.552s-1.6-3.552-3.552-3.552z">
+            </path>
+        </symbol>
 
-</body>
+        <symbol id="icon-facebook" viewBox="0 0 32 32">
+            <title>facebook</title>
+            <path d="M19 6h5v-6h-5c-3.86 0-7 3.14-7 7v3h-4v6h4v16h6v-16h5l1-6h-6v-3c0-0.542 0.458-1 1-1z"></path>
+        </symbol>
 
-<!-- Mirrored from trimatrixlab.com/store/flatrica/index-video-slide.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 May 2019 14:21:45 GMT -->
-</html>
+        <symbol id="icon-instagram" viewBox="0 0 32 32">
+            <title>instagram</title>
+            <path
+                d="M16 2.881c4.275 0 4.781 0.019 6.462 0.094 1.563 0.069 2.406 0.331 2.969 0.55 0.744 0.288 1.281 0.638 1.837 1.194 0.563 0.563 0.906 1.094 1.2 1.838 0.219 0.563 0.481 1.412 0.55 2.969 0.075 1.688 0.094 2.194 0.094 6.463s-0.019 4.781-0.094 6.463c-0.069 1.563-0.331 2.406-0.55 2.969-0.288 0.744-0.637 1.281-1.194 1.837-0.563 0.563-1.094 0.906-1.837 1.2-0.563 0.219-1.413 0.481-2.969 0.55-1.688 0.075-2.194 0.094-6.463 0.094s-4.781-0.019-6.463-0.094c-1.563-0.069-2.406-0.331-2.969-0.55-0.744-0.288-1.281-0.637-1.838-1.194-0.563-0.563-0.906-1.094-1.2-1.837-0.219-0.563-0.481-1.413-0.55-2.969-0.075-1.688-0.094-2.194-0.094-6.463s0.019-4.781 0.094-6.463c0.069-1.563 0.331-2.406 0.55-2.969 0.288-0.744 0.638-1.281 1.194-1.838 0.563-0.563 1.094-0.906 1.838-1.2 0.563-0.219 1.412-0.481 2.969-0.55 1.681-0.075 2.188-0.094 6.463-0.094zM16 0c-4.344 0-4.887 0.019-6.594 0.094-1.7 0.075-2.869 0.35-3.881 0.744-1.056 0.412-1.95 0.956-2.837 1.85-0.894 0.888-1.438 1.781-1.85 2.831-0.394 1.019-0.669 2.181-0.744 3.881-0.075 1.713-0.094 2.256-0.094 6.6s0.019 4.887 0.094 6.594c0.075 1.7 0.35 2.869 0.744 3.881 0.413 1.056 0.956 1.95 1.85 2.837 0.887 0.887 1.781 1.438 2.831 1.844 1.019 0.394 2.181 0.669 3.881 0.744 1.706 0.075 2.25 0.094 6.594 0.094s4.888-0.019 6.594-0.094c1.7-0.075 2.869-0.35 3.881-0.744 1.050-0.406 1.944-0.956 2.831-1.844s1.438-1.781 1.844-2.831c0.394-1.019 0.669-2.181 0.744-3.881 0.075-1.706 0.094-2.25 0.094-6.594s-0.019-4.887-0.094-6.594c-0.075-1.7-0.35-2.869-0.744-3.881-0.394-1.063-0.938-1.956-1.831-2.844-0.887-0.887-1.781-1.438-2.831-1.844-1.019-0.394-2.181-0.669-3.881-0.744-1.712-0.081-2.256-0.1-6.6-0.1v0z">
+            </path>
+            <path
+                d="M16 7.781c-4.537 0-8.219 3.681-8.219 8.219s3.681 8.219 8.219 8.219 8.219-3.681 8.219-8.219c0-4.537-3.681-8.219-8.219-8.219zM16 21.331c-2.944 0-5.331-2.387-5.331-5.331s2.387-5.331 5.331-5.331c2.944 0 5.331 2.387 5.331 5.331s-2.387 5.331-5.331 5.331z">
+            </path>
+            <path
+                d="M26.462 7.456c0 1.060-0.859 1.919-1.919 1.919s-1.919-0.859-1.919-1.919c0-1.060 0.859-1.919 1.919-1.919s1.919 0.859 1.919 1.919z">
+            </path>
+        </symbol>
+
+        <symbol id="icon-twitter" viewBox="0 0 32 32">
+            <title>twitter</title>
+            <path
+                d="M32 7.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z">
+            </path>
+        </symbol>
+
+        <symbol id="icon-behance" viewBox="0 0 32 32">
+            <title>behance</title>
+            <path
+                d="M9.281 6.412c0.944 0 1.794 0.081 2.569 0.25 0.775 0.162 1.431 0.438 1.988 0.813 0.55 0.375 0.975 0.875 1.287 1.5 0.3 0.619 0.45 1.394 0.45 2.313 0 0.994-0.225 1.819-0.675 2.481-0.456 0.662-1.119 1.2-2.006 1.625 1.213 0.35 2.106 0.962 2.706 1.831 0.6 0.875 0.887 1.925 0.887 3.163 0 1-0.194 1.856-0.575 2.581-0.387 0.731-0.912 1.325-1.556 1.781-0.65 0.462-1.4 0.8-2.237 1.019-0.831 0.219-1.688 0.331-2.575 0.331h-9.544v-19.688h9.281zM8.719 14.363c0.769 0 1.406-0.181 1.906-0.55 0.5-0.363 0.738-0.963 0.738-1.787 0-0.456-0.081-0.838-0.244-1.131-0.169-0.294-0.387-0.525-0.669-0.688-0.275-0.169-0.588-0.281-0.956-0.344-0.356-0.069-0.731-0.1-1.113-0.1h-4.050v4.6h4.388zM8.956 22.744c0.425 0 0.831-0.038 1.213-0.125 0.387-0.087 0.731-0.219 1.019-0.419 0.287-0.194 0.531-0.45 0.706-0.788 0.175-0.331 0.256-0.756 0.256-1.275 0-1.012-0.287-1.738-0.856-2.175-0.569-0.431-1.325-0.644-2.262-0.644h-4.7v5.419h4.625z">
+            </path>
+            <path
+                d="M22.663 22.675c0.587 0.575 1.431 0.863 2.531 0.863 0.788 0 1.475-0.2 2.044-0.6s0.913-0.825 1.044-1.262h3.45c-0.556 1.719-1.394 2.938-2.544 3.675-1.131 0.738-2.519 1.113-4.125 1.113-1.125 0-2.131-0.181-3.038-0.538-0.906-0.363-1.663-0.869-2.3-1.531-0.619-0.663-1.106-1.45-1.45-2.375-0.337-0.919-0.512-1.938-0.512-3.038 0-1.069 0.175-2.063 0.525-2.981 0.356-0.925 0.844-1.719 1.494-2.387s1.413-1.2 2.313-1.588c0.894-0.387 1.881-0.581 2.975-0.581 1.206 0 2.262 0.231 3.169 0.706 0.9 0.469 1.644 1.1 2.225 1.887s0.994 1.694 1.25 2.706c0.256 1.012 0.344 2.069 0.275 3.175h-10.294c0 1.119 0.375 2.188 0.969 2.756zM27.156 15.188c-0.462-0.512-1.256-0.794-2.212-0.794-0.625 0-1.144 0.106-1.556 0.319-0.406 0.213-0.738 0.475-0.994 0.787-0.25 0.313-0.425 0.65-0.525 1.006-0.1 0.344-0.163 0.663-0.181 0.938h6.375c-0.094-1-0.438-1.738-0.906-2.256z">
+            </path>
+            <path d="M20.887 8h7.981v1.944h-7.981v-1.944z"></path>
+        </symbol>
+
+        <symbol id="icon-link" viewBox="0 0 32 32">
+            <title>link</title>
+            <path
+                d="M17.984 11.456c-0.704 0.704-0.704 1.856 0 2.56 2.112 2.112 2.112 5.568 0 7.68l-5.12 5.12c-2.048 2.048-5.632 2.048-7.68 0-1.024-1.024-1.6-2.4-1.6-3.84s0.576-2.816 1.6-3.84c0.704-0.704 0.704-1.856 0-2.56s-1.856-0.704-2.56 0c-1.696 1.696-2.624 3.968-2.624 6.368 0 2.432 0.928 4.672 2.656 6.4 1.696 1.696 3.968 2.656 6.4 2.656s4.672-0.928 6.4-2.656l5.12-5.12c3.52-3.52 3.52-9.248 0-12.8-0.736-0.672-1.888-0.672-2.592 0.032z">
+            </path>
+            <path
+                d="M29.344 2.656c-1.696-1.728-3.968-2.656-6.4-2.656s-4.672 0.928-6.4 2.656l-5.12 5.12c-3.52 3.52-3.52 9.248 0 12.8 0.352 0.352 0.8 0.544 1.28 0.544s0.928-0.192 1.28-0.544c0.704-0.704 0.704-1.856 0-2.56-2.112-2.112-2.112-5.568 0-7.68l5.12-5.12c2.048-2.048 5.632-2.048 7.68 0 1.024 1.024 1.6 2.4 1.6 3.84s-0.576 2.816-1.6 3.84c-0.704 0.704-0.704 1.856 0 2.56s1.856 0.704 2.56 0c1.696-1.696 2.656-3.968 2.656-6.4s-0.928-4.704-2.656-6.4z">
+            </path>
+        </symbol>
+    </defs>
+</svg>
+<script>
+    var messageBox = document.querySelector(".js-message");
+    var btn = document.querySelector(".js-message-btn");
+    var card = document.querySelector(".js-profile-card");
+    var closeBtn = document.querySelectorAll(".js-message-close");
+
+    btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        card.classList.add("active");
+    });
+
+    closeBtn.forEach(function (element, index) {
+        console.log(element);
+        element.addEventListener("click", function (e) {
+            e.preventDefault();
+            card.classList.remove("active");
+        });
+    });
+
+</script>
