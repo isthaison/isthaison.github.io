@@ -6,15 +6,15 @@
       {
         "src": "20221127213725_IMG_0313.JPG",
         "sizes": "32x32",
-        "type": "image/png"
+        "type": "image/jpg"
       },
       {
         "src": "20221127213725_IMG_0313.JPG",
         "sizes": "512x512",
-        "type": "image/png"
+        "type": "image/jpg"
       }
     ],
-    "start_url": "index.html",
+    "start_url": ".",
     "display": "fullscreen",
     "theme_color": "#6944ff ",
     "background_color": "#c8d6e5"
