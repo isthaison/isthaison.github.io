@@ -1,21 +1,22 @@
 {
-    "name": "so95",
-    "short_name": "so95",
-    "description": "so95, nguyen thai son",
-    "icons": [
-      {
-        "src": "20221127213725_IMG_0313.JPG",
-        "sizes": "32x32",
-        "type": "image/jpg"
-      },
-      {
-        "src": "20221127213725_IMG_0313.JPG",
-        "sizes": "512x512",
-        "type": "image/jpg"
-      }
-    ],
-    "start_url": ".",
-    "display": "standalone",
-    "theme_color": "#6944ff ",
-    "background_color": "#c8d6e5"
-  }
+  "name": "so95",
+  "short_name": "so95",
+  "description": "so95, nguyen thai son",
+  "icons": [
+    {
+      "src": "20221127213725_IMG_0313.JPG",
+      "sizes": "32x32",
+      "type": "image/jpg"
+    },
+    {
+      "src": "20221127213725_IMG_0313.JPG",
+      "sizes": "512x512",
+      "type": "image/jpg"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "display_override": "fullscreen",
+  "theme_color": "#6944ff ",
+  "background_color": "#c8d6e5"
+}
