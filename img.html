@@ -31,19 +31,22 @@
             // Lấy dữ liệu pixel từ canvas và chuyển đổi chúng thành ký tự chữ
             var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
             var pixels = imageData.data;
+            var characters = "";
             for (var i = 0; i < pixels.length; i += 4) {
               // Tính giá trị trung bình của ba kênh màu để xác định độ sáng của pixel
               var gray = Math.round((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3);
 
               // Chuyển đổi giá trị độ sáng thành một ký tự chữ
-              var character = String.fromCharCode(256 - gray);
-
-              // Ghi ký tự chữ vào vị trí tương ứng trên canvas
-              context.fillText(character, (i / 4) % canvas.width, Math.floor(i / 4 / canvas.width));
+              var character ="Trân"; 
+//String.fromCharCode(256 - gray);
+              characters += character;
             }
+
+            // Hiển thị kết quả lên trang web
+            document.body.innerHTML += "<p>" + characters + "</p>";
           };
 
-          // Đặt đường dẫn hình ảnh là dữ liệu của tệp đã chọn
+          // Đặt đường dẫn của hình ảnh thành dữ liệu của tệp đã chọn
           image.src = event.target.result;
         };
 
