@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Chuyển đổi hình ảnh thành ảnh có pixel là chữ</title>
+  </head>
+  <body>
+    <input type="file" id="fileInput">
+    <canvas id="canvas"></canvas>
+    <script>
+      // Tạo một thẻ <canvas> và lấy đối tượng canvas context
+      var canvas = document.getElementById("canvas");
+      var context = canvas.getContext("2d");
+
+      // Lắng nghe sự kiện khi người dùng chọn tệp hình ảnh
+      var fileInput = document.getElementById("fileInput");
+      fileInput.addEventListener("change", function() {
+        // Tạo một đối tượng FileReader để đọc dữ liệu của tệp hình ảnh
+        var reader = new FileReader();
+        reader.onload = function(event) {
+          // Tạo một đối tượng hình ảnh mới và đặt đường dẫn là dữ liệu của tệp đã chọn
+          var image = new Image();
+          image.onload = function() {
+            // Đặt kích thước canvas bằng kích thước của hình ảnh
+            canvas.width = image.width;
+            canvas.height = image.height;
+
+            // Vẽ hình ảnh lên canvas
+            context.drawImage(image, 0, 0);
+
+            // Lấy dữ liệu pixel từ canvas và chuyển đổi chúng thành ký tự chữ
+            var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            var pixels = imageData.data;
+            for (var i = 0; i < pixels.length; i += 4) {
+              // Tính giá trị trung bình của ba kênh màu để xác định độ sáng của pixel
+              var gray = Math.round((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3);
+
+              // Chuyển đổi giá trị độ sáng thành một ký tự chữ
+              var character = String.fromCharCode(256 - gray);
+
+              // Ghi ký tự chữ vào vị trí tương ứng trên canvas
+              context.fillText(character, (i / 4) % canvas.width, Math.floor(i / 4 / canvas.width));
+            }
+          };
+
+          // Đặt đường dẫn hình ảnh là dữ liệu của tệp đã chọn
+          image.src = event.target.result;
+        };
+
+        // Đọc dữ liệu của tệp hình ảnh
+        reader.readAsDataURL(fileInput.files[0]);
+      });
+    </script>
+  </body>
+</html>
