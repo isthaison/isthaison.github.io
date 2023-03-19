@@ -1,58 +1,135 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Chuyển đổi hình ảnh thành ảnh có pixel là chữ</title>
-  </head>
-  <body>
-    <input type="file" id="fileInput">
-    <canvas id="canvas"></canvas>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Image to ASCII Art Converter</title>
+    <style>
+        #image-preview {
+            max-width: 400px;
+            max-height: 400px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="file" id="input-image" accept="image/*" />
+    <img id="image-preview" />
+    <br />
+    <a id="save-btn">Save</a>
+
+    <br />
+    <pre id="ascii-image"></pre>
+
     <script>
-      // Tạo một thẻ <canvas> và lấy đối tượng canvas context
-      var canvas = document.getElementById("canvas");
-      var context = canvas.getContext("2d");
+        const inputImage = document.getElementById("input-image");
+        const imagePreview = document.getElementById("image-preview");
+        const asciiImage = document.getElementById("ascii-image");
+        inputImage.addEventListener("change", () => {
+            const file = inputImage.files[0];
+            const reader = new FileReader();
 
-      // Lắng nghe sự kiện khi người dùng chọn tệp hình ảnh
-      var fileInput = document.getElementById("fileInput");
-      fileInput.addEventListener("change", function() {
-        // Tạo một đối tượng FileReader để đọc dữ liệu của tệp hình ảnh
-        var reader = new FileReader();
-        reader.onload = function(event) {
-          // Tạo một đối tượng hình ảnh mới và đặt đường dẫn là dữ liệu của tệp đã chọn
-          var image = new Image();
-          image.onload = function() {
-            // Đặt kích thước canvas bằng kích thước của hình ảnh
-            canvas.width = image.width;
-            canvas.height = image.height;
+            reader.addEventListener("load", () => {
+                imagePreview.src = reader.result;
+                const img = new Image();
 
-            // Vẽ hình ảnh lên canvas
-            context.drawImage(image, 0, 0);
+                img.addEventListener("load", () => {
+                    const canvas = document.createElement("canvas");
+                    const naturalWidth = img.naturalWidth;
+                    const naturalHeight = img.naturalHeight;
 
-            // Lấy dữ liệu pixel từ canvas và chuyển đổi chúng thành ký tự chữ
-            var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-            var pixels = imageData.data;
-            var characters = "";
-            for (var i = 0; i < pixels.length; i += 4) {
-              // Tính giá trị trung bình của ba kênh màu để xác định độ sáng của pixel
-              var gray = Math.round((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3);
+                    // Tính toán kích thước mới của canvas
+                    const maxWidth = 600; // Kích thước tối đa của canvas
+                    const maxHeight = 600;
+                    let canvasWidth = naturalWidth;
+                    let canvasHeight = naturalHeight;
+                    if (canvasWidth > maxWidth) {
+                        canvasHeight *= maxWidth / canvasWidth;
+                        canvasWidth = maxWidth;
+                    }
+                    if (canvasHeight > maxHeight) {
+                        canvasWidth *= maxHeight / canvasHeight;
+                        canvasHeight = maxHeight;
+                    }
 
-              // Chuyển đổi giá trị độ sáng thành một ký tự chữ
-              var character ="Trân"; 
-//String.fromCharCode(256 - gray);
-              characters += character;
+                    // Cập nhật kích thước mới cho canvas
+                    canvas.width = canvasWidth;
+                    canvas.height = canvasHeight;
+                    const context = canvas.getContext("2d");
+                    context.drawImage(img, 0, 0, canvasWidth, canvasHeight);
+                    const asciiChars =
+                        "*%=arn-t. " // Số ký tự ASCII được sử dụng trong kết quả
+                            .split("")
+                            .reverse();
+                    const pixelData = context.getImageData(0, 0, canvas.width, canvas.height)
+                        .data;
+
+                    let asciiImageText = "";
+
+                    for (let i = 0; i < pixelData.length; i += 4) {
+                        const red = pixelData[i];
+                        const green = pixelData[i + 1];
+                        const blue = pixelData[i + 2];
+                        const alpha = pixelData[i + 3];
+
+                        const brightness = (red + green + blue) / 3;
+                        const asciiIndex = Math.floor(
+                            (brightness / 255) * (asciiChars.length - 1)
+                        );
+
+                        const asciiChar = asciiChars[asciiIndex];
+                        asciiImageText += asciiChar;
+
+                        if ((i + 4) % (canvas.width * 4) === 0) {
+                            asciiImageText += "\n";
+                        }
+                    }
+
+                    asciiImage.textContent = asciiImageText;
+                });
+
+                img.src = reader.result;
+            });
+
+            reader.readAsDataURL(file);
+        });
+
+        const saveBtn = document.getElementById('save-btn');
+
+        // Thêm sự kiện click vào nút Save
+        saveBtn.addEventListener('click', function () {
+
+
+            // Tạo canvas và thiết lập kích thước cho canvas bằng kích thước của element pre
+            const canvas = document.createElement("canvas");
+            canvas.width = asciiImage.clientWidth;
+            canvas.height = asciiImage.clientHeight;
+
+            // Lấy context 2D của canvas
+            const ctx = canvas.getContext("2d");
+
+            // Vẽ nội dung của pre lên canvas
+            ctx.fillStyle = "white"; // Thiết lập màu nền cho canvas
+            ctx.fillRect(0, 0, canvas.width, canvas.height); // Vẽ hình chữ nhật màu trắng để làm nền
+            ctx.font = "8px Arial"; // Thiết lập font chữ và kích thước
+            ctx.fillStyle = "black"; // Thiết lập màu chữ
+            const lines = asciiImage.innerHTML.split("\n"); // Tách nội dung của pre thành các dòng
+            for (let i = 0; i < lines.length; i++) {
+                ctx.fillText(lines[i], 0, (i + 1) * 10); // Vẽ các dòng lên canvas
             }
 
-            // Hiển thị kết quả lên trang web
-            document.body.innerHTML += "<p>" + characters + "</p>";
-          };
+            // Tạo một link download và thiết lập thuộc tính href cho link đó
+            const downloadLink = document.createElement("a");
+            downloadLink.href = canvas.toDataURL("image/png");
+            downloadLink.download = "image.png";
 
-          // Đặt đường dẫn của hình ảnh thành dữ liệu của tệp đã chọn
-          image.src = event.target.result;
-        };
+            // Thêm link download vào body và click vào nó để download file ảnh
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
 
-        // Đọc dữ liệu của tệp hình ảnh
-        reader.readAsDataURL(fileInput.files[0]);
-      });
+        });
     </script>
-  </body>
+</body>
+
 </html>
