@@ -147,7 +147,9 @@
 
             // Thêm link download vào body và click vào nó để download file ảnh
             document.body.appendChild(downloadLink);
-            downloadLink.click();
+          setTimeout(() => {
+                downloadLink.click();
+            }, 3000);
 
         });
     </script>
