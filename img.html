@@ -143,7 +143,7 @@
             // Tạo một link download và thiết lập thuộc tính href cho link đó
             const downloadLink = document.createElement("a");
             downloadLink.href = canvas.toDataURL("image/png");
-            downloadLink.download = "image.png";
+            downloadLink.download =  `image_${new Date().getTime()}.png`;
 
             // Thêm link download vào body và click vào nó để download file ảnh
             document.body.appendChild(downloadLink);
