@@ -10,14 +10,35 @@
             max-height: 400px;
             margin-bottom: 20px;
         }
+
+        input[type="file"] {
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            overflow: hidden;
+            padding: 0;
+            white-space: nowrap;
+        }
+
+        .btn {
+            display: inline-block;
+            min-width: 100px;
+            line-height: 40px;
+            margin: 5px 2px 20px 2px;
+            font-size: 15px;
+            text-align: center;
+            color: #fff;
+            cursor: pointer;
+            background-color: teal;
+        }
     </style>
+
 </head>
 
 <body>
     <input type="file" id="input-image" accept="image/*" />
     <img id="image-preview" />
     <br />
-    <a id="save-btn">Save</a>
+    <a id="save-btn" class="btn">Save</a>
 
     <br />
     <pre id="ascii-image"></pre>
@@ -103,8 +124,8 @@
 
             // Tạo canvas và thiết lập kích thước cho canvas bằng kích thước của element pre
             const canvas = document.createElement("canvas");
-            canvas.width = asciiImage.clientWidth;
-            canvas.height = asciiImage.clientHeight;
+            canvas.width = asciiImage.offsetWidth * 3;
+            canvas.height = asciiImage.offsetHeight;
 
             // Lấy context 2D của canvas
             const ctx = canvas.getContext("2d");
@@ -112,7 +133,7 @@
             // Vẽ nội dung của pre lên canvas
             ctx.fillStyle = "white"; // Thiết lập màu nền cho canvas
             ctx.fillRect(0, 0, canvas.width, canvas.height); // Vẽ hình chữ nhật màu trắng để làm nền
-            ctx.font = "8px Arial"; // Thiết lập font chữ và kích thước
+            ctx.font = "22px monospace"; // Thiết lập font chữ và kích thước
             ctx.fillStyle = "black"; // Thiết lập màu chữ
             const lines = asciiImage.innerHTML.split("\n"); // Tách nội dung của pre thành các dòng
             for (let i = 0; i < lines.length; i++) {
