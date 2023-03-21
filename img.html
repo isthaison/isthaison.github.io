@@ -37,18 +37,15 @@
 <body>
     <input type="file" id="input-image" accept="image/*" />
     <img id="image-preview" />
-    <br />
 
     <br />
     <pre id="ascii-image"></pre>
 
-    <img id="imgdow" />
 
     <script>
         const inputImage = document.getElementById("input-image");
         const imagePreview = document.getElementById("image-preview");
         const asciiImage = document.getElementById("ascii-image");
-        const imgdow = document.getElementById("imgdow");
         inputImage.addEventListener("change", () => {
             const file = inputImage.files[0];
             const reader = new FileReader();
@@ -121,10 +118,12 @@
 
 
         function toimg() {
-                // Tạo canvas và thiết lập kích thước cho canvas bằng kích thước của element pre
-                const canvas = document.createElement("canvas");
-            canvas.width = asciiImage.offsetWidth * 3;
-            canvas.height = asciiImage.offsetHeight;
+            const lines = asciiImage.innerHTML.split("\n"); // Tách nội dung của pre thành các dòng
+
+            // Tạo canvas và thiết lập kích thước cho canvas bằng kích thước của element pre
+            const canvas = document.createElement("canvas");
+            canvas.height = lines.length * 10;
+            canvas.width = lines[0].length * 10;
 
             // Lấy context 2D của canvas
             const ctx = canvas.getContext("2d");
@@ -134,17 +133,19 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height); // Vẽ hình chữ nhật màu trắng để làm nền
             ctx.font = "22px monospace"; // Thiết lập font chữ và kích thước
             ctx.fillStyle = "black"; // Thiết lập màu chữ
-            const lines = asciiImage.innerHTML.split("\n"); // Tách nội dung của pre thành các dòng
             for (let i = 0; i < lines.length; i++) {
+                console.log(lines[i]);
                 ctx.fillText(lines[i], 0, (i + 1) * 10); // Vẽ các dòng lên canvas
             }
+            const imgdow = document.createElement("img");
 
             // Tạo một link download và thiết lập thuộc tính href cho link đó
-            imgdow.alt =  `image_${new Date().getTime()}.png`;
-            imgdow.name =  `image_${new Date().getTime()}.png`;
-            imgdow.title =  `image_${new Date().getTime()}.png`;
+            imgdow.alt = `image_${new Date().getTime()}.png`;
+            imgdow.name = `image_${new Date().getTime()}.png`;
+            imgdow.title = `image_${new Date().getTime()}.png`;
             imgdow.src = canvas.toDataURL("image/png");
-            asciiImage.hidden= true;
+            document.body.appendChild(imgdow);
+            asciiImage.hidden = true;
         }
 
     </script>
