@@ -37,8 +37,8 @@
 </head>
 
 <body>
-    <input type="file" id="input-image" accept="image/*"  placeholder="Nhập hình"/>
-    <img id="image-preview"  alt="preview"/>
+    <input type="file" id="input-image" accept="image/*" placeholder="Nhập hình" />
+    <img id="image-preview" alt="preview" />
 
     <br />
     <pre id="ascii-image"></pre>
@@ -145,11 +145,16 @@
             imgdow.name = `image_${new Date().getTime()}.png`;
             imgdow.title = `image_${new Date().getTime()}.png`;
             imgdow.crossOrigin = 'Anonymous';
-imgdow.width = canvas.width;
-     imgdow.height = canvas.height;       
-            imgdow.src = canvas.toDataURL("image/jpeg");
-            document.body.appendChild(imgdow);
-            asciiImage.hidden = true;
+            imgdow.width = canvas.width;
+            imgdow.height = canvas.height;
+            var url = canvas.toDataURL("image/jpeg");
+            imgdow.src = url;
+
+            setTimeout(() => {
+                document.body.appendChild(imgdow);
+                asciiImage.hidden = true;
+            }, 2000);
+
         }
 
     </script>
