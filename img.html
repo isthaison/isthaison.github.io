@@ -120,40 +120,46 @@
 
 
         function toimg() {
-            const lines = asciiImage.innerHTML.split("\n"); // Tách nội dung của pre thành các dòng
 
-            // Tạo canvas và thiết lập kích thước cho canvas bằng kích thước của element pre
-            const canvas = document.createElement("canvas");
-            canvas.height = lines.length * 10;
-            canvas.width = lines[0].length * 10;
+            try {
+                const lines = asciiImage.innerHTML.split("\n"); // Tách nội dung của pre thành các dòng
 
-            // Lấy context 2D của canvas
-            const ctx = canvas.getContext("2d");
+                // Tạo canvas và thiết lập kích thước cho canvas bằng kích thước của element pre
+                const canvas = document.createElement("canvas");
+                canvas.height = lines.length * 10;
+                canvas.width = lines[0].length * 10;
 
-            // Vẽ nội dung của pre lên canvas
-            ctx.fillStyle = "white"; // Thiết lập màu nền cho canvas
-            ctx.fillRect(0, 0, canvas.width, canvas.height); // Vẽ hình chữ nhật màu trắng để làm nền
-            ctx.font = "22px monospace"; // Thiết lập font chữ và kích thước
-            ctx.fillStyle = "black"; // Thiết lập màu chữ
-            for (let i = 0; i < lines.length; i++) {
-                ctx.fillText(lines[i], 0, (i + 1) * 10); // Vẽ các dòng lên canvas
+                // Lấy context 2D của canvas
+                const ctx = canvas.getContext("2d");
+
+                // Vẽ nội dung của pre lên canvas
+                ctx.fillStyle = "white"; // Thiết lập màu nền cho canvas
+                ctx.fillRect(0, 0, canvas.width, canvas.height); // Vẽ hình chữ nhật màu trắng để làm nền
+                ctx.font = "22px monospace"; // Thiết lập font chữ và kích thước
+                ctx.fillStyle = "black"; // Thiết lập màu chữ
+                for (let i = 0; i < lines.length; i++) {
+                    ctx.fillText(lines[i], 0, (i + 1) * 10); // Vẽ các dòng lên canvas
+                }
+                const imgdow = new Image();
+
+                // Tạo một link download và thiết lập thuộc tính href cho link đó
+                imgdow.alt = `image_${new Date().getTime()}.png`;
+                imgdow.name = `image_${new Date().getTime()}.png`;
+                imgdow.title = `image_${new Date().getTime()}.png`;
+                imgdow.crossOrigin = 'Anonymous';
+                imgdow.width = canvas.width;
+                imgdow.height = canvas.height;
+                var url = canvas.toDataURL("image/jpeg");
+                imgdow.src = url;
+
+                setTimeout(() => {
+                    document.body.appendChild(imgdow);
+                    asciiImage.hidden = true;
+                }, 2000);
+            } catch (error) {
+                alert(error)
             }
-            const imgdow = new Image();
 
-            // Tạo một link download và thiết lập thuộc tính href cho link đó
-            imgdow.alt = `image_${new Date().getTime()}.png`;
-            imgdow.name = `image_${new Date().getTime()}.png`;
-            imgdow.title = `image_${new Date().getTime()}.png`;
-            imgdow.crossOrigin = 'Anonymous';
-            imgdow.width = canvas.width;
-            imgdow.height = canvas.height;
-            var url = canvas.toDataURL("image/jpeg");
-            imgdow.src = url;
-
-            setTimeout(() => {
-                document.body.appendChild(imgdow);
-                asciiImage.hidden = true;
-            }, 2000);
 
         }
 
