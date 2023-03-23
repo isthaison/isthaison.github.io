@@ -138,7 +138,7 @@
             for (let i = 0; i < lines.length; i++) {
                 ctx.fillText(lines[i], 0, (i + 1) * 10); // Vẽ các dòng lên canvas
             }
-            const imgdow = document.createElement("img");
+            const imgdow = new Image();
 
             // Tạo một link download và thiết lập thuộc tính href cho link đó
             imgdow.alt = `image_${new Date().getTime()}.png`;
