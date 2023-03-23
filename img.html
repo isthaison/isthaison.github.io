@@ -146,7 +146,7 @@
             imgdow.title = `image_${new Date().getTime()}.png`;
             imgdow.crossOrigin = 'Anonymous';
 
-            imgdow.src = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            imgdow.src = canvas.toDataURL("image/png");
             document.body.appendChild(imgdow);
             asciiImage.hidden = true;
         }
