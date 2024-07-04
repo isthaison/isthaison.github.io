@@ -93,7 +93,7 @@ $(document).ready(function () {
         new Promise(() => {
           if (voice) {
             const utterance = new SpeechSynthesisUtterance(text);
-            utterance.voice = voice; 
+            utterance.voice = voice;
             speechSynthesis.speak(utterance);
           }
         });
@@ -108,8 +108,6 @@ $(document).ready(function () {
     getTextNodes(element);
     processNextNode(0);
   }
+  var audio = document.getElementById('mAudio');
+  audio.play();
 });
-
-
-var audio = document.getElementById("mAudio");
-audio.play();
