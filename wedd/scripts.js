@@ -109,3 +109,7 @@ $(document).ready(function () {
     processNextNode(0);
   }
 });
+
+
+var audio = document.getElementById("mAudio");
+audio.play();
