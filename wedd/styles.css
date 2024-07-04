@@ -148,6 +148,7 @@ header {
   display: flex;
   justify-content: space-between;
   background: none;
+  flex-direction: column;
 }
 
 .hd img {
@@ -311,7 +312,6 @@ nav ul li a:after {
   bottom: 20px;
   left: 55%;
 }
-
 
 .a12 h3 {
   font-size: 2rem;
@@ -911,6 +911,19 @@ h4,
 h5,
 h6,
 p,
-span {
+img span {
   visibility: hidden;
+}
+#downtime {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 50vh;
+  line-height: 50vh;
+  font-weight: 900;
+  text-align: center;
+  display: flex;
+  width: 100%;
+  font-style: normal;
+  visibility: visible;
+
+  justify-content: center;
 }

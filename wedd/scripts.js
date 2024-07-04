@@ -1,6 +1,23 @@
 $(document).ready(function () {
-  applyTypingEffect(document.body, 200);
 
+  var tdow = 5;
+
+  function downtime() {
+    if (tdow > 0) {
+      window.scrollTo(0, 0);
+
+      tdow--;
+      setTimeout(() => {
+        document.getElementById('downtime').innerText = tdow;
+
+        downtime();
+      }, 1200);
+    } else {
+      document.getElementById('downtime').style.display = 'none';
+      applyTypingEffect(document.body, 200);
+    }
+  }
+  downtime();
   function applyTypingEffect(element = document.createElement(), speed) {
     const textNodes = [];
     function typeWriterEffect(text, element = document.createElement(), speed, callback) {
