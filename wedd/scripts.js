@@ -1,3 +1,5 @@
+window.scrollTo(0, 0);
+
 $(document).ready(function () {
   var tdow = 5;
 
@@ -44,7 +46,7 @@ $(document).ready(function () {
       }
     }
     function scrollToElement(element, callback) {
-      const targetPosition = element.getBoundingClientRect().top + window.scrollY * 0.5;
+      const targetPosition = element.getBoundingClientRect().top;
       const pixelsPerFrame = 1;
 
       window.requestAnimationFrame(function step(timestamp) {
@@ -71,9 +73,11 @@ $(document).ready(function () {
         parent.textContent = '';
         parent.style.visibility = 'visible';
         console.log(text);
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.voice = voices[0]; // Choose a specific voice
-        speechSynthesis.speak(utterance);
+        new Promise(() => {
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.voice = voices[0]; // Choose a specific voice
+          speechSynthesis.speak(utterance);
+        });
 
         scrollToElement(parent, function () {
           typeWriterEffect(text, parent, speed, function () {
