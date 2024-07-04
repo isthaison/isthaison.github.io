@@ -1,5 +1,24 @@
 window.scrollTo(0, 0);
+const synth = window.speechSynthesis;
+let voices;
+let voice;
 
+function loadVoices() {
+  voices = synth.getVoices();
+  for (let i = 0; i < voices.length; i++) {
+    console.log(`${voices[i].name} (${voices[i].lang})`);
+    if (voices[i].lang == 'vi-VN') {
+      voice = voices[i];
+      console.log(voice);
+    }
+  }
+}
+// in Google Chrome the voices are not ready on page load
+if ('onvoiceschanged' in synth) {
+  synth.onvoiceschanged = loadVoices;
+} else {
+  loadVoices();
+}
 $(document).ready(function () {
   var tdow = 5;
 
@@ -18,8 +37,6 @@ $(document).ready(function () {
       applyTypingEffect(document.body, 200);
     }
   }
-  const voices = speechSynthesis.getVoices();
-  // Select a voice
   downtime();
   function applyTypingEffect(element = document.createElement(), speed) {
     const textNodes = [];
@@ -74,9 +91,11 @@ $(document).ready(function () {
         parent.style.visibility = 'visible';
         console.log(text);
         new Promise(() => {
-          const utterance = new SpeechSynthesisUtterance(text);
-          utterance.voice = voices[0]; // Choose a specific voice
-          speechSynthesis.speak(utterance);
+          if (voice) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.voice = voice; 
+            speechSynthesis.speak(utterance);
+          }
         });
 
         scrollToElement(parent, function () {
