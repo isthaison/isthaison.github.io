@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   var tdow = 5;
 
   function downtime() {
@@ -17,6 +16,8 @@ $(document).ready(function () {
       applyTypingEffect(document.body, 200);
     }
   }
+  const voices = speechSynthesis.getVoices();
+  // Select a voice
   downtime();
   function applyTypingEffect(element = document.createElement(), speed) {
     const textNodes = [];
@@ -70,6 +71,10 @@ $(document).ready(function () {
         parent.textContent = '';
         parent.style.visibility = 'visible';
         console.log(text);
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.voice = voices[0]; // Choose a specific voice
+        speechSynthesis.speak(utterance);
+
         scrollToElement(parent, function () {
           typeWriterEffect(text, parent, speed, function () {
             processNextNode(index + 1);
