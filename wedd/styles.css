@@ -559,7 +559,8 @@ header {
   font-weight: 200;
   line-height: 2rem;
   color: #111;
-  margin-bottom: 10px;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .at3 section {
@@ -672,7 +673,7 @@ header {
   font-weight: 200;
   line-height: 2rem;
   color: #111;
-  margin-bottom: 10px;
+  margin-bottom: 2rem;
   margin-top: 3rem;
 }
 
@@ -830,7 +831,7 @@ h5,
 h6,
 p,
 span {
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 #downtime {
   font-family: 'Courier New', Courier, monospace;
