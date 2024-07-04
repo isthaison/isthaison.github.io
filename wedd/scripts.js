@@ -1,9 +1,5 @@
 $(document).ready(function () {
-  document.addEventListener('keypress', function (event) {
-    if (event.key === 'Enter') {
-      applyTypingEffect(document.body, 200);
-    }
-  });
+  applyTypingEffect(document.body, 200);
 
   function applyTypingEffect(element = document.createElement(), speed) {
     const textNodes = [];
