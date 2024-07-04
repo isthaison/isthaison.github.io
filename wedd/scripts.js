@@ -1,25 +1,9 @@
 window.scrollTo(0, 0);
-const synth = window.speechSynthesis;
-let voices;
-let voice;
+const pixelsPerFrame = 1;
 
-function loadVoices() {
-  voices = synth.getVoices();
-  for (let i = 0; i < voices.length; i++) {
-    console.log(`${voices[i].name} (${voices[i].lang})`);
-    if (voices[i].lang == 'vi-VN') {
-      voice = voices[i];
-      console.log(voice);
-    }
-  }
-}
-// in Google Chrome the voices are not ready on page load
-if ('onvoiceschanged' in synth) {
-  synth.onvoiceschanged = loadVoices;
-} else {
-  loadVoices();
-}
 $(document).ready(function () {
+  AOS.init();
+
   var tdow = 5;
 
   function downtime() {
@@ -34,7 +18,7 @@ $(document).ready(function () {
       }, 1200);
     } else {
       document.getElementById('downtime').style.display = 'none';
-      applyTypingEffect(document.body, 200);
+      applyTypingEffect(document.body, );
     }
   }
   downtime();
@@ -63,8 +47,7 @@ $(document).ready(function () {
       }
     }
     function scrollToElement(element, callback) {
-      const targetPosition = element.getBoundingClientRect().top;
-      const pixelsPerFrame = 1;
+      const targetPosition = element.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.75;
 
       window.requestAnimationFrame(function step(timestamp) {
         const currentY = window.scrollY;
@@ -74,14 +57,26 @@ $(document).ready(function () {
           window.scrollTo(0, nextY);
           window.requestAnimationFrame(step);
         } else {
-          window.scrollTo(0, targetPosition);
           callback();
         }
       });
     }
 
     function processNextNode(index) {
-      if (index >= textNodes.length) return;
+      if (index >= textNodes.length) {
+        window.requestAnimationFrame(function step(timestamp) {
+          let nextY = 1;
+
+          if (nextY < 200) {
+            nextY++;
+            window.scrollTo(0, window.scrollY + 1);
+            window.requestAnimationFrame(step);
+          } else {
+            window.scrollTo(0, 0);
+          }
+        });
+        return;
+      }
       const textNode = textNodes[index];
       const text = textNode.nodeValue;
       const parent = textNode.parentNode;
@@ -89,14 +84,6 @@ $(document).ready(function () {
       if (parent) {
         parent.textContent = '';
         parent.style.visibility = 'visible';
-        console.log(text);
-        new Promise(() => {
-          if (voice) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.voice = voice;
-            speechSynthesis.speak(utterance);
-          }
-        });
 
         scrollToElement(parent, function () {
           typeWriterEffect(text, parent, speed, function () {
@@ -108,6 +95,4 @@ $(document).ready(function () {
     getTextNodes(element);
     processNextNode(0);
   }
-  var audio = document.getElementById('mAudio');
-  audio.play();
 });
