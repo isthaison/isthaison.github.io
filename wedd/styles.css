@@ -129,6 +129,8 @@ a.top {
 main {
   margin: 0 auto;
   position: relative;
+  width: 100vw;
+
 }
 
 .mi {
@@ -136,6 +138,7 @@ main {
   background: url('./20240519122511_IMG_9785.JPG') no-repeat;
   background-size: cover;
   background-position: top center;
+  width: 100vw;
 }
 
 header {
@@ -175,72 +178,11 @@ header {
   padding-top: 20vh;
 }
 
-.snsimg {
-  display: none;
-  filter: brightness(250%) grayscale(100) sepia(20%);
-}
 
-.sp1 {
-  width: 28vw;
-  height: 80px;
-  border-top: 1.5px solid #fffdf9;
-  border-bottom: 1.5px solid #fffdf9;
-  display: block;
-  position: absolute;
-  top: 7%;
-  left: 0;
-  z-index: 1;
-}
 
-.sp2 {
-  width: 28vw;
-  height: 80px;
-  border-top: 1.5px solid #fffdf9;
-  border-bottom: 1.5px solid #fffdf9;
-  display: block;
-  position: absolute;
-  top: 7%;
-  right: 0;
-}
-
-nav {
-  width: 1200px;
-  margin: 0 auto;
-  margin-top: 20px;
-  text-align: center;
-  font-size: 1.2vw;
-}
-
-nav ul li {
-  display: inline-block;
-  padding: 0 20px;
-}
-
-nav ul li a:after {
-  display: block;
-  content: '';
-  margin-top: 5px;
-  border-bottom: solid 1.5px #dab88d;
-  transform: scaleX(0);
-  transition: transform 250ms ease-in-out;
-}
-
-nav ul li a:link,
-nav ul li a:visited {
-  color: #fffdf0;
-  text-transform: uppercase;
-}
-
-nav ul li a:hover:after {
-  transform: scaleX(1);
-}
-
-nav ul li a:after {
-  transform-origin: 0% 50%;
-}
 
 .ben {
-  width: 1200px;
+  width: 100vw;
   height: 180px;
   margin: 0 auto;
   padding-top: 20px;
