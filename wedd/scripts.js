@@ -3,7 +3,6 @@
 $(document).ready(function () {
 
 
-
     document.addEventListener('keypress', function (event) {
         // Kiểm tra nếu phím được nhấn là phím Enter và có focus vào một phần tử cụ thể
         if (event.key === 'Enter') {
