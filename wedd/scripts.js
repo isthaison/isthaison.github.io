@@ -18,7 +18,7 @@ $(document).ready(function () {
       }, 1200);
     } else {
       document.getElementById('downtime').style.display = 'none';
-      applyTypingEffect(document.body, );
+      applyTypingEffect(document.body, 100);
     }
   }
   downtime();
