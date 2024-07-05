@@ -831,7 +831,7 @@ h5,
 h6,
 p,
 span {
-  /* visibility: hidden; */
+   visibility: hidden; 
 }
 #downtime {
   font-family: 'Courier New', Courier, monospace;
