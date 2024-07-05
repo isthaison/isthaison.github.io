@@ -267,7 +267,7 @@ header {
   justify-content: space-between;
 }
 
-.a12 > :last-child {
+.a12> :last-child {
   position: absolute;
   bottom: -55%;
   left: 52%;
@@ -420,10 +420,12 @@ header {
   font-size: 1.5rem;
   line-height: 1.5rem;
 }
+
 .a31a img {
   width: 300px;
   margin: auto 50px;
 }
+
 .a31a section {
   margin: 30px auto;
   margin-left: 50px;
@@ -442,6 +444,7 @@ header {
   line-height: 3rem;
   left: 55%;
 }
+
 .a31at {
   width: 380px;
   margin-right: 50px;
@@ -463,7 +466,7 @@ header {
   cursor: pointer;
 }
 
-.a32a > :first-child {
+.a32a> :first-child {
   position: absolute;
   top: -80px;
   left: 0;
@@ -523,7 +526,7 @@ header {
   top: 150px;
 }
 
-.a32b > :first-child {
+.a32b> :first-child {
   position: absolute;
   top: -80px;
   left: 0;
@@ -582,7 +585,7 @@ header {
   cursor: pointer;
 }
 
-.a33a > :first-child {
+.a33a> :first-child {
   position: absolute;
   top: -80px;
   left: 0;
@@ -633,7 +636,7 @@ header {
   cursor: pointer;
 }
 
-.a33b > :first-child {
+.a33b> :first-child {
   position: absolute;
   top: -80px;
   left: 0;
@@ -715,7 +718,7 @@ header {
 }
 
 .swiper-slide {
- 
+
   z-index: -1;
   border: 4px solid gray;
   display: -webkit-box;
@@ -740,7 +743,7 @@ header {
   font-size: 1.5rem;
 }
 
-.a41 > :last-child {
+.a41> :last-child {
   margin-top: 45px;
   margin-right: 170px;
   position: absolute;
@@ -833,6 +836,7 @@ p,
 span {
   visibility: hidden;
 }
+
 #downtime {
   font-family: 'Courier New', Courier, monospace;
   font-size: 50vh;
