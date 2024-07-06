@@ -1,5 +1,5 @@
 window.scrollTo(0, 0);
-const pixelsPerFrame = 1;
+let pixelsPerFrame = 5;
 
 $(document).ready(function () {
   AOS.init();
@@ -18,7 +18,7 @@ $(document).ready(function () {
       }, 1200);
     } else {
       document.getElementById('downtime').style.display = 'none';
-      applyTypingEffect(document.body, 100);
+      applyTypingEffect(document.body, 50);
     }
   }
   downtime();
@@ -48,6 +48,12 @@ $(document).ready(function () {
     }
     function scrollToElement(element, callback) {
       const targetPosition = element.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.75;
+      if (targetPosition < window.scrollY) {
+        window.scrollTo(0, targetPosition);
+      } else {
+
+      }
+
 
       window.requestAnimationFrame(function step(timestamp) {
         const currentY = window.scrollY;
@@ -68,8 +74,8 @@ $(document).ready(function () {
           let nextY = 1;
 
           if (nextY < 200) {
-            nextY++;
-            window.scrollTo(0, window.scrollY + 1);
+            next += 2;
+            window.scrollTo(0, window.scrollY + 2);
             window.requestAnimationFrame(step);
           } else {
             window.scrollTo(0, 0);
