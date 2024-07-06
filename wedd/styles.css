@@ -503,7 +503,7 @@ header {
 }
 .width-full{
   /* width: 100%; */
-  padding: 10%;
+  /* padding: 10%; */
 }
 .a32a {
   flex: 1;
@@ -661,6 +661,7 @@ header {
   display: flex;
   justify-content: space-between;
   color: #222;
+  margin-top: 4rem;
 }
 
 .a33a img {
@@ -850,7 +851,7 @@ object-fit: contain;
   margin: auto;
   margin-top: -10%;
   object-fit: contain;
-  margin-bottom: 10%;
+  /* margin-bottom: 10%; */
  }
 .a42 {
   /* width: 500px; */
@@ -943,8 +944,9 @@ span {
 
 .at4 h4 {
   color: #222121;
-  line-height: 5rem;
+  line-height: 2rem;
   text-align: center;
+  font-size: 2rem;
 }
 
 #downtime {
