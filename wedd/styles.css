@@ -181,12 +181,12 @@ header {
   margin: 0 auto;
   font-weight: 900;
   font-size: 8rem;
+  line-height: 8rem;
   letter-spacing: 2px;
   color: #fffdf9;
   margin-top: 10vh;
   padding-top: 20vh;
   text-shadow: 5px 5px 10px #000;
-
 }
 
 
@@ -389,9 +389,9 @@ header {
 }
 
 .a22 section img {
-  width: 320px;
+  width: 300px;
   position: absolute;
-  height: 320px;
+  height: 300px;
   object-fit: cover;
   top: 11%;
   left: 90px;
@@ -791,7 +791,7 @@ header {
 
 /* width: 40vw; */
 
-height: 500px;
+height: 600px;
 
 /* z-index: -1; */
 
@@ -938,6 +938,7 @@ span {
 
 .end {
   text-align: center;
+  padding-top: 100vh;
 }
 
 .at4 h4 {
