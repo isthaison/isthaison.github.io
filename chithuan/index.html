@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chúc mừng sinh nhật!</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+        .message-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff;
+            opacity: 0;
+            animation: fadeIn 5s linear forwards;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="300"></canvas>
+    <div class="message-container">
+        <span id="message"></span>
+    </div>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+        var fireworks = [];
+        var messageElement = document.getElementById("message");
+        var message = "Chúc mừng sinh nhật! chị Thuận (Ernesta)  MUAHAHAHAHAHAHAHAHA";
+        var messageIndex = 0;
+
+        // Tạo đối tượng pháo hoa
+        function Firework(x, y, radius, color, speedX, speedY) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.color = color;
+            this.speedX = speedX;
+            this.speedY = speedY;
+            this.alpha = 1;
+
+            // Vẽ pháo hoa
+            this.draw = function() {
+                context.globalAlpha = this.alpha;
+                context.beginPath();
+                context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                context.fillStyle = this.color;
+                context.fill();
+            };
+
+            // Cập nhật vị trí và alpha
+            this.update = function() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.alpha -= 0.01;
+            };
+        }
+
+        // Vẽ nền
+        function drawBackground() {
+            context.fillStyle = "#000";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Vẽ pháo hoa
+        function drawFireworks() {
+            drawBackground();
+
+            for (var i = 0; i < fireworks.length; i++) {
+                fireworks[i].draw();
+                fireworks[i].update();
+
+                // Xoá các pháo hoa đã mờ
+                if (fireworks[i].alpha <= 0) {
+                    fireworks.splice(i, 1);
+                }
+            }
+        }
+
+        // Tạo pháo hoa mới
+        function createFirework() {
+            var x = Math.random() * canvas.width;
+            var y = canvas.height;
+            var radius = 2 + Math.random() * 4;
+            var color = getRandomColor();
+            var speedX = (Math.random() - 0.5) * 3;
+            var speedY = -Math.random() * 3 - 1;
+
+            fireworks.push(new Firework(x, y, radius, color, speedX, speedY));
+        }
+
+        // Lấy màu ngẫu nhiên
+        function getRandomColor() {
+            var colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // Hiển thị chữ từ từ
+        function showMessage() {
+            if (messageIndex < message.length) {
+                messageElement.innerHTML += message.charAt(messageIndex);
+                messageIndex++;
+                setTimeout(showMessage, 200);
+            }
+        }
+
+        // Hàm animate
+        function animate() {
+            createFirework();
+            drawFireworks();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+        setTimeout(showMessage, 3000); // Hiển thị chữ sau 3 giây
+    </script>
+</body>
+</html>
