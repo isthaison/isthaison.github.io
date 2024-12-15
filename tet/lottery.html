@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lottery Game</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      .game-container {
+        margin: 20px;
+      }
+      .number-grid {
+        display: grid;
+        grid-template-columns: repeat(10, 40px);
+        justify-content: center;
+        gap: 5px;
+        margin: 20px auto;
+      }
+      .number {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: lightblue;
+        border: 1px solid #ccc;
+        cursor: pointer;
+      }
+      .number.selected {
+        background-color: green;
+        color: white;
+      }
+      .button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: orange;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+      .button.disabled {
+        background-color: grey;
+        cursor: not-allowed;
+      }
+      .result {
+        margin: 20px;
+        font-size: 18px;
+      }
+      .winner {
+        background-color: gold;
+      }
+      .drawn {
+        background-color: lightgray; /* Grayed out for drawn numbers */
+        color: darkgray;
+        cursor: default; /* Remove pointer cursor */
+      }
+      .number.selected.drawn {
+        background-color: red;
+        color: white;
+      }
+    </style>
+    <script
+      src="https://cdn.socket.io/4.8.1/socket.io.min.js"
+      integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1>Lottery Game</h1>
+    <div class="game-container">
+      <div id="playerContainer"></div>
+      <button class="button" id="addPlayer">Add Player</button>
+      <button class="button" id="startGame">Start Game</button>
+      <button class="button" id="resetGame">Reset Game</button>
+      <div class="result" id="result">
+        Add players and pick numbers to play!
+      </div>
+    </div>
+
+    <script>
+      const playerContainer = document.getElementById("playerContainer");
+      const result = document.getElementById("result");
+      const addPlayerButton = document.getElementById("addPlayer");
+      const startGameButton = document.getElementById("startGame");
+      const resetGameButton = document.getElementById("resetGame");
+
+      const maxNumbers = 5;
+      let players = [];
+      let drawnNumbers = [];
+      let currentPlayerIndex = 0;
+      let gameActive = false;
+
+      function addPlayer() {
+        if (gameActive) return;
+
+        const playerId = players.length + 1;
+        const player = {
+          id: playerId,
+          numbers: [],
+        };
+        players.push(player);
+
+        const playerDiv = document.createElement("div");
+        playerDiv.className = "player";
+        playerDiv.id = `player-${playerId}`;
+        playerDiv.innerHTML = `
+                <h3>Player ${playerId}</h3>
+                <div class="number-grid" id="grid-${playerId}"></div>
+                <p id="status-${playerId}">Pick your numbers!</p>
+            `;
+        playerContainer.appendChild(playerDiv);
+
+        createNumberGrid(playerId);
+      }
+      function createNumberGrid(playerId) {
+        const grid = document.getElementById(`grid-${playerId}`);
+        for (let i = 1; i <= 50; i++) {
+          const numberElement = document.createElement("div");
+          numberElement.className = "number";
+          numberElement.textContent = i;
+          numberElement.dataset.number = i; // Use dataset to store the number
+          numberElement.addEventListener("click", () =>
+            selectNumber(playerId, i, numberElement)
+          );
+          grid.appendChild(numberElement);
+        }
+      }
+
+      function selectNumber(playerId, number, element) {
+        if (gameActive) return;
+
+        const player = players.find((p) => p.id === playerId);
+        if (
+          player.numbers.length < maxNumbers &&
+          !player.numbers.includes(number)
+        ) {
+          player.numbers.push(number);
+          element.classList.add("selected");
+
+          if (player.numbers.length === maxNumbers) {
+            document.getElementById(
+              `status-${playerId}`
+            ).textContent = `Selected: ${player.numbers.join(", ")}`;
+          }
+        }
+      }
+
+      function startGame() {
+        if (players.some((player) => player.numbers.length !== maxNumbers)) {
+          result.textContent =
+            "All players must select 5 numbers before starting the game!";
+          return;
+        }
+
+        gameActive = true;
+        addPlayerButton.classList.add("disabled");
+        addPlayerButton.disabled = true;
+        startGameButton.classList.add("disabled");
+        startGameButton.disabled = true;
+
+        result.textContent = "Game started! Drawing numbers...";
+
+        const interval = setInterval(() => {
+          if (players.some((player) => player.numbers.length === 0)) {
+            clearInterval(interval);
+            const winners = players.filter(
+              (player) => player.numbers.length === 0
+            );
+            if (winners.length > 0) {
+              let winMessage = "Winners: ";
+              winners.forEach((winner) => {
+                winMessage += `Player ${winner.id}, `;
+                document
+                  .getElementById(`player-${winner.id}`)
+                  .classList.add("winner");
+              });
+              result.textContent = winMessage.slice(0, -2); // Remove trailing comma and space
+            } else {
+              result.textContent = "We have a winner!";
+            }
+
+            return;
+          }
+
+          const availableNumbers = Array.from(
+            { length: 50 },
+            (_, i) => i + 1
+          ).filter((num) => !drawnNumbers.includes(num));
+          const randomIndex = Math.floor(
+            Math.random() * availableNumbers.length
+          );
+          const drawnNumber = availableNumbers[randomIndex];
+
+          drawnNumbers.push(drawnNumber);
+
+          // Gray out drawn number for all players:
+          players.forEach((player) => {
+            const numberElement = document.querySelector(
+              `#grid-${player.id} .number[data-number="${drawnNumber}"]`
+            );
+            if (numberElement) {
+              numberElement.classList.add("drawn");
+            }
+          });
+          players.forEach((player) => {
+            if (player.numbers.includes(drawnNumber)) {
+              player.numbers = player.numbers.filter(
+                (num) => num !== drawnNumber
+              );
+              document.getElementById(
+                `status-${player.id}`
+              ).textContent = `Remaining: ${player.numbers.join(", ")}`;
+            }
+          });
+
+          result.textContent = `Drawn number: ${drawnNumber}`;
+        }, 1000);
+      }
+
+      function resetGame() {
+        gameActive = false;
+        players = [];
+        drawnNumbers = [];
+        currentPlayerIndex = 0;
+
+        playerContainer.innerHTML = "";
+        result.textContent = "Add players and pick numbers to play!";
+
+        addPlayerButton.classList.remove("disabled");
+        addPlayerButton.disabled = false;
+        startGameButton.classList.remove("disabled");
+        startGameButton.disabled = false;
+      }
+      resetGameButton.addEventListener("click", resetGame);
+      addPlayerButton.addEventListener("click", addPlayer);
+      startGameButton.addEventListener("click", startGame);
+    </script>
+  </body>
+</html>
