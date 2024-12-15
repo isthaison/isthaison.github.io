@@ -9,7 +9,17 @@ music.volume = 0.5;
 const tetDate = new Date("2025-02-10T00:00:00");
 let fireworks = [];
 let stars = [];
-
+function updateFontSize() {
+  const canvasWidth = canvas.width;
+  const canvasHeight = canvas.height;
+  
+  // Tỷ lệ phần trăm dựa trên chiều rộng và chiều cao của canvas
+  const scale = Math.min(canvasWidth / 1920, canvasHeight / 1080); // Adjust this based on your base resolution
+  
+  const fontSize = 50 * scale; // Điều chỉnh số 50 này tùy thuộc vào kích thước font mong muốn
+  
+  return fontSize;
+}
 // Tạo nền ngôi sao lấp lánh
 for (let i = 0; i < 200; i++) {
   stars.push({
@@ -40,7 +50,7 @@ function drawCountdown() {
   if (diff <= 0) {
     drawFireworks();
     ctx.fillStyle = "white";
-    ctx.font = "bold 80px Arial";
+    ctx.font =  `bold ${updateFontSize()}px Arial`;
     ctx.textAlign = "center";
     ctx.fillText(
       "🎉 Chúc Mừng Năm Mới! 🎉",
@@ -49,6 +59,7 @@ function drawCountdown() {
     );
     return;
   }
+  const fontSize = updateFontSize();
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -58,15 +69,15 @@ function drawCountdown() {
   const text = `${days} Ngày ${hours} Giờ ${minutes} Phút ${seconds} Giây`;
 
   ctx.fillStyle = "yellow";
-  ctx.font = "bold 50px Arial";
+  ctx.font =  `bold ${fontSize}px Arial`;
   ctx.textAlign = "center";
   ctx.fillText(
-    "Đếm Ngược Tết Nguyên Đán",
+    "🎉 Tết Nguyên Đán 2025 🎉",
     canvas.width / 2,
     canvas.height / 2 - 100
   );
 
-  ctx.font = "bold 70px Arial";
+  ctx.font = `bold ${fontSize * 1.4}px Arial`;
   ctx.fillStyle = "white";
   ctx.fillText(text, canvas.width / 2, canvas.height / 2);
 }
