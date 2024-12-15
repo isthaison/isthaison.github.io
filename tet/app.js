@@ -158,3 +158,13 @@ window.addEventListener("resize", () => {
 
 // Bắt đầu phát nhạc khi tương tác
 window.addEventListener("click", startMusic, { once: true });
+
+
+
+if (navigator.userAgent.includes('Mobi')) {
+  console.log("Mobile form factor detected.");
+  document.body.classList.add('mobile-install');
+} else {
+  console.log("Desktop or Tablet form factor detected.");
+  document.body.classList.add('desktop-install');
+}

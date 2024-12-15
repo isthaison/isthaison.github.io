@@ -1,6 +1,27 @@
 {
   "name": "Tết Nguyên Đán 2025",
   "short_name": "2025 Tết",
+  "id": "/tet",
+  "start_url": "/tet",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "screenshots": [
+    {
+      "src": "source/acr.png",
+      "sizes": "439x895",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Wonder Widgets"
+    },
+    {
+      "src": "source/acr.png",
+      "sizes": "439x895",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Wonder Widgets"
+    }
+  ],
   "icons": [
     {
       "src": "icons/icon-48x48.png",
@@ -52,9 +73,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "start_url": "/tet",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000"
+  ]
 }
