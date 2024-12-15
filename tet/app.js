@@ -2,6 +2,7 @@ const canvas = document.getElementById("countdownCanvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+const FONTFAMILY = "Courier New, Courier, monospace";
 
 const music = document.getElementById("backgroundMusic");
 music.volume = 0.5;
@@ -12,14 +13,15 @@ let stars = [];
 function updateFontSize() {
   const canvasWidth = canvas.width;
   const canvasHeight = canvas.height;
-  
+
   // Tỷ lệ phần trăm dựa trên chiều rộng và chiều cao của canvas
   const scale = Math.min(canvasWidth / 1920, canvasHeight / 1080); // Adjust this based on your base resolution
-  
-  const fontSize = 50 * scale; // Điều chỉnh số 50 này tùy thuộc vào kích thước font mong muốn
-  
+
+  const fontSize = 70 * scale; // Điều chỉnh số 50 này tùy thuộc vào kích thước font mong muốn
+
   return fontSize;
 }
+
 // Tạo nền ngôi sao lấp lánh
 for (let i = 0; i < 200; i++) {
   stars.push({
@@ -46,17 +48,14 @@ function drawStars() {
 function drawCountdown() {
   const now = new Date();
   const diff = tetDate - now;
+  const tet = "🎉 Chúc Mừng Năm Mới! 🎉";
 
   if (diff <= 0) {
     drawFireworks();
     ctx.fillStyle = "white";
-    ctx.font =  `bold ${updateFontSize()}px Arial`;
+    ctx.font = `bold ${updateFontSize()}px ${FONTFAMILY}`;
     ctx.textAlign = "center";
-    ctx.fillText(
-      "🎉 Chúc Mừng Năm Mới! 🎉",
-      canvas.width / 2,
-      canvas.height / 2
-    );
+    ctx.fillText(tet, canvas.width / 2, canvas.height / 2);
     return;
   }
   const fontSize = updateFontSize();
@@ -67,17 +66,13 @@ function drawCountdown() {
   const seconds = Math.floor((diff / 1000) % 60);
 
   const text = `${days} Ngày ${hours} Giờ ${minutes} Phút ${seconds} Giây`;
-
+  const label = "🎉 Tết Nguyên Đán 2025 🎉";
   ctx.fillStyle = "yellow";
-  ctx.font =  `bold ${fontSize}px Arial`;
+  ctx.font = `bold ${fontSize}px ${FONTFAMILY}`;
   ctx.textAlign = "center";
-  ctx.fillText(
-    "🎉 Tết Nguyên Đán 2025 🎉",
-    canvas.width / 2,
-    canvas.height / 2 - 100
-  );
+  ctx.fillText(label, canvas.width / 2, canvas.height / 2 - 100);
 
-  ctx.font = `bold ${fontSize * 1.4}px Arial`;
+  ctx.font = `bold ${fontSize * 1.4}px ${FONTFAMILY}`;
   ctx.fillStyle = "white";
   ctx.fillText(text, canvas.width / 2, canvas.height / 2);
 }
@@ -132,10 +127,7 @@ function startMusic() {
   music
     .play()
     .catch((error) =>
-      console.log(
-        "Nhạc nền không tự phát do giới hạn trình duyệt.",
-        error
-      )
+      console.log("Nhạc nền không tự phát do giới hạn trình duyệt.", error)
     );
 }
 
@@ -146,8 +138,6 @@ canvas.addEventListener("click", (event) => {
 });
 
 function animate() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawStars();
   drawCountdown();
@@ -157,7 +147,8 @@ function animate() {
 
 // Tự động bắn pháo hoa mỗi 1-2 giây
 setInterval(createRandomFireworks, Math.random() * 1000 + 1000);
-
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 animate();
 
 // Điều chỉnh kích thước canvas khi thay đổi kích thước cửa sổ
