@@ -9,14 +9,14 @@
   "screenshots": [
     {
       "src": "source/acr.png",
-      "sizes": "439x895",
+      "sizes": "1912x962",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Wonder Widgets"
     },
     {
       "src": "source/acr.png",
-      "sizes": "439x895",
+      "sizes": "1912x962",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Wonder Widgets"
