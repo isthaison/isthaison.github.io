@@ -237,47 +237,61 @@ if (navigator.userAgent.includes("Mobi")) {
   document.body.classList.add("desktop-install");
 }
 
-
-if ('serviceWorker' in navigator && 'Notification' in window) {
-  window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js').then((registration) => {
-          // Kiểm tra điều kiện hỗ trợ khả năng cài đặt PWA
-          if (window.matchMedia('(display-mode: standalone)').matches) {
-              // Trường hợp đã là ứng dụng PWA
-              return;
-          }
-
-          // Hiển thị yêu cầu cài đặt PWA nếu người dùng đang trên thiết bị di động
-          if (window.navigator.standalone === undefined) {
-              showInstallPrompt();
-          }
-      });
-  });
-
+if ("serviceWorker" in navigator && "Notification" in window) {
   function showInstallPrompt() {
-      const installButton = document.createElement('button');
-      installButton.textContent = 'Cài đặt';
-      installButton.style.position = 'fixed';
-      installButton.style.bottom = '20px';
-      installButton.style.right = '20px';
-      installButton.style.zIndex = '1000';
+    // Kiểm tra xem có hỗ trợ beforeinstallprompt không
+    window.addEventListener("beforeinstallprompt", (event) => {
+      // Prevent Chrome 76 and later from showing the default prompt
+      event.preventDefault();
+      // Lưu lại sự kiện để sử dụng sau
+      let deferredPrompt = event;
 
-      installButton.addEventListener('click', () => {
-          // Kiểm tra trình duyệt
-          if (window.matchMedia('(display-mode: standalone)').matches) {
-              window.location.href = '/index.html'; // Đến trực tiếp
+      const installButton = document.createElement("button");
+      installButton.textContent = "Cài đặt";
+      installButton.style.position = "fixed";
+      installButton.style.bottom = "20px";
+      installButton.style.right = "20px";
+      installButton.style.zIndex = "1000";
+
+      installButton.addEventListener("click", () => {
+        // Hiển thị prompt cài đặt
+        deferredPrompt.prompt();
+
+        // Đợi người dùng phản hồi
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === "accepted") {
+            console.log("User accepted the install prompt");
           } else {
-              // Gọi API cài đặt PWA
-              if (window.navigator.mozInstall) {
-                  window.navigator.mozInstall.prompt();
-              } else if (window.navigator.msInstall) {
-                  window.navigator.msInstall.prompt();
-              } else {
-                  window.location.href = '/index.html';
-              }
+            console.log("User dismissed the install prompt");
           }
+          deferredPrompt = null;
+        });
       });
 
       document.body.appendChild(installButton);
+    });
+
+    // Kiểm tra xem đang ở chế độ độc lập không
+    if (window.matchMedia("(display-mode: standalone)").matches) {
+      window.location.href = "/"; // Đến trực tiếp nếu đã ở chế độ standalone
+    }
   }
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((registration) => {
+        // Kiểm tra điều kiện hỗ trợ khả năng cài đặt PWA
+        if (window.matchMedia("(display-mode: standalone)").matches) {
+          // Trường hợp đã là ứng dụng PWA
+          return;
+        }
+
+        // Hiển thị yêu cầu cài đặt PWA nếu người dùng đang trên thiết bị di động
+        if (window.navigator.standalone === undefined) {
+          showInstallPrompt();
+        }
+      });
+  });
+
+ 
 }

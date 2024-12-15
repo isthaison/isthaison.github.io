@@ -1,7 +1,6 @@
 const CACHE_NAME = "tet-cache-v1";
 const urlsToCache = [
   "/",
-  "/index.html",
   "/manifest.json",
   "/app.css",
   "/app.js",
