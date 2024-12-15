@@ -54,18 +54,49 @@ function drawStars() {
     ctx.fill();
   });
 }
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(" ");
+  let line = "";
+  let lines = [];
 
+  words.forEach((word) => {
+    const testLine = line + word + " ";
+    const metrics = ctx.measureText(testLine);
+    const testWidth = metrics.width;
+
+    if (testWidth > maxWidth && line !== "") {
+      lines.push(line);
+      line = word + " ";
+    } else {
+      line = testLine;
+    }
+  });
+  lines.push(line); // Dòng cuối cùng
+
+  lines.forEach((line, index) => {
+    ctx.fillText(line, x, y + index * lineHeight);
+  });
+}
 function drawCountdown() {
   const now = new Date();
   const diff = tetDate - now;
-  const tet = "🎉 Chúc Mừng Năm Mới! 🎉";
-
-  if (diff <= 0) {
+  const tet = `🎉 Chúc Mừng Năm Mới! 🎉 2025`;
+  if (diff <= 0 || 1 == 1) {
     drawFireworks();
     ctx.fillStyle = "white";
     ctx.font = `bold ${updateFontSize()}px ${FONTFAMILY}`;
     ctx.textAlign = "center";
     ctx.fillText(tet, canvas.width / 2, canvas.height / 2);
+    ctx.font = `bold 12px ${FONTFAMILY}`;
+    wrapText(
+      ctx,
+      `Bạn đã chạm ${touchCount} lần. Thật là dữ dội✨✨🌸🎉🌸✨🎉🎉🎉🌸🎉🎉🌸🎉Chúc bạn và gia đình một năm mới tràn ngập niềm vui và hạnh phúc! Mong rằng mọi điều bạn mơ ước sẽ trở thành hiện thực, mọi khó khăn chỉ là những câu chuyện đã qua. Hãy luôn cười thật tươi và tràn đầy năng lượng trong năm mới này nhé! Chúc bạn một năm mới an khang, thịnh vượng, và thật nhiều yêu thương!🌸🎉🌸🎉🌸🎉🌸🎉✨✨🌸🎉🌸🎉`,
+      canvas.width / 2,
+      canvas.height / 2 + Math.max(updateFontSize(), 12),
+      canvas.width * 0.8,
+      14
+    );
+
     return;
   }
   const fontSize = updateFontSize();
