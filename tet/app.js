@@ -144,7 +144,6 @@ function animate() {
   drawFireworks();
   requestAnimationFrame(animate);
 }
-
 // Tự động bắn pháo hoa mỗi 1-2 giây
 setInterval(createRandomFireworks, Math.random() * 1000 + 1000);
 canvas.width = window.innerWidth;

@@ -26,20 +26,9 @@
     <meta property="og:type" content="website" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="/app.css">
 
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-        background: radial-gradient(circle, #1a1a1a, #000000);
-      }
-      canvas {
-        display: block;
-      }
-      audio {
-        display: none;
-      }
-    </style>
+    
     <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -54,7 +43,10 @@
     </script>
   </head>
   <body>
+
     <canvas id="countdownCanvas"></canvas>
+    <div id="musicIcon" title="Bật nhạc"></div>
+
     <audio id="backgroundMusic" loop>
       <source src="./tet.mp3" type="audio/mpeg" />
       Trình duyệt của bạn không hỗ trợ âm thanh.
