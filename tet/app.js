@@ -278,7 +278,7 @@ if ("serviceWorker" in navigator && "Notification" in window) {
   }
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("service-worker.js")
+      .register("/tet/service-worker.js")
       .then((registration) => {
         // Kiểm tra điều kiện hỗ trợ khả năng cài đặt PWA
         if (window.matchMedia("(display-mode: standalone)").matches) {
