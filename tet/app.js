@@ -81,7 +81,7 @@ function drawCountdown() {
   const now = new Date();
   const diff = tetDate - now;
   const tet = `🎉 Chúc Mừng Năm Mới! 🎉 2025`;
-  if (diff <= 0 || 1 == 1) {
+  if (diff <= 0) {
     drawFireworks();
     ctx.fillStyle = "white";
     ctx.font = `bold ${updateFontSize()}px ${FONTFAMILY}`;
@@ -235,4 +235,49 @@ if (navigator.userAgent.includes("Mobi")) {
 } else {
   console.log("Desktop or Tablet form factor detected.");
   document.body.classList.add("desktop-install");
+}
+
+
+if ('serviceWorker' in navigator && 'Notification' in window) {
+  window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+          // Kiểm tra điều kiện hỗ trợ khả năng cài đặt PWA
+          if (window.matchMedia('(display-mode: standalone)').matches) {
+              // Trường hợp đã là ứng dụng PWA
+              return;
+          }
+
+          // Hiển thị yêu cầu cài đặt PWA nếu người dùng đang trên thiết bị di động
+          if (window.navigator.standalone === undefined) {
+              showInstallPrompt();
+          }
+      });
+  });
+
+  function showInstallPrompt() {
+      const installButton = document.createElement('button');
+      installButton.textContent = 'Cài đặt';
+      installButton.style.position = 'fixed';
+      installButton.style.bottom = '20px';
+      installButton.style.right = '20px';
+      installButton.style.zIndex = '1000';
+
+      installButton.addEventListener('click', () => {
+          // Kiểm tra trình duyệt
+          if (window.matchMedia('(display-mode: standalone)').matches) {
+              window.location.href = '/index.html'; // Đến trực tiếp
+          } else {
+              // Gọi API cài đặt PWA
+              if (window.navigator.mozInstall) {
+                  window.navigator.mozInstall.prompt();
+              } else if (window.navigator.msInstall) {
+                  window.navigator.msInstall.prompt();
+              } else {
+                  window.location.href = '/index.html';
+              }
+          }
+      });
+
+      document.body.appendChild(installButton);
+  }
 }

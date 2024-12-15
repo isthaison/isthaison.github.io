@@ -2,6 +2,11 @@ body {
     margin: 0;
     overflow: hidden;
     background: radial-gradient(circle, #1a1a1a, #000000);
+    font-family: Courier New, Courier, monospace;
+  }
+  button{
+    font-family: Courier New, Courier, monospace;
+
   }
   canvas {
     display: block;
@@ -31,4 +36,26 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* CSS cho nút cài đặt PWA */
+.install-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff; /* Màu nền nút */
+    color: #ffffff; /* Màu chữ */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hiệu ứng shadow */
+    cursor: pointer; /* Hiển thị con trỏ tay khi hover */
+    z-index: 1000; /* Đảm bảo nút hiển thị trên cùng */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi màu */
+}
+
+.install-button:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
 }
