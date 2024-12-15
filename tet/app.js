@@ -3,7 +3,17 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const FONTFAMILY = "Courier New, Courier, monospace";
+let touchCount = parseFloat(localStorage.getItem("touchCount")) || 0; // Tải số lượt touch từ localStorage
 
+function debounce(func, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer); // Xóa bộ hẹn giờ trước đó
+    timer = setTimeout(() => {
+      func.apply(this, args); // Gọi hàm sau khi hết thời gian delay
+    }, delay);
+  };
+}
 const music = document.getElementById("backgroundMusic");
 music.volume = 0.5;
 
@@ -124,24 +134,42 @@ function createRandomFireworks() {
 
 // Phát nhạc nền
 function startMusic() {
+  musicIcon.classList.add("active");
   music
     .play()
     .catch((error) =>
       console.log("Nhạc nền không tự phát do giới hạn trình duyệt.", error)
     );
 }
+function onInputChange(event) {
+  console.log("Input value:", event.target.value);
+}
 
+// Hàm xử lý tăng số lần chạm
+const increaseTouchCount = debounce(() => {
+  localStorage.setItem("touchCount", touchCount); // Lưu vào localStorage
+}, 200); // Giới hạn: Tăng số lần chạm tối đa 1 lần mỗi 200ms
 // Thêm sự kiện nhấp chuột để tạo pháo hoa
 canvas.addEventListener("click", (event) => {
   const rect = canvas.getBoundingClientRect();
   createFireworks(event.clientX - rect.left, event.clientY - rect.top);
+  touchCount++;
+  // Cập nhật số lượt touch
+  increaseTouchCount();
 });
-
+// Vẽ số lần touch
+function drawTouchCount() {
+  ctx.font = `bold 12px ${FONTFAMILY}`;
+  ctx.fillStyle = "white";
+  ctx.textAlign = "left";
+  ctx.fillText(`Điểm số của bạn: ${touchCount}`, 20, 50);
+}
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawStars();
   drawCountdown();
   drawFireworks();
+  drawTouchCount();
   requestAnimationFrame(animate);
 }
 // Tự động bắn pháo hoa mỗi 1-2 giây
@@ -158,13 +186,22 @@ window.addEventListener("resize", () => {
 
 // Bắt đầu phát nhạc khi tương tác
 window.addEventListener("click", startMusic, { once: true });
-
-
-
-if (navigator.userAgent.includes('Mobi')) {
+// Điều khiển nhạc bằng icon
+let isMusicPlaying = false;
+musicIcon.addEventListener("click", () => {
+  if (isMusicPlaying) {
+    music.pause();
+    musicIcon.classList.remove("active");
+  } else {
+    music.play();
+    musicIcon.classList.add("active");
+  }
+  isMusicPlaying = !isMusicPlaying;
+});
+if (navigator.userAgent.includes("Mobi")) {
   console.log("Mobile form factor detected.");
-  document.body.classList.add('mobile-install');
+  document.body.classList.add("mobile-install");
 } else {
   console.log("Desktop or Tablet form factor detected.");
-  document.body.classList.add('desktop-install');
+  document.body.classList.add("desktop-install");
 }
