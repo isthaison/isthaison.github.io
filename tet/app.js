@@ -146,7 +146,7 @@ function drawCountdown() {
   const now = new Date();
   const diff = tetDate - now;
   const tet = decodeString(locale.l1);
-  if (diff <= 0 || 1 == 1) {
+  if (diff <= 0) {
     drawFireworks();
     ctx.fillStyle = "white";
     ctx.font = `bold ${updateFontSize()}px ${FONTFAMILY}`;
