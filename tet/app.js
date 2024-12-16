@@ -290,7 +290,8 @@ function animate() {
     lastMusicTime = now; // Cập nhật thời gian chơi nhạc gần nhất
     increaseTouchCount();
   }
-
+  console.clear();
+  console.log("(●'◡'●)")
   requestAnimationFrame(animate);
 }
 // Tự động bắn pháo hoa mỗi 1-2 giây
@@ -443,25 +444,11 @@ document.addEventListener("contextmenu", (event) => {
   event.preventDefault();
   alert(decodeString(locale.l16));
 });
-(function () {
-  const element = new Image();
-  Object.defineProperty(element, "id", {
-    get: function () {
-      alert(decodeString(locale.l16));
-      window.location.href = "about:blank"; // Chuyển hướng nếu mở Developer Tools
-    },
-  });
-  console.log(element);
-})();
 
 // Ngăn chặn chọn văn bản
 document.addEventListener("selectstart", function (e) {
   e.preventDefault(); // Ngăn không cho người dùng chọn văn bản
 });
-
-
-
-
 
 // App load
 window.addEventListener("load", () => {
