@@ -5,7 +5,7 @@ canvas.height = window.innerHeight;
 const FONTFAMILY = "Courier New, Courier, monospace";
 let isMusicPlaying = false;
 const ver = "1.0.4";
-class IS {
+class lQkFjJTIwTSV {
   touchCount = 0;
   BASE_PATH = "";
   constructor() {
@@ -13,7 +13,7 @@ class IS {
     this.BASE_PATH = self.location.pathname.replace(/\/$/, "");
   }
 }
-const is = new IS();
+const VDQyVB = new lQkFjJTIwTSV();
 const locale = {
   l1: "JUYwJTlGJThFJTg5JTIwQ2glQzMlQkFjJTIwTSVFMSVCQiVBQm5nJTIwTiVDNCU4M20lMjBNJUUxJUJCJTlCaSElMjAlRjAlOUYlOEUlODklMjAyMDI1",
   l2: `QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMGNoYSVDQyVBM20`,
@@ -74,11 +74,11 @@ const ul = {
   },
 };
 // Nếu touchCount tồn tại, giải mã nó
-if (is.touchCount) {
-  is.touchCount = ul.decodeData(is.touchCount);
-  if (isNaN(is.touchCount)) localStorage.removeItem("touchCount");
+if (VDQyVB.touchCount) {
+  VDQyVB.touchCount = ul.decodeData(VDQyVB.touchCount);
+  if (isNaN(VDQyVB.touchCount)) localStorage.removeItem("touchCount");
 } else {
-  is.touchCount = 0; // Nếu không có, bắt đầu từ 0
+  VDQyVB.touchCount = 0; // Nếu không có, bắt đầu từ 0
 }
 let angle = 0; // Góc để tạo hiệu ứng lắc lư
 const music = document.getElementById("backgroundMusic");
@@ -161,7 +161,7 @@ function drawCountdown() {
     ctx.font = `bold 12px ${FONTFAMILY}`;
     wrapText(
       ctx,
-      `${ul.decodeString(locale.l2)} ${is.touchCount} ${ul.decodeString(
+      `${ul.decodeString(locale.l2)} ${VDQyVB.touchCount} ${ul.decodeString(
         locale.l3
       )}`,
       canvas.width / 2,
@@ -173,13 +173,13 @@ function drawCountdown() {
 
     // Vẽ văn bản giải thưởng
     let message;
-    if (is.touchCount >= 20000) {
+    if (VDQyVB.touchCount >= 20000) {
       message = ul.decodeString(locale.l4);
-    } else if (is.touchCount >= 10000) {
+    } else if (VDQyVB.touchCount >= 10000) {
       message = ul.decodeString(locale.l5);
-    } else if (is.touchCount >= 5000) {
+    } else if (VDQyVB.touchCount >= 5000) {
       message = ul.decodeString(locale.l6);
-    } else if (is.touchCount >= 1000) {
+    } else if (VDQyVB.touchCount >= 1000) {
       message = ul.decodeString(locale.l7);
     } else {
       message = ul.decodeString(locale.l8);
@@ -267,13 +267,13 @@ function startMusic() {
 
 // Hàm xử lý tăng số lần chạm
 const increaseTouchCount = ul.debounce(() => {
-  localStorage.setItem("touchCount", ul.encodeData(is.touchCount));
+  localStorage.setItem("touchCount", ul.encodeData(VDQyVB.touchCount));
 }, 200); // Giới hạn: Tăng số lần chạm tối đa 1 lần mỗi 200ms
 // Thêm sự kiện nhấp chuột để tạo pháo hoa
 canvas.addEventListener("click", (event) => {
   const rect = canvas.getBoundingClientRect();
   createFireworks(event.clientX - rect.left, event.clientY - rect.top);
-  is.touchCount++;
+  VDQyVB.touchCount++;
   // Cập nhật số lượt touch
   increaseTouchCount();
 });
@@ -282,7 +282,7 @@ function drawTouchCount() {
   ctx.font = `bold 12px ${FONTFAMILY}`;
   ctx.fillStyle = "white";
   ctx.textAlign = "left";
-  ctx.fillText(`${ul.decodeString(locale.l9)} ${is.touchCount}`, 20, 50);
+  ctx.fillText(`${ul.decodeString(locale.l9)} ${VDQyVB.touchCount}`, 20, 50);
 }
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -293,7 +293,7 @@ function animate() {
   const now = Date.now();
   if (now - lastMusicTime >= 1000 * 60 && isMusicPlaying == true) {
     // Nếu thời gian hiện tại cách lần chơi nhạc trước ít nhất 1 phút
-    is.touchCount += 10;
+    VDQyVB.touchCount += 10;
     lastMusicTime = now; // Cập nhật thời gian chơi nhạc gần nhất
     increaseTouchCount();
   }
@@ -338,7 +338,7 @@ function getGiftSize(score) {
 }
 
 function drawGift(ctx, x, y) {
-  const size = getGiftSize(is.touchCount); // Kích thước dựa trên số điểm
+  const size = getGiftSize(VDQyVB.touchCount); // Kích thước dựa trên số điểm
 
   const offsetX = Math.sin(angle) * 5;
   const offsetY = Math.cos(angle) * 2;
