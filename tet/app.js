@@ -4,7 +4,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const FONTFAMILY = "Courier New, Courier, monospace";
 let isMusicPlaying = false;
-const ver = "1.0.1";
+const ver = "1.0.2";
 class IS {
   touchCount = 0;
   BASE_PATH = "";
@@ -299,6 +299,7 @@ function animate() {
   }
   console.clear();
   console.log("(●'◡'●)");
+
   requestAnimationFrame(animate);
 }
 // Tự động bắn pháo hoa mỗi 1-2 giây
