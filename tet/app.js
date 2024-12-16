@@ -27,6 +27,7 @@ const locale = {
 // Nếu touchCount tồn tại, giải mã nó
 if (touchCount) {
   touchCount = decodeData(touchCount);
+  if (isNaN(touchCount)) localStorage.removeItem("touchCount");
 } else {
   touchCount = 0; // Nếu không có, bắt đầu từ 0
 }
