@@ -179,7 +179,7 @@ function drawCountdown() {
 
     ctx.font = `16px ${FONTFAMILY}`;
     ctx.textAlign = "center";
-    ctx.fillText(message, canvas.width / 2, 180);
+    wrapText(ctx, message, canvas.width / 2, 180, canvas.width * 0.8, 14);
     return;
   }
   const fontSize = updateFontSize();

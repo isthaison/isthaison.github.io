@@ -11,10 +11,7 @@ const urlsToCache = [
   "/tet/icons/icon-512x512.png",
   "/tet/source/acr.png",
 ];
-const fullUrlsToCache = urlsToCache.map(
-  (url) => self.location.origin  + url
-);
-console.log(fullUrlsToCache);
+const fullUrlsToCache = urlsToCache.map((url) => self.location.origin + url);
 
 // Cài đặt Service Worker
 self.addEventListener("install", (event) => {
