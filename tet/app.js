@@ -35,50 +35,47 @@ let angle = 0; // Góc để tạo hiệu ứng lắc lư
 
 const BASE_PATH = self.location.pathname.replace(/\/$/, ""); // Loại bỏ dấu "/" cuối
 
-// Mã hóa dữ liệu
-function encodeData(data) {
-  let encoded = btoa(data.toString()); // Encode dữ liệu sang Base64
-  return encoded;
-}
-
-// Giải mã dữ liệu
-function decodeData(encodedData) {
-  let decoded = atob(encodedData); // Decode Base64
-  return parseFloat(decoded); // Convert trở lại thành số
-}
-// Mã hóa chuỗi
-function encodeString(str) {
-  try {
-    // Encode chuỗi sang Base64 sau khi chuyển đổi sang UTF-8
-    let encoded = btoa(encodeURIComponent(str));
+const ul = {
+  encodeData: (data) => {
+    let encoded = btoa(data.toString()); // Encode dữ liệu sang Base64
     return encoded;
-  } catch (error) {
-    console.error("Error encoding string:", error);
-    return null;
-  }
-}
+  },
+  decodeData: (encodedData) => {
+    let decoded = atob(encodedData); // Decode Base64
+    return parseFloat(decoded); // Convert trở lại thành số
+  },
+  encodeString: (str) => {
+    try {
+      // Encode chuỗi sang Base64 sau khi chuyển đổi sang UTF-8
+      let encoded = btoa(encodeURIComponent(str));
+      return encoded;
+    } catch (error) {
+      console.error("Error encoding string:", error);
+      return null;
+    }
+  },
+  decodeString: (encodedStr) => {
+    try {
+      // Decode Base64 trở về chuỗi gốc sau khi chuyển từ UTF-8
+      let decoded = decodeURIComponent(atob(encodedStr));
+      return decoded;
+    } catch (error) {
+      console.error("Error decoding string:", error);
+      return null;
+    }
+  },
 
-// Giải mã chuỗi
-function decodeString(encodedStr) {
-  try {
-    // Decode Base64 trở về chuỗi gốc sau khi chuyển từ UTF-8
-    let decoded = decodeURIComponent(atob(encodedStr));
-    return decoded;
-  } catch (error) {
-    console.error("Error decoding string:", error);
-    return null;
-  }
-}
+  debounce: (func, delay) => {
+    let timer;
+    return function (...args) {
+      clearTimeout(timer); // Xóa bộ hẹn giờ trước đó
+      timer = setTimeout(() => {
+        func.apply(this, args); // Gọi hàm sau khi hết thời gian delay
+      }, delay);
+    };
+  },
+};
 
-function debounce(func, delay) {
-  let timer;
-  return function (...args) {
-    clearTimeout(timer); // Xóa bộ hẹn giờ trước đó
-    timer = setTimeout(() => {
-      func.apply(this, args); // Gọi hàm sau khi hết thời gian delay
-    }, delay);
-  };
-}
 const music = document.getElementById("backgroundMusic");
 music.volume = 0.5;
 let lastMusicTime = Date.now(); // Lưu thời gian gần nhất chơi nhạc
@@ -146,7 +143,7 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
 function drawCountdown() {
   const now = new Date();
   const diff = tetDate - now;
-  const tet = decodeString(locale.l1);
+  const tet = ul.decodeString(locale.l1);
   if (diff <= 0) {
     drawFireworks();
     ctx.fillStyle = "white";
@@ -156,7 +153,9 @@ function drawCountdown() {
     ctx.font = `bold 12px ${FONTFAMILY}`;
     wrapText(
       ctx,
-      `${decodeString(locale.l2)} ${touchCount} ${decodeString(locale.l3)}`,
+      `${ul.decodeString(locale.l2)} ${touchCount} ${ul.decodeString(
+        locale.l3
+      )}`,
       canvas.width / 2,
       canvas.height / 2 + Math.max(updateFontSize(), 12),
       canvas.width * 0.8,
@@ -167,15 +166,15 @@ function drawCountdown() {
     // Vẽ văn bản giải thưởng
     let message;
     if (touchCount >= 20000) {
-      message = decodeString(locale.l4);
+      message = ul.decodeString(locale.l4);
     } else if (touchCount >= 10000) {
-      message = decodeString(locale.l5);
+      message = ul.decodeString(locale.l5);
     } else if (touchCount >= 5000) {
-      message = decodeString(locale.l6);
+      message = ul.decodeString(locale.l6);
     } else if (touchCount >= 1000) {
-      message = decodeString(locale.l7);
+      message = ul.decodeString(locale.l7);
     } else {
-      message = decodeString(locale.l8);
+      message = ul.decodeString(locale.l8);
     }
 
     ctx.font = `16px ${FONTFAMILY}`;
@@ -190,12 +189,12 @@ function drawCountdown() {
   const minutes = Math.floor((diff / (1000 * 60)) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
 
-  const text = `${days} ${decodeString(locale.l12)} ${hours} ${decodeString(
-    locale.l13
-  )} ${minutes} ${decodeString(locale.l14)} ${seconds} ${decodeString(
-    locale.l15
-  )}`;
-  const label = decodeString(locale.l11);
+  const text = `${days} ${ul.decodeString(
+    locale.l12
+  )} ${hours} ${ul.decodeString(locale.l13)} ${minutes} ${ul.decodeString(
+    locale.l14
+  )} ${seconds} ${ul.decodeString(locale.l15)}`;
+  const label = ul.decodeString(locale.l11);
   ctx.fillStyle = "yellow";
   ctx.font = `bold ${fontSize}px ${FONTFAMILY}`;
   ctx.textAlign = "center";
@@ -259,8 +258,8 @@ function startMusic() {
 }
 
 // Hàm xử lý tăng số lần chạm
-const increaseTouchCount = debounce(() => {
-  localStorage.setItem("touchCount", encodeData(touchCount));
+const increaseTouchCount = ul.debounce(() => {
+  localStorage.setItem("touchCount", ul.encodeData(touchCount));
 }, 200); // Giới hạn: Tăng số lần chạm tối đa 1 lần mỗi 200ms
 // Thêm sự kiện nhấp chuột để tạo pháo hoa
 canvas.addEventListener("click", (event) => {
@@ -275,7 +274,7 @@ function drawTouchCount() {
   ctx.font = `bold 12px ${FONTFAMILY}`;
   ctx.fillStyle = "white";
   ctx.textAlign = "left";
-  ctx.fillText(`${decodeString(locale.l9)} ${touchCount}`, 20, 50);
+  ctx.fillText(`${ul.decodeString(locale.l9)} ${touchCount}`, 20, 50);
 }
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -291,7 +290,7 @@ function animate() {
     increaseTouchCount();
   }
   console.clear();
-  console.log("(●'◡'●)")
+  console.log("(●'◡'●)");
   requestAnimationFrame(animate);
 }
 // Tự động bắn pháo hoa mỗi 1-2 giây
@@ -338,7 +337,7 @@ function drawGift(ctx, x, y) {
   ctx.font = `${size}px Arial`;
   ctx.textAlign = "center";
   ctx.textBaseline = "top";
-  ctx.fillText(decodeString(locale.l10), x + offsetX, y + offsetY);
+  ctx.fillText(ul.decodeString(locale.l10), x + offsetX, y + offsetY);
 
   angle += 0.1;
 }
@@ -413,36 +412,36 @@ document.addEventListener("keydown", (event) => {
   // Ngăn phím F12
   if (event.key === "F12") {
     event.preventDefault();
-    alert(decodeString(locale.l16));
+    alert(ul.decodeString(locale.l16));
   }
 
   // Ngăn tổ hợp phím Ctrl+Shift+I (Chrome, Edge, Firefox)
   if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "I") {
     event.preventDefault();
-    alert(decodeString(locale.l16));
+    alert(ul.decodeString(locale.l16));
   }
 
   // Ngăn tổ hợp phím Ctrl+U (xem mã nguồn trang)
   if ((event.ctrlKey || event.metaKey) && event.key === "U") {
     event.preventDefault();
-    alert(decodeString(locale.l16));
+    alert(ul.decodeString(locale.l16));
   }
 
   // Ngăn tổ hợp phím Ctrl+Shift+J (console)
   if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "J") {
     event.preventDefault();
-    alert(decodeString(locale.l16));
+    alert(ul.decodeString(locale.l16));
   }
 
   // Ngăn tổ hợp phím Ctrl+Shift+C (element picker)
   if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "C") {
     event.preventDefault();
-    alert(decodeString(locale.l16));
+    alert(ul.decodeString(locale.l16));
   }
 });
 document.addEventListener("contextmenu", (event) => {
   event.preventDefault();
-  alert(decodeString(locale.l16));
+  alert(ul.decodeString(locale.l16));
 });
 
 // Ngăn chặn chọn văn bản
