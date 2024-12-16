@@ -76,7 +76,6 @@ const ul = {
 // Nếu touchCount tồn tại, giải mã nó
 if (is.touchCount) {
   is.touchCount = ul.decodeData(is.touchCount);
-  if (isNaN(is.touchCount)) localStorage.removeItem("touchCount");
 } else {
   is.touchCount = 0; // Nếu không có, bắt đầu từ 0
 }
@@ -161,7 +160,7 @@ function drawCountdown() {
     ctx.font = `bold 12px ${FONTFAMILY}`;
     wrapText(
       ctx,
-      `${ul.decodeString(locale.l2)} ${touchCount} ${ul.decodeString(
+      `${ul.decodeString(locale.l2)} ${is.touchCount} ${ul.decodeString(
         locale.l3
       )}`,
       canvas.width / 2,
@@ -173,13 +172,13 @@ function drawCountdown() {
 
     // Vẽ văn bản giải thưởng
     let message;
-    if (touchCount >= 20000) {
+    if (is.touchCount >= 20000) {
       message = ul.decodeString(locale.l4);
-    } else if (touchCount >= 10000) {
+    } else if (is.touchCount >= 10000) {
       message = ul.decodeString(locale.l5);
-    } else if (touchCount >= 5000) {
+    } else if (is.touchCount >= 5000) {
       message = ul.decodeString(locale.l6);
-    } else if (touchCount >= 1000) {
+    } else if (is.touchCount >= 1000) {
       message = ul.decodeString(locale.l7);
     } else {
       message = ul.decodeString(locale.l8);
@@ -267,7 +266,7 @@ function startMusic() {
 
 // Hàm xử lý tăng số lần chạm
 const increaseTouchCount = ul.debounce(() => {
-  localStorage.setItem("touchCount", ul.encodeData(touchCount));
+  localStorage.setItem("touchCount", ul.encodeData(is.touchCount));
 }, 200); // Giới hạn: Tăng số lần chạm tối đa 1 lần mỗi 200ms
 // Thêm sự kiện nhấp chuột để tạo pháo hoa
 canvas.addEventListener("click", (event) => {
@@ -338,7 +337,7 @@ function getGiftSize(score) {
 }
 
 function drawGift(ctx, x, y) {
-  const size = getGiftSize(touchCount); // Kích thước dựa trên số điểm
+  const size = getGiftSize(is.touchCount); // Kích thước dựa trên số điểm
 
   const offsetX = Math.sin(angle) * 5;
   const offsetY = Math.cos(angle) * 2;
