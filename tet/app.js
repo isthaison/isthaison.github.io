@@ -4,7 +4,10 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const FONTFAMILY = "Courier New, Courier, monospace";
 let touchCount = parseFloat(localStorage.getItem("touchCount")) || 0; // Tải số lượt touch từ localStorage
+let angle = 0; // Góc để tạo hiệu ứng lắc lư
 
+const BASE_PATH = self.location.pathname.replace(/\/$/, ""); // Loại bỏ dấu "/" cuối
+const MAX = 999999999;
 function debounce(func, delay) {
   let timer;
   return function (...args) {
@@ -81,7 +84,7 @@ function drawCountdown() {
   const now = new Date();
   const diff = tetDate - now;
   const tet = `🎉 Chúc Mừng Năm Mới! 🎉 2025`;
-  if (diff <= 0) {
+  if (diff <= 0 || 1 == 1) {
     drawFireworks();
     ctx.fillStyle = "white";
     ctx.font = `bold ${updateFontSize()}px ${FONTFAMILY}`;
@@ -96,7 +99,25 @@ function drawCountdown() {
       canvas.width * 0.8,
       14
     );
+    drawGift(ctx, canvas.width / 2, 100);
 
+    // Vẽ văn bản giải thưởng
+    let message;
+    if (touchCount >= 20000) {
+      message = "Đây là của bạn 🎁 size XXXL với giải thưởng xứng đáng!";
+    } else if (touchCount >= 10000) {
+      message = "Đây là của bạn 🎁 size XL! Một món quà tuyệt vời!";
+    } else if (touchCount >= 5000) {
+      message = "Đây là của bạn 🎁 size L! Chúc mừng bạn!";
+    } else if (touchCount >= 1000) {
+      message = "Đây là của bạn 🎁 size M! Một món quà nhỏ thôi!";
+    } else {
+      message = "Đây là của bạn 🎁 size S! Cố gắng hơn nữa!";
+    }
+
+    ctx.font = `16px ${FONTFAMILY}`;
+    ctx.textAlign = "center";
+    ctx.fillText(message, canvas.width / 2, 180);
     return;
   }
   const fontSize = updateFontSize();
@@ -229,6 +250,35 @@ musicIcon.addEventListener("click", () => {
   }
   isMusicPlaying = !isMusicPlaying;
 });
+
+// Hàm xác định kích thước 🎁 theo cấp bậc
+function getGiftSize(score) {
+  if (score >= 20000) return 150; // Cấp 5
+  if (score >= 10000) return 120; // Cấp 4
+  if (score >= 5000) return 90; // Cấp 3
+  if (score >= 1000) return 70; // Cấp 2
+  if (score >= 100) return 50; // Cấp 1
+  return 30; // Mặc định
+}
+
+function drawGift(ctx, x, y) {
+  // Tăng kích thước dựa trên điểm số
+  const size = getGiftSize(touchCount); // Kích thước dựa trên số điểm
+
+  // Hiệu ứng lắc lư
+  const offsetX = Math.sin(angle) * 5;
+  const offsetY = Math.cos(angle) * 2;
+
+  // Vẽ 🎁
+  ctx.font = `${size}px Arial`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+  ctx.fillText("🎁", x + offsetX, y + offsetY);
+
+  // Tăng góc để tạo hiệu ứng lắc lư liên tục
+  angle += 0.1;
+}
+
 if (navigator.userAgent.includes("Mobi")) {
   console.log("Mobile form factor detected.");
   document.body.classList.add("mobile-install");
@@ -273,12 +323,14 @@ if ("serviceWorker" in navigator && "Notification" in window) {
 
     // Kiểm tra xem đang ở chế độ độc lập không
     if (window.matchMedia("(display-mode: standalone)").matches) {
-      window.location.href = "/"; // Đến trực tiếp nếu đã ở chế độ standalone
+      window.location.href = "/tet"; // Đến trực tiếp nếu đã ở chế độ standalone
     }
   }
+  console.log(BASE_PATH);
+
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("/tet/service-worker.js")
+      .register(`${BASE_PATH}/service-worker.js`)
       .then((registration) => {
         // Kiểm tra điều kiện hỗ trợ khả năng cài đặt PWA
         if (window.matchMedia("(display-mode: standalone)").matches) {
@@ -292,6 +344,50 @@ if ("serviceWorker" in navigator && "Notification" in window) {
         }
       });
   });
-
- 
 }
+
+document.addEventListener("keydown", (event) => {
+  // Ngăn phím F12
+  if (event.key === "F12") {
+    event.preventDefault();
+    alert("Developer Tools đã bị vô hiệu hóa!");
+  }
+
+  // Ngăn tổ hợp phím Ctrl+Shift+I (Chrome, Edge, Firefox)
+  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "I") {
+    event.preventDefault();
+    alert("Developer Tools đã bị vô hiệu hóa!");
+  }
+
+  // Ngăn tổ hợp phím Ctrl+U (xem mã nguồn trang)
+  if ((event.ctrlKey || event.metaKey) && event.key === "U") {
+    event.preventDefault();
+    alert("Xem mã nguồn đã bị vô hiệu hóa!");
+  }
+
+  // Ngăn tổ hợp phím Ctrl+Shift+J (console)
+  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "J") {
+    event.preventDefault();
+    alert("Developer Tools đã bị vô hiệu hóa!");
+  }
+
+  // Ngăn tổ hợp phím Ctrl+Shift+C (element picker)
+  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "C") {
+    event.preventDefault();
+    alert("Developer Tools đã bị vô hiệu hóa!");
+  }
+});
+document.addEventListener("contextmenu", (event) => {
+  event.preventDefault();
+  alert("Chức năng chuột phải đã bị vô hiệu hóa!");
+});
+(function () {
+  const element = new Image();
+  Object.defineProperty(element, "id", {
+    get: function () {
+      alert("Developer Tools đang mở!");
+      window.location.href = "about:blank"; // Chuyển hướng nếu mở Developer Tools
+    },
+  });
+  console.log(element);
+})();
