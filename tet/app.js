@@ -4,7 +4,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const FONTFAMILY = "Courier New, Courier, monospace";
 let isMusicPlaying = false;
-const ver = "1.0.2";
+const ver = "1.0.4";
 class IS {
   touchCount = 0;
   BASE_PATH = "";
@@ -76,6 +76,7 @@ const ul = {
 // Nếu touchCount tồn tại, giải mã nó
 if (is.touchCount) {
   is.touchCount = ul.decodeData(is.touchCount);
+  if (isNaN(is.touchCount)) localStorage.removeItem("touchCount");
 } else {
   is.touchCount = 0; // Nếu không có, bắt đầu từ 0
 }
