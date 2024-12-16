@@ -458,3 +458,25 @@ document.addEventListener("contextmenu", (event) => {
 document.addEventListener("selectstart", function (e) {
   e.preventDefault(); // Ngăn không cho người dùng chọn văn bản
 });
+
+
+
+
+
+// App load
+window.addEventListener("load", () => {
+  checkForSWUpdate(); // Kiểm tra Service Worker mới
+});
+
+// Hàm kiểm tra Service Worker mới
+function checkForSWUpdate() {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.ready
+      .then((registration) => {
+        registration.update(); // Cập nhật Service Worker
+      })
+      .catch((error) => {
+        console.error("Service Worker update failed:", error);
+      });
+  }
+}
