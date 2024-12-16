@@ -5,10 +5,15 @@ canvas.height = window.innerHeight;
 const FONTFAMILY = "Courier New, Courier, monospace";
 let isMusicPlaying = false;
 const ver = "1.0.1";
-const is = {
-  touchCount: localStorage.getItem("touchCount"),
-  BASE_PATH: self.location.pathname.replace(/\/$/, ""),
-};
+class IS {
+  touchCount = 0;
+  BASE_PATH = "";
+  constructor() {
+    this.touchCount = localStorage.getItem("touchCount");
+    this.BASE_PATH = self.location.pathname.replace(/\/$/, "");
+  }
+}
+const is = new IS();
 const locale = {
   l1: "JUYwJTlGJThFJTg5JTIwQ2glQzMlQkFjJTIwTSVFMSVCQiVBQm5nJTIwTiVDNCU4M20lMjBNJUUxJUJCJTlCaSElMjAlRjAlOUYlOEUlODklMjAyMDI1",
   l2: `QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMGNoYSVDQyVBM20`,
