@@ -5,7 +5,7 @@ canvas.height = window.innerHeight;
 const FONTFAMILY = "Courier New, Courier, monospace";
 let touchCount = localStorage.getItem("touchCount");
 let isMusicPlaying = false;
-
+const ver = "1.0.0";
 const locale = {
   l1: "JUYwJTlGJThFJTg5JTIwQ2glQzMlQkFjJTIwTSVFMSVCQiVBQm5nJTIwTiVDNCU4M20lMjBNJUUxJUJCJTlCaSElMjAlRjAlOUYlOEUlODklMjAyMDI1",
   l2: `QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMGNoYSVDQyVBM20`,
@@ -24,14 +24,6 @@ const locale = {
   l15: `R2klQzMlQTJ5`,
   l16: `JUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJGJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJDJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUFDJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJF`,
 };
-// Nếu touchCount tồn tại, giải mã nó
-if (touchCount) {
-  touchCount = decodeData(touchCount);
-  if (isNaN(touchCount)) localStorage.removeItem("touchCount");
-} else {
-  touchCount = 0; // Nếu không có, bắt đầu từ 0
-}
-let angle = 0; // Góc để tạo hiệu ứng lắc lư
 
 const BASE_PATH = self.location.pathname.replace(/\/$/, ""); // Loại bỏ dấu "/" cuối
 
@@ -75,7 +67,14 @@ const ul = {
     };
   },
 };
-
+// Nếu touchCount tồn tại, giải mã nó
+if (touchCount) {
+  touchCount = ul.decodeData(touchCount);
+  if (isNaN(touchCount)) localStorage.removeItem("touchCount");
+} else {
+  touchCount = 0; // Nếu không có, bắt đầu từ 0
+}
+let angle = 0; // Góc để tạo hiệu ứng lắc lư
 const music = document.getElementById("backgroundMusic");
 music.volume = 0.5;
 let lastMusicTime = Date.now(); // Lưu thời gian gần nhất chơi nhạc
@@ -144,6 +143,9 @@ function drawCountdown() {
   const now = new Date();
   const diff = tetDate - now;
   const tet = ul.decodeString(locale.l1);
+  ctx.font = `bold 12px ${FONTFAMILY}`;
+  ctx.fillText(ver, 2, 12);
+
   if (diff <= 0) {
     drawFireworks();
     ctx.fillStyle = "white";
