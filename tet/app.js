@@ -4,11 +4,10 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const FONTFAMILY = "Courier New, Courier, monospace";
 let isMusicPlaying = false;
-const ver = "1.0.0";
-const BASE_PATH = self.location.pathname.replace(/\/$/, ""); // Loại bỏ dấu "/" cuối
-
+const ver = "1.0.1";
 const is = {
   touchCount: localStorage.getItem("touchCount"),
+  BASE_PATH: self.location.pathname.replace(/\/$/, ""),
 };
 const locale = {
   l1: "JUYwJTlGJThFJTg5JTIwQ2glQzMlQkFjJTIwTSVFMSVCQiVBQm5nJTIwTiVDNCU4M20lMjBNJUUxJUJCJTlCaSElMjAlRjAlOUYlOEUlODklMjAyMDI1",
@@ -396,7 +395,7 @@ if ("serviceWorker" in navigator && "Notification" in window) {
 
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register(`${BASE_PATH}/service-worker.js`)
+      .register(`${is.BASE_PATH}/service-worker.js`)
       .then((registration) => {
         // Kiểm tra điều kiện hỗ trợ khả năng cài đặt PWA
         if (window.matchMedia("(display-mode: standalone)").matches) {
