@@ -11,7 +11,7 @@
       name="description"
       content="Trang đếm ngược Tết Nguyên Đán 2025 với hiệu ứng pháo hoa sinh động và nhạc nền sôi động."
     />
-    <base href="/tet/">
+    <base href="/tet/" />
     <meta
       name="keywords"
       content="đếm ngược, Tết Nguyên Đán, pháo hoa, nhạc nền, Tết 2025"
@@ -27,9 +27,20 @@
     <meta property="og:type" content="website" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="manifest" href="manifest.json" />
-    <link rel="stylesheet" href="app.css">
-    <meta name="google-site-verification" content="Zm1ldHe60GlyouJXLIQQYUT3lsW5vAScvxssQ3YEPfw" />
-    
+    <link rel="stylesheet" href="app.css" />
+    <meta
+      name="google-site-verification"
+      content="Zm1ldHe60GlyouJXLIQQYUT3lsW5vAScvxssQ3YEPfw"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="block-all-mixed-content"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="block-all-mixed-content"
+    />
+    <meta name="google" content="notranslate" />
     <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -44,7 +55,6 @@
     </script>
   </head>
   <body>
-
     <canvas id="countdownCanvas"></canvas>
     <div id="musicIcon" title="Bật nhạc"></div>
 

@@ -4,7 +4,26 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const FONTFAMILY = "Courier New, Courier, monospace";
 let touchCount = localStorage.getItem("touchCount");
-const dev = true;
+let isMusicPlaying = false;
+
+const locale = {
+  l1: "JUYwJTlGJThFJTg5JTIwQ2glQzMlQkFjJTIwTSVFMSVCQiVBQm5nJTIwTiVDNCU4M20lMjBNJUUxJUJCJTlCaSElMjAlRjAlOUYlOEUlODklMjAyMDI1",
+  l2: `QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMGNoYSVDQyVBM20`,
+  l3: `bCVDMyVBMiVDQyU4MG4uJTIwVGglQzMlQTIlQ0MlQTN0JTIwbGElQ0MlODAlMjBkJUM2JUIwJUNDJTgzJTIwZCVDMyVCNCVDQyVBM2klRTIlOUMlQTglRTIlOUMlQTglRjAlOUYlOEMlQjglRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRTIlOUMlQTglRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRjAlOUYlOEUlODlDaHUlQ0MlODFjJTIwYmElQ0MlQTNuJTIwdmElQ0MlODAlMjBnaWElMjAlQzQlOTFpJUNDJTgwbmglMjBtJUMzJUI0JUNDJUEzdCUyMG4lQzQlODNtJTIwbSVDNiVBMSVDQyU4MWklMjB0cmElQ0MlODBuJTIwbmclQzMlQTIlQ0MlQTNwJTIwbmklQzMlQUElQ0MlODBtJTIwdnVpJTIwdmElQ0MlODAlMjBoYSVDQyVBM25oJTIwcGh1JUNDJTgxYyElMjBNb25nJTIwciVDNCU4MyVDQyU4MG5nJTIwbW8lQ0MlQTNpJTIwJUM0JTkxaSVDMyVBQSVDQyU4MHUlMjBiYSVDQyVBM24lMjBtJUM2JUExJTIwJUM2JUIwJUM2JUExJUNDJTgxYyUyMHNlJUNDJTgzJTIwdHIlQzYlQTElQ0MlODklMjB0aGElQ0MlODBuaCUyMGhpJUMzJUFBJUNDJUEzbiUyMHRoJUM2JUIwJUNDJUEzYyUyQyUyMG1vJUNDJUEzaSUyMGtobyVDQyU4MSUyMGtoJUM0JTgzbiUyMGNoaSVDQyU4OSUyMGxhJUNDJTgwJTIwbmglQzYlQjAlQ0MlODNuZyUyMGMlQzMlQTJ1JTIwY2h1eSVDMyVBQSVDQyVBM24lMjAlQzQlOTFhJUNDJTgzJTIwcXVhLiUyMEhhJUNDJTgzeSUyMGx1JUMzJUI0biUyMGMlQzYlQjAlQzYlQTElQ0MlODBpJTIwdGglQzMlQTIlQ0MlQTN0JTIwdCVDNiVCMCVDNiVBMWklMjB2YSVDQyU4MCUyMHRyYSVDQyU4MG4lMjAlQzQlOTElQzMlQTIlQ0MlODB5JTIwbiVDNCU4M25nJTIwbCVDNiVCMCVDNiVBMSVDQyVBM25nJTIwdHJvbmclMjBuJUM0JTgzbSUyMG0lQzYlQTElQ0MlODFpJTIwbmElQ0MlODB5JTIwbmhlJUNDJTgxISUyMENoJUMzJUJBYyUyMGIlRTElQkElQTFuJTIwbSVFMSVCQiU5OXQlMjBuJUM0JTgzbSUyMG0lQzYlQTElQ0MlODFpJTIwYW4lMjBraGFuZyUyQyUyMHRoJUUxJUJCJThCbmglMjB2JUM2JUIwJUUxJUJCJUEzbmclMkMlMjB2YSVDQyU4MCUyMHRoJUUxJUJBJUFEdCUyMG5oaSVFMSVCQiU4MXUlMjB5JUMzJUFBdSUyMHRoJUM2JUIwJUM2JUExbmchJUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUUyJTlDJUE4JUUyJTlDJUE4JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5`,
+  l4: `JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFhYWEwlMjB2JUUxJUJCJTlCaSUyMGdpJUUxJUJBJUEzaSUyMHRoJUM2JUIwJUUxJUJCJTlGbmclMjB4JUUxJUJCJUE5bmclMjAlQzQlOTElQzMlQTFuZyE`,
+  l5: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFhMISUyME0lRTElQkIlOTl0JTIwbSVDMyVCM24lMjBxdSVDMyVBMCUyMHR1eSVFMSVCQiU4N3QlMjB2JUUxJUJCJTlEaSE",
+  l6: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMEwhJTIwQ2glQzMlQkFjJTIwbSVFMSVCQiVBQm5nJTIwYiVFMSVCQSVBMW4h",
+  l7: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyME0hJTIwTSVFMSVCQiU5OXQlMjBtJUMzJUIzbiUyMHF1JUMzJUEwJTIwbmglRTElQkIlOEYlMjB0aCVDMyVCNGkh",
+  l8: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFMhJTIwQyVFMSVCQiU5MSUyMGclRTElQkElQUZuZyUyMGglQzYlQTFuJTIwbiVFMSVCQiVBRmEh",
+  l9: `JUM0JTkwaSVDMyVBQSVDQyU4OW0lMjBzJUMzJUI0JUNDJTgxJTIwY3UlQ0MlODlhJTIwYmElQ0MlQTNuJTNB`,
+  l10: `JUYwJTlGJThFJTgx`,
+  l11: `JUYwJTlGJThFJTg5JTIwVCVFMSVCQSVCRnQlMjBOZ3V5JUMzJUFBbiUyMCVDNCU5MCVDMyVBMW4lMjAyMDI1JTIwJUYwJTlGJThFJTg5`,
+  l12: `TmdhJUNDJTgweQ`,
+  l13: `R2klQzYlQTElQ0MlODA`,
+  l14: `UGh1JUNDJTgxdA`,
+  l15: `R2klQzMlQTJ5`,
+  l16: `JUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJGJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJDJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUFDJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJF`,
+};
 // Nếu touchCount tồn tại, giải mã nó
 if (touchCount) {
   touchCount = decodeData(touchCount);
@@ -20,11 +39,36 @@ function encodeData(data) {
   let encoded = btoa(data.toString()); // Encode dữ liệu sang Base64
   return encoded;
 }
+
 // Giải mã dữ liệu
 function decodeData(encodedData) {
   let decoded = atob(encodedData); // Decode Base64
   return parseFloat(decoded); // Convert trở lại thành số
 }
+// Mã hóa chuỗi
+function encodeString(str) {
+  try {
+    // Encode chuỗi sang Base64 sau khi chuyển đổi sang UTF-8
+    let encoded = btoa(encodeURIComponent(str));
+    return encoded;
+  } catch (error) {
+    console.error("Error encoding string:", error);
+    return null;
+  }
+}
+
+// Giải mã chuỗi
+function decodeString(encodedStr) {
+  try {
+    // Decode Base64 trở về chuỗi gốc sau khi chuyển từ UTF-8
+    let decoded = decodeURIComponent(atob(encodedStr));
+    return decoded;
+  } catch (error) {
+    console.error("Error decoding string:", error);
+    return null;
+  }
+}
+
 function debounce(func, delay) {
   let timer;
   return function (...args) {
@@ -101,7 +145,7 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
 function drawCountdown() {
   const now = new Date();
   const diff = tetDate - now;
-  const tet = `🎉 Chúc Mừng Năm Mới! 🎉 2025`;
+  const tet = decodeString(locale.l1);
   if (diff <= 0 || 1 == 1) {
     drawFireworks();
     ctx.fillStyle = "white";
@@ -111,7 +155,7 @@ function drawCountdown() {
     ctx.font = `bold 12px ${FONTFAMILY}`;
     wrapText(
       ctx,
-      `Bạn đã chạm ${touchCount} lần. Thật là dữ dội✨✨🌸🎉🌸✨🎉🎉🎉🌸🎉🎉🌸🎉Chúc bạn và gia đình một năm mới tràn ngập niềm vui và hạnh phúc! Mong rằng mọi điều bạn mơ ước sẽ trở thành hiện thực, mọi khó khăn chỉ là những câu chuyện đã qua. Hãy luôn cười thật tươi và tràn đầy năng lượng trong năm mới này nhé! Chúc bạn một năm mới an khang, thịnh vượng, và thật nhiều yêu thương!🌸🎉🌸🎉🌸🎉🌸🎉✨✨🌸🎉🌸🎉`,
+      `${decodeString(locale.l2)} ${touchCount} ${decodeString(locale.l3)}`,
       canvas.width / 2,
       canvas.height / 2 + Math.max(updateFontSize(), 12),
       canvas.width * 0.8,
@@ -122,15 +166,15 @@ function drawCountdown() {
     // Vẽ văn bản giải thưởng
     let message;
     if (touchCount >= 20000) {
-      message = "Đây là của bạn 🎁 size XXXL với giải thưởng xứng đáng!";
+      message = decodeString(locale.l4);
     } else if (touchCount >= 10000) {
-      message = "Đây là của bạn 🎁 size XL! Một món quà tuyệt vời!";
+      message = decodeString(locale.l5);
     } else if (touchCount >= 5000) {
-      message = "Đây là của bạn 🎁 size L! Chúc mừng bạn!";
+      message = decodeString(locale.l6);
     } else if (touchCount >= 1000) {
-      message = "Đây là của bạn 🎁 size M! Một món quà nhỏ thôi!";
+      message = decodeString(locale.l7);
     } else {
-      message = "Đây là của bạn 🎁 size S! Cố gắng hơn nữa!";
+      message = decodeString(locale.l8);
     }
 
     ctx.font = `16px ${FONTFAMILY}`;
@@ -145,8 +189,12 @@ function drawCountdown() {
   const minutes = Math.floor((diff / (1000 * 60)) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
 
-  const text = `${days} Ngày ${hours} Giờ ${minutes} Phút ${seconds} Giây`;
-  const label = "🎉 Tết Nguyên Đán 2025 🎉";
+  const text = `${days} ${decodeString(locale.l12)} ${hours} ${decodeString(
+    locale.l13
+  )} ${minutes} ${decodeString(locale.l14)} ${seconds} ${decodeString(
+    locale.l15
+  )}`;
+  const label = decodeString(locale.l11);
   ctx.fillStyle = "yellow";
   ctx.font = `bold ${fontSize}px ${FONTFAMILY}`;
   ctx.textAlign = "center";
@@ -204,15 +252,9 @@ function createRandomFireworks() {
 
 // Phát nhạc nền
 function startMusic() {
+  isMusicPlaying = true;
   musicIcon.classList.add("active");
-  music
-    .play()
-    .catch((error) =>
-      console.log("Nhạc nền không tự phát do giới hạn trình duyệt.", error)
-    );
-}
-function onInputChange(event) {
-  console.log("Input value:", event.target.value);
+  music.play().catch((error) => console.log(error));
 }
 
 // Hàm xử lý tăng số lần chạm
@@ -232,7 +274,7 @@ function drawTouchCount() {
   ctx.font = `bold 12px ${FONTFAMILY}`;
   ctx.fillStyle = "white";
   ctx.textAlign = "left";
-  ctx.fillText(`Điểm số của bạn: ${touchCount}`, 20, 50);
+  ctx.fillText(`${decodeString(locale.l9)} ${touchCount}`, 20, 50);
 }
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -241,7 +283,7 @@ function animate() {
   drawFireworks();
   drawTouchCount();
   const now = Date.now();
-  if (now - lastMusicTime >= 60000 && isMusicPlaying == true) {
+  if (now - lastMusicTime >= 1000 * 60 && isMusicPlaying == true) {
     // Nếu thời gian hiện tại cách lần chơi nhạc trước ít nhất 1 phút
     touchCount += 10;
     lastMusicTime = now; // Cập nhật thời gian chơi nhạc gần nhất
@@ -265,7 +307,6 @@ window.addEventListener("resize", () => {
 // Bắt đầu phát nhạc khi tương tác
 window.addEventListener("click", startMusic, { once: true });
 // Điều khiển nhạc bằng icon
-let isMusicPlaying = false;
 musicIcon.addEventListener("click", () => {
   if (isMusicPlaying) {
     music.pause();
@@ -277,7 +318,6 @@ musicIcon.addEventListener("click", () => {
   isMusicPlaying = !isMusicPlaying;
 });
 
-// Hàm xác định kích thước 🎁 theo cấp bậc
 function getGiftSize(score) {
   if (score >= 20000) return 150; // Cấp 5
   if (score >= 10000) return 120; // Cấp 4
@@ -288,20 +328,16 @@ function getGiftSize(score) {
 }
 
 function drawGift(ctx, x, y) {
-  // Tăng kích thước dựa trên điểm số
   const size = getGiftSize(touchCount); // Kích thước dựa trên số điểm
 
-  // Hiệu ứng lắc lư
   const offsetX = Math.sin(angle) * 5;
   const offsetY = Math.cos(angle) * 2;
 
-  // Vẽ 🎁
   ctx.font = `${size}px Arial`;
   ctx.textAlign = "center";
   ctx.textBaseline = "top";
-  ctx.fillText("🎁", x + offsetX, y + offsetY);
+  ctx.fillText(decodeString(locale.l10), x + offsetX, y + offsetY);
 
-  // Tăng góc để tạo hiệu ứng lắc lư liên tục
   angle += 0.1;
 }
 
@@ -335,11 +371,11 @@ if ("serviceWorker" in navigator && "Notification" in window) {
 
         // Đợi người dùng phản hồi
         deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === "accepted") {
-            console.log("User accepted the install prompt");
-          } else {
-            console.log("User dismissed the install prompt");
-          }
+          // if (choiceResult.outcome === "accepted") {
+          //   console.log("User accepted the install prompt");
+          // } else {
+          //   console.log("User dismissed the install prompt");
+          // }
           deferredPrompt = null;
         });
       });
@@ -352,7 +388,6 @@ if ("serviceWorker" in navigator && "Notification" in window) {
       window.location.href = "/tet"; // Đến trực tiếp nếu đã ở chế độ standalone
     }
   }
-  console.log(BASE_PATH);
 
   window.addEventListener("load", () => {
     navigator.serviceWorker
@@ -372,62 +407,53 @@ if ("serviceWorker" in navigator && "Notification" in window) {
   });
 }
 
-if (!dev) {
-  document.addEventListener("keydown", (event) => {
-    // Ngăn phím F12
-    if (event.key === "F12") {
-      event.preventDefault();
-      alert("Developer Tools đã bị vô hiệu hóa!");
-    }
-
-    // Ngăn tổ hợp phím Ctrl+Shift+I (Chrome, Edge, Firefox)
-    if (
-      (event.ctrlKey || event.metaKey) &&
-      event.shiftKey &&
-      event.key === "I"
-    ) {
-      event.preventDefault();
-      alert("Developer Tools đã bị vô hiệu hóa!");
-    }
-
-    // Ngăn tổ hợp phím Ctrl+U (xem mã nguồn trang)
-    if ((event.ctrlKey || event.metaKey) && event.key === "U") {
-      event.preventDefault();
-      alert("Xem mã nguồn đã bị vô hiệu hóa!");
-    }
-
-    // Ngăn tổ hợp phím Ctrl+Shift+J (console)
-    if (
-      (event.ctrlKey || event.metaKey) &&
-      event.shiftKey &&
-      event.key === "J"
-    ) {
-      event.preventDefault();
-      alert("Developer Tools đã bị vô hiệu hóa!");
-    }
-
-    // Ngăn tổ hợp phím Ctrl+Shift+C (element picker)
-    if (
-      (event.ctrlKey || event.metaKey) &&
-      event.shiftKey &&
-      event.key === "C"
-    ) {
-      event.preventDefault();
-      alert("Developer Tools đã bị vô hiệu hóa!");
-    }
-  });
-  document.addEventListener("contextmenu", (event) => {
+document.addEventListener("keydown", (event) => {
+  // Ngăn phím F12
+  if (event.key === "F12") {
     event.preventDefault();
-    alert("Chức năng chuột phải đã bị vô hiệu hóa!");
+    alert(decodeString(locale.l16));
+  }
+
+  // Ngăn tổ hợp phím Ctrl+Shift+I (Chrome, Edge, Firefox)
+  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "I") {
+    event.preventDefault();
+    alert(decodeString(locale.l16));
+  }
+
+  // Ngăn tổ hợp phím Ctrl+U (xem mã nguồn trang)
+  if ((event.ctrlKey || event.metaKey) && event.key === "U") {
+    event.preventDefault();
+    alert(decodeString(locale.l16));
+  }
+
+  // Ngăn tổ hợp phím Ctrl+Shift+J (console)
+  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "J") {
+    event.preventDefault();
+    alert(decodeString(locale.l16));
+  }
+
+  // Ngăn tổ hợp phím Ctrl+Shift+C (element picker)
+  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "C") {
+    event.preventDefault();
+    alert(decodeString(locale.l16));
+  }
+});
+document.addEventListener("contextmenu", (event) => {
+  event.preventDefault();
+  alert(decodeString(locale.l16));
+});
+(function () {
+  const element = new Image();
+  Object.defineProperty(element, "id", {
+    get: function () {
+      alert(decodeString(locale.l16));
+      window.location.href = "about:blank"; // Chuyển hướng nếu mở Developer Tools
+    },
   });
-  (function () {
-    const element = new Image();
-    Object.defineProperty(element, "id", {
-      get: function () {
-        alert("Developer Tools đang mở!");
-        window.location.href = "about:blank"; // Chuyển hướng nếu mở Developer Tools
-      },
-    });
-    console.log(element);
-  })();
-}
+  console.log(element);
+})();
+
+// Ngăn chặn chọn văn bản
+document.addEventListener("selectstart", function (e) {
+  e.preventDefault(); // Ngăn không cho người dùng chọn văn bản
+});
