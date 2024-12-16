@@ -3,11 +3,28 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const FONTFAMILY = "Courier New, Courier, monospace";
-let touchCount = parseFloat(localStorage.getItem("touchCount")) || 0; // Tải số lượt touch từ localStorage
+let touchCount = localStorage.getItem("touchCount");
+const dev = true;
+// Nếu touchCount tồn tại, giải mã nó
+if (touchCount) {
+  touchCount = decodeData(touchCount);
+} else {
+  touchCount = 0; // Nếu không có, bắt đầu từ 0
+}
 let angle = 0; // Góc để tạo hiệu ứng lắc lư
 
 const BASE_PATH = self.location.pathname.replace(/\/$/, ""); // Loại bỏ dấu "/" cuối
-const MAX = 999999999;
+
+// Mã hóa dữ liệu
+function encodeData(data) {
+  let encoded = btoa(data.toString()); // Encode dữ liệu sang Base64
+  return encoded;
+}
+// Giải mã dữ liệu
+function decodeData(encodedData) {
+  let decoded = atob(encodedData); // Decode Base64
+  return parseFloat(decoded); // Convert trở lại thành số
+}
 function debounce(func, delay) {
   let timer;
   return function (...args) {
@@ -19,6 +36,7 @@ function debounce(func, delay) {
 }
 const music = document.getElementById("backgroundMusic");
 music.volume = 0.5;
+let lastMusicTime = Date.now(); // Lưu thời gian gần nhất chơi nhạc
 
 const tetDate = new Date("2025-02-10T00:00:00");
 let fireworks = [];
@@ -199,7 +217,7 @@ function onInputChange(event) {
 
 // Hàm xử lý tăng số lần chạm
 const increaseTouchCount = debounce(() => {
-  localStorage.setItem("touchCount", touchCount); // Lưu vào localStorage
+  localStorage.setItem("touchCount", encodeData(touchCount));
 }, 200); // Giới hạn: Tăng số lần chạm tối đa 1 lần mỗi 200ms
 // Thêm sự kiện nhấp chuột để tạo pháo hoa
 canvas.addEventListener("click", (event) => {
@@ -222,6 +240,14 @@ function animate() {
   drawCountdown();
   drawFireworks();
   drawTouchCount();
+  const now = Date.now();
+  if (now - lastMusicTime >= 60000 && isMusicPlaying == true) {
+    // Nếu thời gian hiện tại cách lần chơi nhạc trước ít nhất 1 phút
+    touchCount += 10;
+    lastMusicTime = now; // Cập nhật thời gian chơi nhạc gần nhất
+    increaseTouchCount();
+  }
+
   requestAnimationFrame(animate);
 }
 // Tự động bắn pháo hoa mỗi 1-2 giây
@@ -346,48 +372,62 @@ if ("serviceWorker" in navigator && "Notification" in window) {
   });
 }
 
-document.addEventListener("keydown", (event) => {
-  // Ngăn phím F12
-  if (event.key === "F12") {
-    event.preventDefault();
-    alert("Developer Tools đã bị vô hiệu hóa!");
-  }
+if (!dev) {
+  document.addEventListener("keydown", (event) => {
+    // Ngăn phím F12
+    if (event.key === "F12") {
+      event.preventDefault();
+      alert("Developer Tools đã bị vô hiệu hóa!");
+    }
 
-  // Ngăn tổ hợp phím Ctrl+Shift+I (Chrome, Edge, Firefox)
-  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "I") {
-    event.preventDefault();
-    alert("Developer Tools đã bị vô hiệu hóa!");
-  }
+    // Ngăn tổ hợp phím Ctrl+Shift+I (Chrome, Edge, Firefox)
+    if (
+      (event.ctrlKey || event.metaKey) &&
+      event.shiftKey &&
+      event.key === "I"
+    ) {
+      event.preventDefault();
+      alert("Developer Tools đã bị vô hiệu hóa!");
+    }
 
-  // Ngăn tổ hợp phím Ctrl+U (xem mã nguồn trang)
-  if ((event.ctrlKey || event.metaKey) && event.key === "U") {
-    event.preventDefault();
-    alert("Xem mã nguồn đã bị vô hiệu hóa!");
-  }
+    // Ngăn tổ hợp phím Ctrl+U (xem mã nguồn trang)
+    if ((event.ctrlKey || event.metaKey) && event.key === "U") {
+      event.preventDefault();
+      alert("Xem mã nguồn đã bị vô hiệu hóa!");
+    }
 
-  // Ngăn tổ hợp phím Ctrl+Shift+J (console)
-  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "J") {
-    event.preventDefault();
-    alert("Developer Tools đã bị vô hiệu hóa!");
-  }
+    // Ngăn tổ hợp phím Ctrl+Shift+J (console)
+    if (
+      (event.ctrlKey || event.metaKey) &&
+      event.shiftKey &&
+      event.key === "J"
+    ) {
+      event.preventDefault();
+      alert("Developer Tools đã bị vô hiệu hóa!");
+    }
 
-  // Ngăn tổ hợp phím Ctrl+Shift+C (element picker)
-  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "C") {
-    event.preventDefault();
-    alert("Developer Tools đã bị vô hiệu hóa!");
-  }
-});
-document.addEventListener("contextmenu", (event) => {
-  event.preventDefault();
-  alert("Chức năng chuột phải đã bị vô hiệu hóa!");
-});
-(function () {
-  const element = new Image();
-  Object.defineProperty(element, "id", {
-    get: function () {
-      alert("Developer Tools đang mở!");
-      window.location.href = "about:blank"; // Chuyển hướng nếu mở Developer Tools
-    },
+    // Ngăn tổ hợp phím Ctrl+Shift+C (element picker)
+    if (
+      (event.ctrlKey || event.metaKey) &&
+      event.shiftKey &&
+      event.key === "C"
+    ) {
+      event.preventDefault();
+      alert("Developer Tools đã bị vô hiệu hóa!");
+    }
   });
-  console.log(element);
-})();
+  document.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+    alert("Chức năng chuột phải đã bị vô hiệu hóa!");
+  });
+  (function () {
+    const element = new Image();
+    Object.defineProperty(element, "id", {
+      get: function () {
+        alert("Developer Tools đang mở!");
+        window.location.href = "about:blank"; // Chuyển hướng nếu mở Developer Tools
+      },
+    });
+    console.log(element);
+  })();
+}
