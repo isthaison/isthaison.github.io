@@ -11,7 +11,7 @@
           canvas.height = window.innerHeight;
           const FONTFAMILY = "Courier New, Courier, monospace";
           let isMusicPlaying = false;
-          const ver = "2.1.9";
+          const ver = "2.1.10";
 
           let angle = 0; // Góc để tạo hiệu ứng lắc lư
           const music = document.getElementById("backgroundMusic");
@@ -40,6 +40,7 @@
             l16: `JUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJGJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJDJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUFDJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJF`,
             l17: `MQ`,
             l18: `MTA`,
+            l19: `dG91Y2hDb3VudA`,
           };
           const die = [
             "QyVDMyVCNCVDQyU4MSUyMGclQzQlODMlQ0MlODFuZyUyMGN1JUNDJTgzbmclMjB2JUMzJUI0JTIwaSVDQyU4MWNoJTIwKCVFMiU5RCU4MSVDMiVCNCVFMiU5NyVBMSU2MCVFMiU5RCU4MSk",
@@ -48,7 +49,6 @@
             `KCVFMiU5NyU4RiclRTIlOTclQTEnJUUyJTk3JThGKS4lMjAlQzQlOTAlQzMlQTJ5JTIwbCVDMyVBMCUyMHBoYSUyMHQlRTElQkIlQjElMjBoJUUxJUJCJUE3eQ`,
             "QyVDMyVCNCVDQyU4MSUyMGclQzQlODMlQ0MlODFuZyUyMGN1JUNDJTgzbmclMjB2JUMzJUI0JTIwaSVDQyU4MWNoJTIwKCVFMiU5RCU4MSVDMiVCNCVFMiU5NyVBMSU2MCVFMiU5RCU4MSk",
             "QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMHBoYSVDQyVBM20lMjBwaGElQ0MlODlpJTIwc2FpJTIwbCVDMyVBMiVDQyU4MG0lMjBsJUM2JUExJUNDJTgxbiUyMCglRTIlOTclOEYlMjIlRTIlOTclQTElMjIlRTIlOTclOEYp",
-
             "QyVDMyVCNCVDQyU4MSUyMGclQzQlODMlQ0MlODFuZyUyMGN1JUNDJTgzbmclMjB2JUMzJUI0JTIwaSVDQyU4MWNoJTIwKCVFMiU5RCU4MSVDMiVCNCVFMiU5NyVBMSU2MCVFMiU5RCU4MSk",
             "QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMHBoYSVDQyVBM20lMjBwaGElQ0MlODlpJTIwc2FpJTIwbCVDMyVBMiVDQyU4MG0lMjBsJUM2JUExJUNDJTgxbiUyMCglRTIlOTclOEYlMjIlRTIlOTclQTElMjIlRTIlOTclOEYp",
           ];
@@ -56,15 +56,31 @@
             touchCount = "MA";
             BASE_PATH = "";
             constructor() {
-              this.touchCount = localStorage.getItem("touchCount") || "MA";
+              this.touchCount = localStorage.getItem(locale.l19) || "MA";
               this.BASE_PATH = self.location.pathname.replace(/\/$/, "");
-              console.log(this.touchCount);
+              this.randomFakeValue();
             }
             up = (N) => {
               this.touchCount = this.encodeData(
                 this.decodeData(this.touchCount) + this.decodeData(N)
               );
-              this.increaseTouchCount();
+              this._fdbu();
+            };
+            randomFakeValue = () => {
+              localStorage.clear();
+              for (let index = 0; index < 50; index++) {
+                const randomValue = Math.floor(Math.random() * 1000) + 1;
+                const randomKey = `_${Math.random()
+                  .toString(36)
+                  .substring(2, 15)}`;
+                console.log({ randomKey, randomValue });
+                async () => {
+                  localStorage.setItem(randomKey, this.encodeData(randomValue));
+                };
+              }
+              this._fdbu();
+
+              // Log ra console để kiểm tra
             };
             getup = () => {
               return this.decodeData(this.touchCount);
@@ -105,15 +121,17 @@
                 }, delay);
               };
             };
-            increaseTouchCount = this.debounce(() => {
-              localStorage.setItem("touchCount", this.touchCount);
+            _fdbu = this.debounce(() => {
+              localStorage.setItem(locale.l19, this.touchCount);
             }, 200);
+
             randomFrom = () => {
               return Math.floor(Math.random() * 4);
             };
           }
 
           const root = new Root();
+          console.log(root.encodeString(locale.l19));
 
           function updateFontSize() {
             const canvasWidth = canvas.width;
@@ -302,7 +320,6 @@
               if (now - lastMusicTime >= 1000 * 60 && isMusicPlaying == true) {
                 root.up(locale.l18);
                 lastMusicTime = now;
-                increaseTouchCount();
               }
             })();
             const x = Math.random() * canvas.width; // Vị trí ngẫu nhiên theo chiều ngang
@@ -350,8 +367,9 @@
               debugger; // DevTools sẽ dừng lại ở đây
               const end = new Date();
 
-              if (end - start > 50) {
+              if (end - start > 100) {
                 // Thời gian tăng bất thường => DevTools mở
+                localStorage.clear();
                 document.body.innerHTML = ""; // Xóa nội dung trang
                 document.head.innerHTML = ""; // Xóa nội dung trang
                 console.clear();
@@ -360,6 +378,7 @@
                   c = confirm(root.decodeString(die[root.randomFrom()]));
                 }
                 while (c == true) {
+                  localStorage.clear();
                   // Thời gian tăng bất thường => DevTools mở
                   document.body.innerHTML = ""; // Xóa nội dung trang
                   document.head.innerHTML = ""; // Xóa nội dung trang
