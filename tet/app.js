@@ -7,7 +7,7 @@
   canvas.height = window.innerHeight;
   const FONTFAMILY = "Courier New, Courier, monospace";
   let isMusicPlaying = false;
-  const ver = "2.0.7";
+  const ver = "2.0.8";
 
   let angle = 0; // Góc để tạo hiệu ứng lắc lư
   const music = document.getElementById("backgroundMusic");
@@ -19,8 +19,8 @@
   let stars = [];
   const locale = {
     l1: "JUYwJTlGJThFJTg5JTIwQ2glQzMlQkFjJTIwTSVFMSVCQiVBQm5nJTIwTiVDNCU4M20lMjBNJUUxJUJCJTlCaSElMjAlRjAlOUYlOEUlODklMjAyMDI1",
-    l2: `QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMGNoYSrootM20`,
-    l3: `bCVDMyVBMiVDQyU4MG4uJTIwVGglQzMlQTIlQ0MlQTN0JTIwbGElQ0MlODAlMjBkJUM2JUIwJUNDJTgzJTIwZCVDMyVCNCrootM2klRTIlOUMlQTglRTIlOUMlQTglRjAlOUYlOEMlQjglRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRTIlOUMlQTglRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRjAlOUYlOEUlODlDaHUlQ0MlODFjJTIwYmElQ0MlQTNuJTIwdmElQ0MlODAlMjBnaWElMjAlQzQlOTFpJUNDJTgwbmglMjBtJUMzJUI0JUNDJUEzdCUyMG4lQzQlODNtJTIwbSVDNiVBMSVDQyU4MWklMjB0cmElQ0MlODBuJTIwbmclQzMlQTIlQ0MlQTNwJTIwbmklQzMlQUElQ0MlODBtJTIwdnVpJTIwdmElQ0MlODAlMjBoYSrootM25oJTIwcGh1JUNDJTgxYyElMjBNb25nJTIwciVDNCU4MyVDQyU4MG5nJTIwbW8lQ0MlQTNpJTIwJUM0JTkxaSVDMyVBQSVDQyU4MHUlMjBiYSrootM24lMjBtJUM2JUExJTIwJUM2JUIwJUM2JUExJUNDJTgxYyUyMHNlJUNDJTgzJTIwdHIlQzYlQTElQ0MlODklMjB0aGElQ0MlODBuaCUyMGhpJUMzJUFBJUNDJUEzbiUyMHRoJUM2JUIwJUNDJUEzYyUyQyUyMG1vJUNDJUEzaSUyMGtobyVDQyU4MSUyMGtoJUM0JTgzbiUyMGNoaSVDQyU4OSUyMGxhJUNDJTgwJTIwbmglQzYlQjAlQ0MlODNuZyUyMGMlQzMlQTJ1JTIwY2h1eSVDMyVBQSrootM24lMjAlQzQlOTFhJUNDJTgzJTIwcXVhLiUyMEhhJUNDJTgzeSUyMGx1JUMzJUI0biUyMGMlQzYlQjAlQzYlQTElQ0MlODBpJTIwdGglQzMlQTIlQ0MlQTN0JTIwdCVDNiVCMCVDNiVBMWklMjB2YSVDQyU4MCUyMHRyYSVDQyU4MG4lMjAlQzQlOTElQzMlQTIlQ0MlODB5JTIwbiVDNCU4M25nJTIwbCVDNiVCMCVDNiVBMSrootM25nJTIwdHJvbmclMjBuJUM0JTgzbSUyMG0lQzYlQTElQ0MlODFpJTIwbmElQ0MlODB5JTIwbmhlJUNDJTgxISUyMENoJUMzJUJBYyUyMGIlRTElQkElQTFuJTIwbSVFMSVCQiU5OXQlMjBuJUM0JTgzbSUyMG0lQzYlQTElQ0MlODFpJTIwYW4lMjBraGFuZyUyQyUyMHRoJUUxJUJCJThCbmglMjB2JUM2JUIwJUUxJUJCJUEzbmclMkMlMjB2YSVDQyU4MCUyMHRoJUUxJUJBJUFEdCUyMG5oaSVFMSVCQiU4MXUlMjB5JUMzJUFBdSUyMHRoJUM2JUIwJUM2JUExbmchJUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUUyJTlDJUE4JUUyJTlDJUE4JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5`,
+    l2: `QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMGNoYSVDQyVBM20`,
+    l3: `bCVDMyVBMiVDQyU4MG4uJTIwVGglQzMlQTIlQ0MlQTN0JTIwbGElQ0MlODAlMjBkJUM2JUIwJUNDJTgzJTIwZCVDMyVCNCVDQyVBM2klRTIlOUMlQTglRTIlOUMlQTglRjAlOUYlOEMlQjglRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRTIlOUMlQTglRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRjAlOUYlOEUlODlDaHUlQ0MlODFjJTIwYmElQ0MlQTNuJTIwdmElQ0MlODAlMjBnaWElMjAlQzQlOTFpJUNDJTgwbmglMjBtJUMzJUI0JUNDJUEzdCUyMG4lQzQlODNtJTIwbSVDNiVBMSVDQyU4MWklMjB0cmElQ0MlODBuJTIwbmclQzMlQTIlQ0MlQTNwJTIwbmklQzMlQUElQ0MlODBtJTIwdnVpJTIwdmElQ0MlODAlMjBoYSVDQyVBM25oJTIwcGh1JUNDJTgxYyElMjBNb25nJTIwciVDNCU4MyVDQyU4MG5nJTIwbW8lQ0MlQTNpJTIwJUM0JTkxaSVDMyVBQSVDQyU4MHUlMjBiYSVDQyVBM24lMjBtJUM2JUExJTIwJUM2JUIwJUM2JUExJUNDJTgxYyUyMHNlJUNDJTgzJTIwdHIlQzYlQTElQ0MlODklMjB0aGElQ0MlODBuaCUyMGhpJUMzJUFBJUNDJUEzbiUyMHRoJUM2JUIwJUNDJUEzYyUyQyUyMG1vJUNDJUEzaSUyMGtobyVDQyU4MSUyMGtoJUM0JTgzbiUyMGNoaSVDQyU4OSUyMGxhJUNDJTgwJTIwbmglQzYlQjAlQ0MlODNuZyUyMGMlQzMlQTJ1JTIwY2h1eSVDMyVBQSVDQyVBM24lMjAlQzQlOTFhJUNDJTgzJTIwcXVhLiUyMEhhJUNDJTgzeSUyMGx1JUMzJUI0biUyMGMlQzYlQjAlQzYlQTElQ0MlODBpJTIwdGglQzMlQTIlQ0MlQTN0JTIwdCVDNiVCMCVDNiVBMWklMjB2YSVDQyU4MCUyMHRyYSVDQyU4MG4lMjAlQzQlOTElQzMlQTIlQ0MlODB5JTIwbiVDNCU4M25nJTIwbCVDNiVCMCVDNiVBMSVDQyVBM25nJTIwdHJvbmclMjBuJUM0JTgzbSUyMG0lQzYlQTElQ0MlODFpJTIwbmElQ0MlODB5JTIwbmhlJUNDJTgxISUyMENoJUMzJUJBYyUyMGIlRTElQkElQTFuJTIwbSVFMSVCQiU5OXQlMjBuJUM0JTgzbSUyMG0lQzYlQTElQ0MlODFpJTIwYW4lMjBraGFuZyUyQyUyMHRoJUUxJUJCJThCbmglMjB2JUM2JUIwJUUxJUJCJUEzbmclMkMlMjB2YSVDQyU4MCUyMHRoJUUxJUJBJUFEdCUyMG5oaSVFMSVCQiU4MXUlMjB5JUMzJUFBdSUyMHRoJUM2JUIwJUM2JUExbmchJUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUUyJTlDJUE4JUUyJTlDJUE4JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5`,
     l4: `JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFhYWEwlMjB2JUUxJUJCJTlCaSUyMGdpJUUxJUJBJUEzaSUyMHRoJUM2JUIwJUUxJUJCJTlGbmclMjB4JUUxJUJCJUE5bmclMjAlQzQlOTElQzMlQTFuZyE`,
     l5: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFhMISUyME0lRTElQkIlOTl0JTIwbSVDMyVCM24lMjBxdSVDMyVBMCUyMHR1eSVFMSVCQiU4N3QlMjB2JUUxJUJCJTlEaSE",
     l6: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMEwhJTIwQ2glQzMlQkFjJTIwbSVFMSVCQiVBQm5nJTIwYiVFMSVCQSVBMW4h",
@@ -36,24 +36,24 @@
     l16: `JUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJGJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJDJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUFDJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJF`,
     l17: `MQ`,
     l18: `MTA`,
+    l19: `KCVFMiU5NyU4RiclRTIlOTclQTEnJUUyJTk3JThGKS4lMjAlQzQlOTAlQzMlQTJ5JTIwbCVDMyVBMCUyMHBoYSUyMHQlRTElQkIlQjElMjBoJUUxJUJCJUE3eQ`,
   };
   class Root {
-    touchCount = 0;
+    touchCount = "MA";
     BASE_PATH = "";
     constructor() {
-      this.touchCount = localStorage.getItem("touchCount");
+      this.touchCount = localStorage.getItem("touchCount") || "MA";
       this.BASE_PATH = self.location.pathname.replace(/\/$/, "");
-      // Nếu touchCount tồn tại, giải mã nó
-      if (this.touchCount) {
-        this.touchCount = this.decodeData(this.touchCount);
-        if (isNaN(this.touchCount)) localStorage.removeItem("touchCount");
-      } else {
-        this.touchCount = 0; // Nếu không có, bắt đầu từ 0
-      }
+      console.log(this.touchCount);
     }
     up = (N) => {
-      this.touchCount += this.decodeData(N);
+      this.touchCount = this.encodeData(
+        this.decodeData(this.touchCount) + this.decodeData(N)
+      );
       this.increaseTouchCount();
+    };
+    getup = () => {
+      return this.decodeData(this.touchCount);
     };
     encodeData = (data) => {
       let encoded = btoa(data.toString()); // Encode dữ liệu sang Base64
@@ -65,7 +65,6 @@
     };
     encodeString = (str) => {
       try {
-        // Encode chuỗi sang Base64 sau khi chuyển đổi sang UTF-8
         let encoded = btoa(encodeURIComponent(str));
         return encoded;
       } catch (error) {
@@ -75,7 +74,6 @@
     };
     decodeString = (encodedStr) => {
       try {
-        // Decode Base64 trở về chuỗi gốc sau khi chuyển từ UTF-8
         let decoded = decodeURIComponent(atob(encodedStr));
         return decoded;
       } catch (error) {
@@ -94,8 +92,8 @@
       };
     };
     increaseTouchCount = this.debounce(() => {
-      localStorage.setItem("touchCount", root.encodeData(root.touchCount));
-    }, 200); // Giới hạn: Tăng số lần chạm tối đa 1 lần mỗi 200ms
+      localStorage.setItem("touchCount", this.touchCount);
+    }, 200);
   }
   const root = new Root();
 
@@ -163,7 +161,7 @@
     ctx.font = `bold 12px ${FONTFAMILY}`;
     ctx.fillText(ver, 2, 12);
 
-    if (diff <= 0) {
+    if (diff <= 0 && 1 == 1 && 2 == 2) {
       drawFireworks();
       ctx.fillStyle = "white";
       ctx.font = `bold ${updateFontSize()}px ${FONTFAMILY}`;
@@ -172,7 +170,7 @@
       ctx.font = `bold 12px ${FONTFAMILY}`;
       wrapText(
         ctx,
-        `${root.decodeString(locale.l2)} ${root.touchCount} ${root.decodeString(
+        `${root.decodeString(locale.l2)} ${root.getup()} ${root.decodeString(
           locale.l3
         )}`,
         canvas.width / 2,
@@ -184,13 +182,13 @@
 
       // Vẽ văn bản giải thưởng
       let message;
-      if (root.touchCount >= 20000) {
+      if (root.getup() >= 20000) {
         message = root.decodeString(locale.l4);
-      } else if (root.touchCount >= 10000) {
+      } else if (root.getup() >= 10000) {
         message = root.decodeString(locale.l5);
-      } else if (root.touchCount >= 5000) {
+      } else if (root.getup() >= 5000) {
         message = root.decodeString(locale.l6);
-      } else if (root.touchCount >= 1000) {
+      } else if (root.getup() >= 1000) {
         message = root.decodeString(locale.l7);
       } else {
         message = root.decodeString(locale.l8);
@@ -305,7 +303,7 @@
     ctx.font = `bold 12px ${FONTFAMILY}`;
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
-    ctx.fillText(`${root.decodeString(locale.l9)} ${root.touchCount}`, 20, 50);
+    ctx.fillText(`${root.decodeString(locale.l9)} ${root.getup()}`, 20, 50);
   }
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -313,7 +311,18 @@
     drawCountdown();
     drawFireworks();
     drawTouchCount();
+    (function () {
+      const start = new Date();
+      debugger; // DevTools sẽ dừng lại ở đây
+      const end = new Date();
 
+      if (end - start > 100) {
+        // Thời gian tăng bất thường => DevTools mở
+        document.body.innerHTML = ""; // Xóa nội dung trang
+        console.clear();
+        alert(root.decodeString(locale.l19));
+      }
+    })();
     requestAnimationFrame(animate);
   }
   setInterval(createRandomFireworks, Math.random() * 1000 + 1000);

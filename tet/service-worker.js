@@ -5,7 +5,7 @@ const urlsToCache = [
   "/tet/",
   "/tet/manifest.json",
   "/tet/app.css",
-  "/tet/app.js",
+  "/tet/776cfde1-ac7b-4a3e-a7ad-56094d7b23af.js",
   "/tet/tet.mp3",
   "/tet/icons/icon-192x192.png",
   "/tet/icons/icon-512x512.png",
@@ -17,9 +17,7 @@ const fullUrlsToCache = urlsToCache.map((url) => self.location.origin + url);
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(fullUrlsToCache).catch((error) => {
-        console.error("Error caching files:", error);
-      });
+      return cache.addAll(fullUrlsToCache).catch((error) => {});
     })
   );
 });
@@ -31,7 +29,7 @@ self.addEventListener("activate", (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log("Deleting old cache:", cacheName);
+            localStorage.removeItem("touchCount");
             return caches.delete(cacheName);
           }
         })
@@ -51,17 +49,9 @@ self.addEventListener("fetch", (event) => {
       return fetch(event.request)
         .then((fetchResponse) => {
           if (!fetchResponse.ok) {
-            throw new Error(
-              `Network response was not ok: ${fetchResponse.status}`
-            );
           }
 
-          // Bỏ qua cache nếu response có mã trạng thái 206 (Partial Content)
           if (fetchResponse.status === 206) {
-            console.warn(
-              "Partial response (206) not cached:",
-              event.request.url
-            );
             return fetchResponse;
           }
 
@@ -70,10 +60,7 @@ self.addEventListener("fetch", (event) => {
             return fetchResponse;
           });
         })
-        .catch((error) => {
-          console.error("Fetch failed:", error);
-          throw error;
-        });
+        .catch((error) => {});
     })
   );
 });
