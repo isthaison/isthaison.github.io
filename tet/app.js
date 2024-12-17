@@ -1,3 +1,5 @@
+
+(function() {
 const canvas = document.getElementById("countdownCanvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -483,3 +485,4 @@ function checkForSWUpdate() {
   }
 }
 console.log("(●'◡'●)");
+})();
