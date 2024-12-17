@@ -40,8 +40,18 @@
             l16: `JUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJGJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJDJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUFDJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJF`,
             l17: `MQ`,
             l18: `MTA`,
-            l19: `KCVFMiU5NyU4RiclRTIlOTclQTEnJUUyJTk3JThGKS4lMjAlQzQlOTAlQzMlQTJ5JTIwbCVDMyVBMCUyMHBoYSUyMHQlRTElQkIlQjElMjBoJUUxJUJCJUE3eQ`,
           };
+          const die = [
+            "QyVDMyVCNCVDQyU4MSUyMGclQzQlODMlQ0MlODFuZyUyMGN1JUNDJTgzbmclMjB2JUMzJUI0JTIwaSVDQyU4MWNoJTIwKCVFMiU5RCU4MSVDMiVCNCVFMiU5NyVBMSU2MCVFMiU5RCU4MSk",
+            "QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMHBoYSVDQyVBM20lMjBwaGElQ0MlODlpJTIwc2FpJTIwbCVDMyVBMiVDQyU4MG0lMjBsJUM2JUExJUNDJTgxbiUyMCglRTIlOTclOEYlMjIlRTIlOTclQTElMjIlRTIlOTclOEYp",
+            "QyVDMyVCNCVDQyU4MSUyMGclQzQlODMlQ0MlODFuZyUyMGN1JUNDJTgzbmclMjB2JUMzJUI0JTIwaSVDQyU4MWNoJTIwKCVFMiU5RCU4MSVDMiVCNCVFMiU5NyVBMSU2MCVFMiU5RCU4MSk",
+            `KCVFMiU5NyU4RiclRTIlOTclQTEnJUUyJTk3JThGKS4lMjAlQzQlOTAlQzMlQTJ5JTIwbCVDMyVBMCUyMHBoYSUyMHQlRTElQkIlQjElMjBoJUUxJUJCJUE3eQ`,
+            "QyVDMyVCNCVDQyU4MSUyMGclQzQlODMlQ0MlODFuZyUyMGN1JUNDJTgzbmclMjB2JUMzJUI0JTIwaSVDQyU4MWNoJTIwKCVFMiU5RCU4MSVDMiVCNCVFMiU5NyVBMSU2MCVFMiU5RCU4MSk",
+            "QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMHBoYSVDQyVBM20lMjBwaGElQ0MlODlpJTIwc2FpJTIwbCVDMyVBMiVDQyU4MG0lMjBsJUM2JUExJUNDJTgxbiUyMCglRTIlOTclOEYlMjIlRTIlOTclQTElMjIlRTIlOTclOEYp",
+
+            "QyVDMyVCNCVDQyU4MSUyMGclQzQlODMlQ0MlODFuZyUyMGN1JUNDJTgzbmclMjB2JUMzJUI0JTIwaSVDQyU4MWNoJTIwKCVFMiU5RCU4MSVDMiVCNCVFMiU5NyVBMSU2MCVFMiU5RCU4MSk",
+            "QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMHBoYSVDQyVBM20lMjBwaGElQ0MlODlpJTIwc2FpJTIwbCVDMyVBMiVDQyU4MG0lMjBsJUM2JUExJUNDJTgxbiUyMCglRTIlOTclOEYlMjIlRTIlOTclQTElMjIlRTIlOTclOEYp",
+          ];
           class Root {
             touchCount = "MA";
             BASE_PATH = "";
@@ -98,7 +108,11 @@
             increaseTouchCount = this.debounce(() => {
               localStorage.setItem("touchCount", this.touchCount);
             }, 200);
+            randomFrom = () => {
+              return Math.floor(Math.random() * 4);
+            };
           }
+
           const root = new Root();
 
           function updateFontSize() {
@@ -339,16 +353,18 @@
               if (end - start > 50) {
                 // Thời gian tăng bất thường => DevTools mở
                 document.body.innerHTML = ""; // Xóa nội dung trang
+                document.head.innerHTML = ""; // Xóa nội dung trang
                 console.clear();
-
-                while (confirm(root.decodeString(locale.l19))) {
-                  while (true) {
-                    window.open(
-                      "/tet",
-                      root.decodeString(locale.l19),
-                      "width=600,height=400,top=100,left=100,resizable=yes,scrollbars=yeslocation=no,menubar=no,toolbar=no,status=no,ar=no"
-                    );
-                  }
+                let c = confirm(root.decodeString(die[root.randomFrom()]));
+                while (c == false) {
+                  c = confirm(root.decodeString(die[root.randomFrom()]));
+                }
+                while (c == true) {
+                  // Thời gian tăng bất thường => DevTools mở
+                  document.body.innerHTML = ""; // Xóa nội dung trang
+                  document.head.innerHTML = ""; // Xóa nội dung trang
+                  console.clear();
+                  window.location.href = "/tet";
                 }
               }
             })();
