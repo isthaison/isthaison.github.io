@@ -12,6 +12,51 @@ class lQkFjJTIwTSV {
     this.touchCount = localStorage.getItem("touchCount");
     this.BASE_PATH = self.location.pathname.replace(/\/$/, "");
   }
+  UP = (N) => {
+    this.touchCount += this.decodeData(N);
+    this.increaseTouchCount();
+  };
+  encodeData = (data) => {
+    let encoded = btoa(data.toString()); // Encode dữ liệu sang Base64
+    return encoded;
+  };
+  decodeData = (encodedData) => {
+    let decoded = atob(encodedData); // Decode Base64
+    return parseFloat(decoded); // Convert trở lại thành số
+  };
+  encodeString = (str) => {
+    try {
+      // Encode chuỗi sang Base64 sau khi chuyển đổi sang UTF-8
+      let encoded = btoa(encodeURIComponent(str));
+      return encoded;
+    } catch (error) {
+      console.error("Error encoding string:", error);
+      return null;
+    }
+  };
+  decodeString = (encodedStr) => {
+    try {
+      // Decode Base64 trở về chuỗi gốc sau khi chuyển từ UTF-8
+      let decoded = decodeURIComponent(atob(encodedStr));
+      return decoded;
+    } catch (error) {
+      console.error("Error decoding string:", error);
+      return null;
+    }
+  };
+
+  debounce = (func, delay) => {
+    let timer;
+    return function (...args) {
+      clearTimeout(timer); // Xóa bộ hẹn giờ trước đó
+      timer = setTimeout(() => {
+        func.apply(this, args); // Gọi hàm sau khi hết thời gian delay
+      }, delay);
+    };
+  };
+  increaseTouchCount = this.debounce(() => {
+    localStorage.setItem("touchCount", VDQyVB.encodeData(VDQyVB.touchCount));
+  }, 200); // Giới hạn: Tăng số lần chạm tối đa 1 lần mỗi 200ms
 }
 const VDQyVB = new lQkFjJTIwTSV();
 const locale = {
@@ -31,51 +76,13 @@ const locale = {
   l14: `UGh1JUNDJTgxdA`,
   l15: `R2klQzMlQTJ5`,
   l16: `JUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJGJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJDJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUFDJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJF`,
+  l17: `MQ`,
+  l18: `MTA`,
 };
 
-const ul = {
-  encodeData: (data) => {
-    let encoded = btoa(data.toString()); // Encode dữ liệu sang Base64
-    return encoded;
-  },
-  decodeData: (encodedData) => {
-    let decoded = atob(encodedData); // Decode Base64
-    return parseFloat(decoded); // Convert trở lại thành số
-  },
-  encodeString: (str) => {
-    try {
-      // Encode chuỗi sang Base64 sau khi chuyển đổi sang UTF-8
-      let encoded = btoa(encodeURIComponent(str));
-      return encoded;
-    } catch (error) {
-      console.error("Error encoding string:", error);
-      return null;
-    }
-  },
-  decodeString: (encodedStr) => {
-    try {
-      // Decode Base64 trở về chuỗi gốc sau khi chuyển từ UTF-8
-      let decoded = decodeURIComponent(atob(encodedStr));
-      return decoded;
-    } catch (error) {
-      console.error("Error decoding string:", error);
-      return null;
-    }
-  },
-
-  debounce: (func, delay) => {
-    let timer;
-    return function (...args) {
-      clearTimeout(timer); // Xóa bộ hẹn giờ trước đó
-      timer = setTimeout(() => {
-        func.apply(this, args); // Gọi hàm sau khi hết thời gian delay
-      }, delay);
-    };
-  },
-};
 // Nếu touchCount tồn tại, giải mã nó
 if (VDQyVB.touchCount) {
-  VDQyVB.touchCount = ul.decodeData(VDQyVB.touchCount);
+  VDQyVB.touchCount = VDQyVB.decodeData(VDQyVB.touchCount);
   if (isNaN(VDQyVB.touchCount)) localStorage.removeItem("touchCount");
 } else {
   VDQyVB.touchCount = 0; // Nếu không có, bắt đầu từ 0
@@ -148,7 +155,7 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
 function drawCountdown() {
   const now = new Date();
   const diff = tetDate - now;
-  const tet = ul.decodeString(locale.l1);
+  const tet = VDQyVB.decodeString(locale.l1);
   ctx.font = `bold 12px ${FONTFAMILY}`;
   ctx.fillText(ver, 2, 12);
 
@@ -161,9 +168,9 @@ function drawCountdown() {
     ctx.font = `bold 12px ${FONTFAMILY}`;
     wrapText(
       ctx,
-      `${ul.decodeString(locale.l2)} ${VDQyVB.touchCount} ${ul.decodeString(
-        locale.l3
-      )}`,
+      `${VDQyVB.decodeString(locale.l2)} ${
+        VDQyVB.touchCount
+      } ${VDQyVB.decodeString(locale.l3)}`,
       canvas.width / 2,
       canvas.height / 2 + Math.max(updateFontSize(), 12),
       canvas.width * 0.8,
@@ -174,15 +181,15 @@ function drawCountdown() {
     // Vẽ văn bản giải thưởng
     let message;
     if (VDQyVB.touchCount >= 20000) {
-      message = ul.decodeString(locale.l4);
+      message = VDQyVB.decodeString(locale.l4);
     } else if (VDQyVB.touchCount >= 10000) {
-      message = ul.decodeString(locale.l5);
+      message = VDQyVB.decodeString(locale.l5);
     } else if (VDQyVB.touchCount >= 5000) {
-      message = ul.decodeString(locale.l6);
+      message = VDQyVB.decodeString(locale.l6);
     } else if (VDQyVB.touchCount >= 1000) {
-      message = ul.decodeString(locale.l7);
+      message = VDQyVB.decodeString(locale.l7);
     } else {
-      message = ul.decodeString(locale.l8);
+      message = VDQyVB.decodeString(locale.l8);
     }
 
     ctx.font = `16px ${FONTFAMILY}`;
@@ -197,12 +204,14 @@ function drawCountdown() {
   const minutes = Math.floor((diff / (1000 * 60)) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
 
-  const text = `${days} ${ul.decodeString(
+  const text = `${days} ${VDQyVB.decodeString(
     locale.l12
-  )} ${hours} ${ul.decodeString(locale.l13)} ${minutes} ${ul.decodeString(
+  )} ${hours} ${VDQyVB.decodeString(
+    locale.l13
+  )} ${minutes} ${VDQyVB.decodeString(
     locale.l14
-  )} ${seconds} ${ul.decodeString(locale.l15)}`;
-  const label = ul.decodeString(locale.l11);
+  )} ${seconds} ${VDQyVB.decodeString(locale.l15)}`;
+  const label = VDQyVB.decodeString(locale.l11);
   ctx.fillStyle = "yellow";
   ctx.font = `bold ${fontSize}px ${FONTFAMILY}`;
   ctx.textAlign = "center";
@@ -266,23 +275,23 @@ function startMusic() {
 }
 
 // Hàm xử lý tăng số lần chạm
-const increaseTouchCount = ul.debounce(() => {
-  localStorage.setItem("touchCount", ul.encodeData(VDQyVB.touchCount));
-}, 200); // Giới hạn: Tăng số lần chạm tối đa 1 lần mỗi 200ms
+
 // Thêm sự kiện nhấp chuột để tạo pháo hoa
 canvas.addEventListener("click", (event) => {
   const rect = canvas.getBoundingClientRect();
   createFireworks(event.clientX - rect.left, event.clientY - rect.top);
-  VDQyVB.touchCount++;
-  // Cập nhật số lượt touch
-  increaseTouchCount();
+  VDQyVB.UP(locale.l17);
 });
 // Vẽ số lần touch
 function drawTouchCount() {
   ctx.font = `bold 12px ${FONTFAMILY}`;
   ctx.fillStyle = "white";
   ctx.textAlign = "left";
-  ctx.fillText(`${ul.decodeString(locale.l9)} ${VDQyVB.touchCount}`, 20, 50);
+  ctx.fillText(
+    `${VDQyVB.decodeString(locale.l9)} ${VDQyVB.touchCount}`,
+    20,
+    50
+  );
 }
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -293,12 +302,10 @@ function animate() {
   const now = Date.now();
   if (now - lastMusicTime >= 1000 * 60 && isMusicPlaying == true) {
     // Nếu thời gian hiện tại cách lần chơi nhạc trước ít nhất 1 phút
-    VDQyVB.touchCount += 10;
+    VDQyVB.UP(locale.l18);
     lastMusicTime = now; // Cập nhật thời gian chơi nhạc gần nhất
     increaseTouchCount();
   }
-  console.clear();
-  console.log("(●'◡'●)");
 
   requestAnimationFrame(animate);
 }
@@ -346,7 +353,7 @@ function drawGift(ctx, x, y) {
   ctx.font = `${size}px Arial`;
   ctx.textAlign = "center";
   ctx.textBaseline = "top";
-  ctx.fillText(ul.decodeString(locale.l10), x + offsetX, y + offsetY);
+  ctx.fillText(VDQyVB.decodeString(locale.l10), x + offsetX, y + offsetY);
 
   angle += 0.1;
 }
@@ -401,7 +408,7 @@ if ("serviceWorker" in navigator && "Notification" in window) {
 
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register(`${is.BASE_PATH}/service-worker.js`)
+      .register(`${VDQyVB.BASE_PATH}/service-worker.js`)
       .then((registration) => {
         // Kiểm tra điều kiện hỗ trợ khả năng cài đặt PWA
         if (window.matchMedia("(display-mode: standalone)").matches) {
@@ -421,36 +428,36 @@ document.addEventListener("keydown", (event) => {
   // Ngăn phím F12
   if (event.key === "F12") {
     event.preventDefault();
-    alert(ul.decodeString(locale.l16));
+    alert(VDQyVB.decodeString(locale.l16));
   }
 
   // Ngăn tổ hợp phím Ctrl+Shift+I (Chrome, Edge, Firefox)
   if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "I") {
     event.preventDefault();
-    alert(ul.decodeString(locale.l16));
+    alert(VDQyVB.decodeString(locale.l16));
   }
 
   // Ngăn tổ hợp phím Ctrl+U (xem mã nguồn trang)
   if ((event.ctrlKey || event.metaKey) && event.key === "U") {
     event.preventDefault();
-    alert(ul.decodeString(locale.l16));
+    alert(VDQyVB.decodeString(locale.l16));
   }
 
   // Ngăn tổ hợp phím Ctrl+Shift+J (console)
   if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "J") {
     event.preventDefault();
-    alert(ul.decodeString(locale.l16));
+    alert(VDQyVB.decodeString(locale.l16));
   }
 
   // Ngăn tổ hợp phím Ctrl+Shift+C (element picker)
   if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key === "C") {
     event.preventDefault();
-    alert(ul.decodeString(locale.l16));
+    alert(VDQyVB.decodeString(locale.l16));
   }
 });
 document.addEventListener("contextmenu", (event) => {
   event.preventDefault();
-  alert(ul.decodeString(locale.l16));
+  alert(VDQyVB.decodeString(locale.l16));
 });
 
 // Ngăn chặn chọn văn bản
@@ -475,3 +482,4 @@ function checkForSWUpdate() {
       });
   }
 }
+console.log("(●'◡'●)");
