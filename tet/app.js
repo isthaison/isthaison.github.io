@@ -1,6 +1,8 @@
 (function () {
   const canvas = document.getElementById("countdownCanvas");
+  if (!canvas) return;
   const ctx = canvas.getContext("2d");
+  if (!ctx) return;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   const FONTFAMILY = "Courier New, Courier, monospace";
