@@ -7,7 +7,7 @@
   canvas.height = window.innerHeight;
   const FONTFAMILY = "Courier New, Courier, monospace";
   let isMusicPlaying = false;
-  const ver = "1.0.7";
+  const ver = "2.0.7";
 
   let angle = 0; // Góc để tạo hiệu ứng lắc lư
   const music = document.getElementById("backgroundMusic");
