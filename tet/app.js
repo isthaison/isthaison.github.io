@@ -8,14 +8,50 @@
   const FONTFAMILY = "Courier New, Courier, monospace";
   let isMusicPlaying = false;
   const ver = "1.0.7";
-  class lQkFjJTIwTSV {
+
+  let angle = 0; // Góc để tạo hiệu ứng lắc lư
+  const music = document.getElementById("backgroundMusic");
+  music.volume = 0.5;
+  let lastMusicTime = Date.now(); // Lưu thời gian gần nhất chơi nhạc
+
+  const tetDate = new Date("2025-02-10T00:00:00");
+  let fireworks = [];
+  let stars = [];
+  const locale = {
+    l1: "JUYwJTlGJThFJTg5JTIwQ2glQzMlQkFjJTIwTSVFMSVCQiVBQm5nJTIwTiVDNCU4M20lMjBNJUUxJUJCJTlCaSElMjAlRjAlOUYlOEUlODklMjAyMDI1",
+    l2: `QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMGNoYSrootM20`,
+    l3: `bCVDMyVBMiVDQyU4MG4uJTIwVGglQzMlQTIlQ0MlQTN0JTIwbGElQ0MlODAlMjBkJUM2JUIwJUNDJTgzJTIwZCVDMyVCNCrootM2klRTIlOUMlQTglRTIlOUMlQTglRjAlOUYlOEMlQjglRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRTIlOUMlQTglRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRjAlOUYlOEUlODlDaHUlQ0MlODFjJTIwYmElQ0MlQTNuJTIwdmElQ0MlODAlMjBnaWElMjAlQzQlOTFpJUNDJTgwbmglMjBtJUMzJUI0JUNDJUEzdCUyMG4lQzQlODNtJTIwbSVDNiVBMSVDQyU4MWklMjB0cmElQ0MlODBuJTIwbmclQzMlQTIlQ0MlQTNwJTIwbmklQzMlQUElQ0MlODBtJTIwdnVpJTIwdmElQ0MlODAlMjBoYSrootM25oJTIwcGh1JUNDJTgxYyElMjBNb25nJTIwciVDNCU4MyVDQyU4MG5nJTIwbW8lQ0MlQTNpJTIwJUM0JTkxaSVDMyVBQSVDQyU4MHUlMjBiYSrootM24lMjBtJUM2JUExJTIwJUM2JUIwJUM2JUExJUNDJTgxYyUyMHNlJUNDJTgzJTIwdHIlQzYlQTElQ0MlODklMjB0aGElQ0MlODBuaCUyMGhpJUMzJUFBJUNDJUEzbiUyMHRoJUM2JUIwJUNDJUEzYyUyQyUyMG1vJUNDJUEzaSUyMGtobyVDQyU4MSUyMGtoJUM0JTgzbiUyMGNoaSVDQyU4OSUyMGxhJUNDJTgwJTIwbmglQzYlQjAlQ0MlODNuZyUyMGMlQzMlQTJ1JTIwY2h1eSVDMyVBQSrootM24lMjAlQzQlOTFhJUNDJTgzJTIwcXVhLiUyMEhhJUNDJTgzeSUyMGx1JUMzJUI0biUyMGMlQzYlQjAlQzYlQTElQ0MlODBpJTIwdGglQzMlQTIlQ0MlQTN0JTIwdCVDNiVCMCVDNiVBMWklMjB2YSVDQyU4MCUyMHRyYSVDQyU4MG4lMjAlQzQlOTElQzMlQTIlQ0MlODB5JTIwbiVDNCU4M25nJTIwbCVDNiVCMCVDNiVBMSrootM25nJTIwdHJvbmclMjBuJUM0JTgzbSUyMG0lQzYlQTElQ0MlODFpJTIwbmElQ0MlODB5JTIwbmhlJUNDJTgxISUyMENoJUMzJUJBYyUyMGIlRTElQkElQTFuJTIwbSVFMSVCQiU5OXQlMjBuJUM0JTgzbSUyMG0lQzYlQTElQ0MlODFpJTIwYW4lMjBraGFuZyUyQyUyMHRoJUUxJUJCJThCbmglMjB2JUM2JUIwJUUxJUJCJUEzbmclMkMlMjB2YSVDQyU4MCUyMHRoJUUxJUJBJUFEdCUyMG5oaSVFMSVCQiU4MXUlMjB5JUMzJUFBdSUyMHRoJUM2JUIwJUM2JUExbmchJUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUUyJTlDJUE4JUUyJTlDJUE4JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5`,
+    l4: `JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFhYWEwlMjB2JUUxJUJCJTlCaSUyMGdpJUUxJUJBJUEzaSUyMHRoJUM2JUIwJUUxJUJCJTlGbmclMjB4JUUxJUJCJUE5bmclMjAlQzQlOTElQzMlQTFuZyE`,
+    l5: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFhMISUyME0lRTElQkIlOTl0JTIwbSVDMyVCM24lMjBxdSVDMyVBMCUyMHR1eSVFMSVCQiU4N3QlMjB2JUUxJUJCJTlEaSE",
+    l6: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMEwhJTIwQ2glQzMlQkFjJTIwbSVFMSVCQiVBQm5nJTIwYiVFMSVCQSVBMW4h",
+    l7: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyME0hJTIwTSVFMSVCQiU5OXQlMjBtJUMzJUIzbiUyMHF1JUMzJUEwJTIwbmglRTElQkIlOEYlMjB0aCVDMyVCNGkh",
+    l8: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFMhJTIwQyVFMSVCQiU5MSUyMGclRTElQkElQUZuZyUyMGglQzYlQTFuJTIwbiVFMSVCQiVBRmEh",
+    l9: `JUM0JTkwaSVDMyVBQSVDQyU4OW0lMjBzJUMzJUI0JUNDJTgxJTIwY3UlQ0MlODlhJTIwYmElQ0MlQTNuJTNB`,
+    l10: `JUYwJTlGJThFJTgx`,
+    l11: `JUYwJTlGJThFJTg5JTIwVCVFMSVCQSVCRnQlMjBOZ3V5JUMzJUFBbiUyMCVDNCU5MCVDMyVBMW4lMjAyMDI1JTIwJUYwJTlGJThFJTg5`,
+    l12: `TmdhJUNDJTgweQ`,
+    l13: `R2klQzYlQTElQ0MlODA`,
+    l14: `UGh1JUNDJTgxdA`,
+    l15: `R2klQzMlQTJ5`,
+    l16: `JUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJGJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJDJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUFDJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJF`,
+    l17: `MQ`,
+    l18: `MTA`,
+  };
+  class Root {
     touchCount = 0;
     BASE_PATH = "";
     constructor() {
       this.touchCount = localStorage.getItem("touchCount");
       this.BASE_PATH = self.location.pathname.replace(/\/$/, "");
+      // Nếu touchCount tồn tại, giải mã nó
+      if (this.touchCount) {
+        this.touchCount = this.decodeData(this.touchCount);
+        if (isNaN(this.touchCount)) localStorage.removeItem("touchCount");
+      } else {
+        this.touchCount = 0; // Nếu không có, bắt đầu từ 0
+      }
     }
-    UP = (N) => {
+    up = (N) => {
       this.touchCount += this.decodeData(N);
       this.increaseTouchCount();
     };
@@ -58,46 +94,11 @@
       };
     };
     increaseTouchCount = this.debounce(() => {
-      localStorage.setItem("touchCount", VDQyVB.encodeData(VDQyVB.touchCount));
+      localStorage.setItem("touchCount", root.encodeData(root.touchCount));
     }, 200); // Giới hạn: Tăng số lần chạm tối đa 1 lần mỗi 200ms
   }
-  const VDQyVB = new lQkFjJTIwTSV();
-  const locale = {
-    l1: "JUYwJTlGJThFJTg5JTIwQ2glQzMlQkFjJTIwTSVFMSVCQiVBQm5nJTIwTiVDNCU4M20lMjBNJUUxJUJCJTlCaSElMjAlRjAlOUYlOEUlODklMjAyMDI1",
-    l2: `QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMGNoYSVDQyVBM20`,
-    l3: `bCVDMyVBMiVDQyU4MG4uJTIwVGglQzMlQTIlQ0MlQTN0JTIwbGElQ0MlODAlMjBkJUM2JUIwJUNDJTgzJTIwZCVDMyVCNCVDQyVBM2klRTIlOUMlQTglRTIlOUMlQTglRjAlOUYlOEMlQjglRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRTIlOUMlQTglRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRjAlOUYlOEUlODlDaHUlQ0MlODFjJTIwYmElQ0MlQTNuJTIwdmElQ0MlODAlMjBnaWElMjAlQzQlOTFpJUNDJTgwbmglMjBtJUMzJUI0JUNDJUEzdCUyMG4lQzQlODNtJTIwbSVDNiVBMSVDQyU4MWklMjB0cmElQ0MlODBuJTIwbmclQzMlQTIlQ0MlQTNwJTIwbmklQzMlQUElQ0MlODBtJTIwdnVpJTIwdmElQ0MlODAlMjBoYSVDQyVBM25oJTIwcGh1JUNDJTgxYyElMjBNb25nJTIwciVDNCU4MyVDQyU4MG5nJTIwbW8lQ0MlQTNpJTIwJUM0JTkxaSVDMyVBQSVDQyU4MHUlMjBiYSVDQyVBM24lMjBtJUM2JUExJTIwJUM2JUIwJUM2JUExJUNDJTgxYyUyMHNlJUNDJTgzJTIwdHIlQzYlQTElQ0MlODklMjB0aGElQ0MlODBuaCUyMGhpJUMzJUFBJUNDJUEzbiUyMHRoJUM2JUIwJUNDJUEzYyUyQyUyMG1vJUNDJUEzaSUyMGtobyVDQyU4MSUyMGtoJUM0JTgzbiUyMGNoaSVDQyU4OSUyMGxhJUNDJTgwJTIwbmglQzYlQjAlQ0MlODNuZyUyMGMlQzMlQTJ1JTIwY2h1eSVDMyVBQSVDQyVBM24lMjAlQzQlOTFhJUNDJTgzJTIwcXVhLiUyMEhhJUNDJTgzeSUyMGx1JUMzJUI0biUyMGMlQzYlQjAlQzYlQTElQ0MlODBpJTIwdGglQzMlQTIlQ0MlQTN0JTIwdCVDNiVCMCVDNiVBMWklMjB2YSVDQyU4MCUyMHRyYSVDQyU4MG4lMjAlQzQlOTElQzMlQTIlQ0MlODB5JTIwbiVDNCU4M25nJTIwbCVDNiVCMCVDNiVBMSVDQyVBM25nJTIwdHJvbmclMjBuJUM0JTgzbSUyMG0lQzYlQTElQ0MlODFpJTIwbmElQ0MlODB5JTIwbmhlJUNDJTgxISUyMENoJUMzJUJBYyUyMGIlRTElQkElQTFuJTIwbSVFMSVCQiU5OXQlMjBuJUM0JTgzbSUyMG0lQzYlQTElQ0MlODFpJTIwYW4lMjBraGFuZyUyQyUyMHRoJUUxJUJCJThCbmglMjB2JUM2JUIwJUUxJUJCJUEzbmclMkMlMjB2YSVDQyU4MCUyMHRoJUUxJUJBJUFEdCUyMG5oaSVFMSVCQiU4MXUlMjB5JUMzJUFBdSUyMHRoJUM2JUIwJUM2JUExbmchJUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUUyJTlDJUE4JUUyJTlDJUE4JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5`,
-    l4: `JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFhYWEwlMjB2JUUxJUJCJTlCaSUyMGdpJUUxJUJBJUEzaSUyMHRoJUM2JUIwJUUxJUJCJTlGbmclMjB4JUUxJUJCJUE5bmclMjAlQzQlOTElQzMlQTFuZyE`,
-    l5: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFhMISUyME0lRTElQkIlOTl0JTIwbSVDMyVCM24lMjBxdSVDMyVBMCUyMHR1eSVFMSVCQiU4N3QlMjB2JUUxJUJCJTlEaSE",
-    l6: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMEwhJTIwQ2glQzMlQkFjJTIwbSVFMSVCQiVBQm5nJTIwYiVFMSVCQSVBMW4h",
-    l7: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyME0hJTIwTSVFMSVCQiU5OXQlMjBtJUMzJUIzbiUyMHF1JUMzJUEwJTIwbmglRTElQkIlOEYlMjB0aCVDMyVCNGkh",
-    l8: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFMhJTIwQyVFMSVCQiU5MSUyMGclRTElQkElQUZuZyUyMGglQzYlQTFuJTIwbiVFMSVCQiVBRmEh",
-    l9: `JUM0JTkwaSVDMyVBQSVDQyU4OW0lMjBzJUMzJUI0JUNDJTgxJTIwY3UlQ0MlODlhJTIwYmElQ0MlQTNuJTNB`,
-    l10: `JUYwJTlGJThFJTgx`,
-    l11: `JUYwJTlGJThFJTg5JTIwVCVFMSVCQSVCRnQlMjBOZ3V5JUMzJUFBbiUyMCVDNCU5MCVDMyVBMW4lMjAyMDI1JTIwJUYwJTlGJThFJTg5`,
-    l12: `TmdhJUNDJTgweQ`,
-    l13: `R2klQzYlQTElQ0MlODA`,
-    l14: `UGh1JUNDJTgxdA`,
-    l15: `R2klQzMlQTJ5`,
-    l16: `JUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJGJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJDJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUFDJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJF`,
-    l17: `MQ`,
-    l18: `MTA`,
-  };
+  const root = new Root();
 
-  // Nếu touchCount tồn tại, giải mã nó
-  if (VDQyVB.touchCount) {
-    VDQyVB.touchCount = VDQyVB.decodeData(VDQyVB.touchCount);
-    if (isNaN(VDQyVB.touchCount)) localStorage.removeItem("touchCount");
-  } else {
-    VDQyVB.touchCount = 0; // Nếu không có, bắt đầu từ 0
-  }
-  let angle = 0; // Góc để tạo hiệu ứng lắc lư
-  const music = document.getElementById("backgroundMusic");
-  music.volume = 0.5;
-  let lastMusicTime = Date.now(); // Lưu thời gian gần nhất chơi nhạc
-
-  const tetDate = new Date("2025-02-10T00:00:00");
-  let fireworks = [];
-  let stars = [];
   function updateFontSize() {
     const canvasWidth = canvas.width;
     const canvasHeight = canvas.height;
@@ -158,7 +159,7 @@
   function drawCountdown() {
     const now = new Date();
     const diff = tetDate - now;
-    const tet = VDQyVB.decodeString(locale.l1);
+    const tet = root.decodeString(locale.l1);
     ctx.font = `bold 12px ${FONTFAMILY}`;
     ctx.fillText(ver, 2, 12);
 
@@ -171,9 +172,9 @@
       ctx.font = `bold 12px ${FONTFAMILY}`;
       wrapText(
         ctx,
-        `${VDQyVB.decodeString(locale.l2)} ${
-          VDQyVB.touchCount
-        } ${VDQyVB.decodeString(locale.l3)}`,
+        `${root.decodeString(locale.l2)} ${root.touchCount} ${root.decodeString(
+          locale.l3
+        )}`,
         canvas.width / 2,
         canvas.height / 2 + Math.max(updateFontSize(), 12),
         canvas.width * 0.8,
@@ -183,16 +184,16 @@
 
       // Vẽ văn bản giải thưởng
       let message;
-      if (VDQyVB.touchCount >= 20000) {
-        message = VDQyVB.decodeString(locale.l4);
-      } else if (VDQyVB.touchCount >= 10000) {
-        message = VDQyVB.decodeString(locale.l5);
-      } else if (VDQyVB.touchCount >= 5000) {
-        message = VDQyVB.decodeString(locale.l6);
-      } else if (VDQyVB.touchCount >= 1000) {
-        message = VDQyVB.decodeString(locale.l7);
+      if (root.touchCount >= 20000) {
+        message = root.decodeString(locale.l4);
+      } else if (root.touchCount >= 10000) {
+        message = root.decodeString(locale.l5);
+      } else if (root.touchCount >= 5000) {
+        message = root.decodeString(locale.l6);
+      } else if (root.touchCount >= 1000) {
+        message = root.decodeString(locale.l7);
       } else {
-        message = VDQyVB.decodeString(locale.l8);
+        message = root.decodeString(locale.l8);
       }
 
       ctx.font = `16px ${FONTFAMILY}`;
@@ -207,14 +208,12 @@
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
 
-    const text = `${days} ${VDQyVB.decodeString(
+    const text = `${days} ${root.decodeString(
       locale.l12
-    )} ${hours} ${VDQyVB.decodeString(
-      locale.l13
-    )} ${minutes} ${VDQyVB.decodeString(
+    )} ${hours} ${root.decodeString(locale.l13)} ${minutes} ${root.decodeString(
       locale.l14
-    )} ${seconds} ${VDQyVB.decodeString(locale.l15)}`;
-    const label = VDQyVB.decodeString(locale.l11);
+    )} ${seconds} ${root.decodeString(locale.l15)}`;
+    const label = root.decodeString(locale.l11);
     ctx.fillStyle = "yellow";
     ctx.font = `bold ${fontSize}px ${FONTFAMILY}`;
     ctx.textAlign = "center";
@@ -226,47 +225,63 @@
   }
 
   function createFireworks(x, y) {
-    let colors = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    let sparkles = [];
-    for (let i = 0; i < 50; i++) {
-      sparkles.push({
-        x,
-        y,
-        radius: Math.random() * 2 + 1,
-        angle: Math.random() * Math.PI * 2,
-        speed: Math.random() * 4 + 2,
-        decay: Math.random() * 0.05 + 0.01,
-        colors,
-      });
+    try {
+      let colors = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      let sparkles = [];
+      for (let i = 0; i < 50; i++) {
+        sparkles.push({
+          x,
+          y,
+          radius: Math.random() * 2 + 1,
+          angle: Math.random() * Math.PI * 2,
+          speed: Math.random() * 4 + 2,
+          decay: Math.random() * 0.05 + 0.01,
+          colors,
+        });
+      }
+      fireworks.push({ sparkles });
+    } catch (error) {
+      console.log("[createFireworks]", error);
     }
-    fireworks.push({ sparkles });
   }
 
   function drawFireworks() {
-    fireworks.forEach((fw, index) => {
-      fw.sparkles.forEach((sp, i) => {
-        sp.x += Math.cos(sp.angle) * sp.speed;
-        sp.y += Math.sin(sp.angle) * sp.speed;
-        sp.radius = Math.max(sp.radius - sp.decay, 0); // Đảm bảo bán kính không âm
+    try {
+      fireworks.forEach((fw, index) => {
+        fw.sparkles.forEach((sp, i) => {
+          sp.x += Math.cos(sp.angle) * sp.speed;
+          sp.y += Math.sin(sp.angle) * sp.speed;
+          sp.radius = Math.max(sp.radius - sp.decay, 0); // Đảm bảo bán kính không âm
 
-        if (sp.radius > 0) {
-          ctx.beginPath();
-          ctx.arc(sp.x, sp.y, sp.radius, 0, Math.PI * 2);
-          ctx.fillStyle = sp.colors;
-          ctx.fill();
-        } else {
-          fw.sparkles.splice(i, 1); // Loại bỏ các hạt đã hết bán kính
-        }
+          if (sp.radius > 0) {
+            ctx.beginPath();
+            ctx.arc(sp.x, sp.y, sp.radius, 0, Math.PI * 2);
+            ctx.fillStyle = sp.colors;
+            ctx.fill();
+          } else {
+            fw.sparkles.splice(i, 1); // Loại bỏ các hạt đã hết bán kính
+          }
+        });
+
+        if (fw.sparkles.length === 0) fireworks.splice(index, 1); // Xóa pháo hoa khi không còn tia sáng
       });
-
-      if (fw.sparkles.length === 0) fireworks.splice(index, 1); // Xóa pháo hoa khi không còn tia sáng
-    });
+    } catch (error) {
+      console.log("[drawFireworks]", error);
+    }
   }
 
   // Pháo hoa tự động bắn ngẫu nhiên từ đáy màn hình
   function createRandomFireworks() {
+    (async () => {
+      const now = Date.now();
+      if (now - lastMusicTime >= 1000 * 60 && isMusicPlaying == true) {
+        root.up(locale.l18);
+        lastMusicTime = now;
+        increaseTouchCount();
+      }
+    })();
     const x = Math.random() * canvas.width; // Vị trí ngẫu nhiên theo chiều ngang
-    const y = canvas.height; // Bắn từ đáy màn hình
+    const y = Math.random() * canvas.height; // Bắn từ đáy màn hình
     createFireworks(x, y);
   }
 
@@ -283,18 +298,14 @@
   canvas.addEventListener("click", (event) => {
     const rect = canvas.getBoundingClientRect();
     createFireworks(event.clientX - rect.left, event.clientY - rect.top);
-    VDQyVB.UP(locale.l17);
+    root.up(locale.l17);
   });
   // Vẽ số lần touch
   function drawTouchCount() {
     ctx.font = `bold 12px ${FONTFAMILY}`;
     ctx.fillStyle = "white";
     ctx.textAlign = "left";
-    ctx.fillText(
-      `${VDQyVB.decodeString(locale.l9)} ${VDQyVB.touchCount}`,
-      20,
-      50
-    );
+    ctx.fillText(`${root.decodeString(locale.l9)} ${root.touchCount}`, 20, 50);
   }
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -302,17 +313,9 @@
     drawCountdown();
     drawFireworks();
     drawTouchCount();
-    const now = Date.now();
-    if (now - lastMusicTime >= 1000 * 60 && isMusicPlaying == true) {
-      // Nếu thời gian hiện tại cách lần chơi nhạc trước ít nhất 1 phút
-      VDQyVB.UP(locale.l18);
-      lastMusicTime = now; // Cập nhật thời gian chơi nhạc gần nhất
-      increaseTouchCount();
-    }
 
     requestAnimationFrame(animate);
   }
-  // Tự động bắn pháo hoa mỗi 1-2 giây
   setInterval(createRandomFireworks, Math.random() * 1000 + 1000);
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -348,7 +351,7 @@
   }
 
   function drawGift(ctx, x, y) {
-    const size = getGiftSize(VDQyVB.touchCount); // Kích thước dựa trên số điểm
+    const size = getGiftSize(root.touchCount); // Kích thước dựa trên số điểm
 
     const offsetX = Math.sin(angle) * 5;
     const offsetY = Math.cos(angle) * 2;
@@ -356,7 +359,7 @@
     ctx.font = `${size}px Arial`;
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
-    ctx.fillText(VDQyVB.decodeString(locale.l10), x + offsetX, y + offsetY);
+    ctx.fillText(root.decodeString(locale.l10), x + offsetX, y + offsetY);
 
     angle += 0.1;
   }
@@ -411,7 +414,7 @@
 
     window.addEventListener("load", () => {
       navigator.serviceWorker
-        .register(`${VDQyVB.BASE_PATH}/service-worker.js`)
+        .register(`${root.BASE_PATH}/service-worker.js`)
         .then((registration) => {
           // Kiểm tra điều kiện hỗ trợ khả năng cài đặt PWA
           if (window.matchMedia("(display-mode: standalone)").matches) {
@@ -431,7 +434,6 @@
     // Ngăn phím F12
     if (event.key === "F12") {
       event.preventDefault();
-      alert(VDQyVB.decodeString(locale.l16));
     }
 
     // Ngăn tổ hợp phím Ctrl+Shift+I (Chrome, Edge, Firefox)
@@ -441,13 +443,13 @@
       event.key === "I"
     ) {
       event.preventDefault();
-      alert(VDQyVB.decodeString(locale.l16));
+      console.log(root.decodeString(locale.l16));
     }
 
     // Ngăn tổ hợp phím Ctrl+U (xem mã nguồn trang)
     if ((event.ctrlKey || event.metaKey) && event.key === "U") {
       event.preventDefault();
-      alert(VDQyVB.decodeString(locale.l16));
+      alert(root.decodeString(locale.l16));
     }
 
     // Ngăn tổ hợp phím Ctrl+Shift+J (console)
@@ -457,7 +459,7 @@
       event.key === "J"
     ) {
       event.preventDefault();
-      alert(VDQyVB.decodeString(locale.l16));
+      console.log(root.decodeString(locale.l16));
     }
 
     // Ngăn tổ hợp phím Ctrl+Shift+C (element picker)
@@ -467,12 +469,12 @@
       event.key === "C"
     ) {
       event.preventDefault();
-      alert(VDQyVB.decodeString(locale.l16));
+      console.log(root.decodeString(locale.l16));
     }
   });
   document.addEventListener("contextmenu", (event) => {
     event.preventDefault();
-    alert(VDQyVB.decodeString(locale.l16));
+    console.log(root.decodeString(locale.l16));
   });
 
   // Ngăn chặn chọn văn bản
