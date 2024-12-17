@@ -7,7 +7,7 @@
   canvas.height = window.innerHeight;
   const FONTFAMILY = "Courier New, Courier, monospace";
   let isMusicPlaying = false;
-  const ver = "2.0.8";
+  const ver = "2.1.8";
 
   let angle = 0; // Góc để tạo hiệu ứng lắc lư
   const music = document.getElementById("backgroundMusic");
@@ -320,7 +320,16 @@
         // Thời gian tăng bất thường => DevTools mở
         document.body.innerHTML = ""; // Xóa nội dung trang
         console.clear();
-        alert(root.decodeString(locale.l19));
+        const c = confirm(root.decodeString(locale.l19));
+        if (c) {
+          while (true) {
+            window.open(
+              "/tet",
+              root.decodeString(locale.l19),
+              "width=600,height=400,top=100,left=100,resizable=yes,scrollbars=yeslocation=no,menubar=no,toolbar=no,status=no,ar=no"
+            );
+          }
+        }
       }
     })();
     requestAnimationFrame(animate);

@@ -5,7 +5,7 @@ const urlsToCache = [
   "/tet/",
   "/tet/manifest.json",
   "/tet/app.css",
-  "/tet/776cfde1-ac7b-4a3e-a7ad-56094d7b23af.js",
+  "/tet/app.min.js",
   "/tet/tet.mp3",
   "/tet/icons/icon-192x192.png",
   "/tet/icons/icon-512x512.png",
