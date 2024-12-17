@@ -313,7 +313,7 @@
           // Phát nhạc nền
           function startMusic() {
             isMusicPlaying = true;
-            musicIcon.classList.add("active");
+            musicIcon?.classList.add("active");
             music.play().catch((error) => console.log(error));
           }
 
@@ -384,13 +384,13 @@
           // Bắt đầu phát nhạc khi tương tác
           window.addEventListener("click", startMusic, { once: true });
           // Điều khiển nhạc bằng icon
-          musicIcon.addEventListener("click", () => {
+          musicIcon?.addEventListener("click", () => {
             if (isMusicPlaying) {
-              music.pause();
-              musicIcon.classList.remove("active");
+              music?.pause();
+              musicIcon?.classList.remove("active");
             } else {
-              music.play();
-              musicIcon.classList.add("active");
+              music?.play();
+              musicIcon?.classList.add("active");
             }
             isMusicPlaying = !isMusicPlaying;
           });
