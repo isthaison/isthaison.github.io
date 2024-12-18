@@ -66,3 +66,12 @@ audio {
   -moz-user-select: none; /* Cho phép chọn văn bản trên Firefox */
   -ms-user-select: none; /* Cho phép chọn văn bản trên Internet Explorer */
 }
+.mobile-install {
+  font-size: 16px;
+  padding: 10px;
+}
+
+.desktop-install {
+  font-size: 18px;
+  padding: 20px;
+}
