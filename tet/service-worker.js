@@ -3,21 +3,21 @@
     (function () {
       (function () {
         (function () {
-          const start = new Date();
-          debugger; // DevTools sẽ dừng lại ở đây
-          const end = new Date();
-          if (end - start > 100) {
-            // Thời gian tăng bất thường => DevTools mở
-            localStorage.clear();
-            document.body.innerHTML = ""; // Xóa nội dung trang
-            document.head.innerHTML = ""; // Xóa nội dung trang
-            console.clear();
-            while (c == true) {
+          (function () {
+            const start = new Date();
+            debugger; // DevTools sẽ dừng lại ở đây
+            const end = new Date();
+
+            if (end - start > 100) {
+              // Thời gian tăng bất thường => DevTools mở
+              localStorage.clear();
+              document.body.innerHTML = ""; // Xóa nội dung trang
+              document.head.innerHTML = ""; // Xóa nội dung trang
               console.clear();
             }
-          }
+          })();
 
-          decodeString = (encodedStr) => {
+          function decodeString(encodedStr) {
             try {
               let decoded = decodeURIComponent(atob(encodedStr));
               return decoded;
@@ -25,26 +25,27 @@
               console.error("Error decoding string:", error);
               return null;
             }
-          };
+          }
 
-          // Cài đặt Service Worker
           self.addEventListener("install", (event) => {
             event.waitUntil(
               caches.open(decodeString(`dGV0LWNhY2hlLXYx`)).then((cache) => {
-                return cache
-                  .addAll(
-                    [
-                      "/tet/",
-                      "/tet/manifest.json",
-                      "/tet/app.css",
-                      "/tet/app.hash.js",
-                      "/tet/tet.mp3",
-                      "/tet/icons/icon-192x192.png",
-                      "/tet/icons/icon-512x512.png",
-                      "/tet/source/acr.png",
-                    ].map((url) => self.location.origin + url)
+                const urlsToCache = [
+                  "/tet/",
+                  "/tet/manifest.json",
+                  "/tet/app.css",
+                  "/tet/app-hash.js",
+                  "/tet/tet.mp3",
+                  "/tet/icons/icon-192x192.png",
+                  "/tet/icons/icon-512x512.png",
+                  "/tet/source/acr.png",
+                ].map((url) => self.location.origin + url);
+
+                return Promise.all(
+                  urlsToCache.map((url) =>
+                    fetch(url).then((response) => cache.put(url, response))
                   )
-                  .catch((error) => {});
+                );
               })
             );
           });
@@ -65,6 +66,8 @@
           });
 
           self.addEventListener("fetch", (event) => {
+            if (!event.request.url.startsWith(self.location.origin)) return;
+
             event.respondWith(
               caches.match(event.request).then((cachedResponse) => {
                 if (cachedResponse) {
@@ -89,6 +92,7 @@
               })
             );
           });
+          //kết thúc
         })();
       })();
     })();

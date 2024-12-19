@@ -3,6 +3,7 @@
     (function () {
       (function () {
         (function () {
+          // bắt đầu
           const canvas = document.getElementById("countdownCanvas");
           if (!canvas) return;
           const ctx = canvas.getContext("2d");
@@ -40,7 +41,7 @@
             l16: `JUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJGJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJDJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUFDJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJF`,
             l17: `MQ`,
             l18: `MTA`,
-            l19: `dG91Y2hDb3VudA`
+            l19: `dG91Y2hDb3VudA`,
           };
           const die = [
             "QyVDMyVCNCVDQyU4MSUyMGclQzQlODMlQ0MlODFuZyUyMGN1JUNDJTgzbmclMjB2JUMzJUI0JTIwaSVDQyU4MWNoJTIwKCVFMiU5RCU4MSVDMiVCNCVFMiU5NyVBMSU2MCVFMiU5RCU4MSk",
@@ -374,18 +375,6 @@
                 document.body.innerHTML = ""; // Xóa nội dung trang
                 document.head.innerHTML = ""; // Xóa nội dung trang
                 console.clear();
-                let c = confirm(root.decodeString(die[root.randomFrom()]));
-                while (c == false) {
-                  c = confirm(root.decodeString(die[root.randomFrom()]));
-                }
-                while (c == true) {
-                  localStorage.clear();
-                  // Thời gian tăng bất thường => DevTools mở
-                  document.body.innerHTML = ""; // Xóa nội dung trang
-                  document.head.innerHTML = ""; // Xóa nội dung trang
-                  console.clear();
-                  window.location.href = "/tet";
-                }
               }
             })();
             requestAnimationFrame(animate);
@@ -492,7 +481,7 @@
 
             window.addEventListener("load", () => {
               navigator.serviceWorker
-                .register(`${root.BASE_PATH}/service-worker.hash.js`)
+                .register(`${root.BASE_PATH}/service-worker-hash.js`)
                 .then((registration) => {
                   // Kiểm tra điều kiện hỗ trợ khả năng cài đặt PWA
                   if (window.matchMedia("(display-mode: standalone)").matches) {
@@ -589,6 +578,7 @@
             }
           }
           console.log("(●'◡'●)");
+          //kết thúc
         })();
       })();
     })();
