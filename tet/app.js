@@ -11,7 +11,7 @@
           canvas.height = window.innerHeight;
           const FONTFAMILY = "Courier New, Courier, monospace";
           let isMusicPlaying = false;
-          const ver = "2.2.10";
+          const ver = "2.2.11";
           let visibilitychange = true;
           let angle = 0; // Góc để tạo hiệu ứng lắc lư
           const music = document.getElementById("backgroundMusic");
@@ -40,7 +40,7 @@
             l16: `JUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJGJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJEJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJDJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUFDJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJTkxJUE4JUYwJTlGJThGJUJCJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJFJUYwJTlGJTkxJUE5JUYwJTlGJThGJUJFJUUyJTgwJThEJUYwJTlGJUE0JTlEJUUyJTgwJThEJUYwJTlGJUE3JTkxJUYwJTlGJThGJUJF`,
             l17: `MQ`,
             l18: `MTA`,
-            l19: `dG91Y2hDb3VudA`,
+            l19: `dG91Y2hDb3VudA`
           };
           const die = [
             "QyVDMyVCNCVDQyU4MSUyMGclQzQlODMlQ0MlODFuZyUyMGN1JUNDJTgzbmclMjB2JUMzJUI0JTIwaSVDQyU4MWNoJTIwKCVFMiU5RCU4MSVDMiVCNCVFMiU5NyVBMSU2MCVFMiU5RCU4MSk",
@@ -492,7 +492,7 @@
 
             window.addEventListener("load", () => {
               navigator.serviceWorker
-                .register(`${root.BASE_PATH}/service-worker.js`)
+                .register(`${root.BASE_PATH}/service-worker.hash.js`)
                 .then((registration) => {
                   // Kiểm tra điều kiện hỗ trợ khả năng cài đặt PWA
                   if (window.matchMedia("(display-mode: standalone)").matches) {
