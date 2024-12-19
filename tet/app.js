@@ -11,8 +11,8 @@
           canvas.height = window.innerHeight;
           const FONTFAMILY = "Courier New, Courier, monospace";
           let isMusicPlaying = false;
-          const ver = "2.1.10";
-
+          const ver = "2.2.10";
+          let visibilitychange = true;
           let angle = 0; // Góc để tạo hiệu ứng lắc lư
           const music = document.getElementById("backgroundMusic");
           music.volume = 0.5;
@@ -73,7 +73,6 @@
                 const randomKey = `_${Math.random()
                   .toString(36)
                   .substring(2, 15)}`;
-                console.log({ randomKey, randomValue });
                 async () => {
                   localStorage.setItem(randomKey, this.encodeData(randomValue));
                 };
@@ -131,7 +130,6 @@
           }
 
           const root = new Root();
-          console.log(root.encodeString(locale.l19));
 
           function updateFontSize() {
             const canvasWidth = canvas.width;
@@ -289,6 +287,7 @@
           }
 
           function drawFireworks() {
+            if (!visibilitychange) return;
             try {
               fireworks.forEach((fw, index) => {
                 fw.sparkles.forEach((sp, i) => {
@@ -315,6 +314,7 @@
 
           // Pháo hoa tự động bắn ngẫu nhiên từ đáy màn hình
           function createRandomFireworks() {
+            if (!visibilitychange) return;
             (async () => {
               const now = Date.now();
               if (now - lastMusicTime >= 1000 * 60 && isMusicPlaying == true) {
@@ -362,6 +362,7 @@
             drawCountdown();
             drawFireworks();
             drawTouchCount();
+
             (function () {
               const start = new Date();
               debugger; // DevTools sẽ dừng lại ở đây
@@ -471,11 +472,11 @@
 
                   // Đợi người dùng phản hồi
                   deferredPrompt.userChoice.then((choiceResult) => {
-                    // if (choiceResult.outcome === "accepted") {
-                    //   console.log("User accepted the install prompt");
-                    // } else {
-                    //   console.log("User dismissed the install prompt");
-                    // }
+                    if (choiceResult.outcome === "accepted") {
+                      console.log("User accepted the install prompt");
+                    } else {
+                      console.log("User dismissed the install prompt");
+                    }
                     deferredPrompt = null;
                   });
                 });
@@ -498,9 +499,7 @@
                     // Trường hợp đã là ứng dụng PWA
                     return;
                   }
-
-                  // Hiển thị yêu cầu cài đặt PWA nếu người dùng đang trên thiết bị di động
-                  if (window.navigator.standalone === undefined) {
+                  if (navigator.userAgent.includes("Mobi")) {
                     showInstallPrompt();
                   }
                 });
@@ -526,7 +525,7 @@
             // Ngăn tổ hợp phím Ctrl+U (xem mã nguồn trang)
             if ((event.ctrlKey || event.metaKey) && event.key === "U") {
               event.preventDefault();
-              alert(root.decodeString(locale.l16));
+              console.log(root.decodeString(locale.l16));
             }
 
             // Ngăn tổ hợp phím Ctrl+Shift+J (console)
@@ -563,7 +562,20 @@
           window.addEventListener("load", () => {
             checkForSWUpdate(); // Kiểm tra Service Worker mới
           });
+          document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+              visibilitychange = false;
+            } else {
+              visibilitychange = true;
+            }
+          });
+          window.addEventListener("blur", () => {
+            visibilitychange = false;
+          });
 
+          window.addEventListener("focus", () => {
+            visibilitychange = true;
+          });
           // Hàm kiểm tra Service Worker mới
           function checkForSWUpdate() {
             if ("serviceWorker" in navigator) {
