@@ -67,7 +67,7 @@
             if (!event.request.url.startsWith(self.location.origin)) return;
 
             event.respondWith(
-              caches?.match(event.request).then((cachedResponse) => {
+              caches.match(event.request).then((cachedResponse) => {
                 if (cachedResponse) {
                   return cachedResponse; // Trả về từ cache nếu có
                 }
