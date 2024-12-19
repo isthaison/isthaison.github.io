@@ -352,12 +352,6 @@
             );
           }
           function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawStars();
-            drawCountdown();
-            drawFireworks();
-            drawTouchCount();
-
             (function () {
               const start = new Date();
               debugger;
@@ -373,6 +367,12 @@
                 }
               }
             })();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawStars();
+            drawCountdown();
+            drawFireworks();
+            drawTouchCount();
+
             requestAnimationFrame(animate);
           }
           setInterval(createRandomFireworks, Math.random() * 1000 + 1000);
