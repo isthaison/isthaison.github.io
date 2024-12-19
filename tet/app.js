@@ -55,16 +55,16 @@
             "QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMHBoYSVDQyVBM20lMjBwaGElQ0MlODlpJTIwc2FpJTIwbCVDMyVBMiVDQyU4MG0lMjBsJUM2JUExJUNDJTgxbiUyMCglRTIlOTclOEYlMjIlRTIlOTclQTElMjIlRTIlOTclOEYp",
           ];
           class Root {
-            touchCount = "MA";
+            #touchCount = "MA";
             BASE_PATH = "";
             constructor() {
-              this.touchCount = localStorage.getItem(locale.l19) || "MA";
+              this.#touchCount = localStorage.getItem(locale.l19) || "MA";
               this.BASE_PATH = self.location.pathname.replace(/\/$/, "");
               this.randomFakeValue();
             }
             up = (N) => {
-              this.touchCount = this.encodeData(
-                this.decodeData(this.touchCount) + this.decodeData(N)
+              this.#touchCount = this.encodeData(
+                this.decodeData(this.#touchCount) + this.decodeData(N)
               );
               this._fdbu();
             };
@@ -82,7 +82,7 @@
               this._fdbu();
             };
             getup = () => {
-              return this.decodeData(this.touchCount);
+              return this.decodeData(this.#touchCount);
             };
             encodeData = (data) => {
               return btoa(data.toString());
@@ -116,7 +116,7 @@
               };
             };
             _fdbu = this.debounce(() => {
-              localStorage.setItem(locale.l19, this.touchCount);
+              localStorage.setItem(locale.l19, this.#touchCount);
             }, 200);
 
             randomFrom = () => {
@@ -410,7 +410,7 @@
           }
 
           function drawGift(ctx, x, y) {
-            const size = getGiftSize(root.touchCount); // Kích thước dựa trên số điểm
+            const size = getGiftSize(root.getup()); // Kích thước dựa trên số điểm
 
             const offsetX = Math.sin(angle) * 5;
             const offsetY = Math.cos(angle) * 2;
