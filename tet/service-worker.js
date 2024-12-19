@@ -3,26 +3,24 @@
     (function () {
       (function () {
         (function () {
+          // bắt đầu
           (function () {
             const start = new Date();
-            debugger; // DevTools sẽ dừng lại ở đây
+            debugger;
             const end = new Date();
 
             if (end - start > 100) {
               // Thời gian tăng bất thường => DevTools mở
-              localStorage.clear();
-              document.body.innerHTML = ""; // Xóa nội dung trang
-              document.head.innerHTML = ""; // Xóa nội dung trang
-              console.clear();
+              while (true) {
+                console.clear();
+              }
             }
           })();
 
           function decodeString(encodedStr) {
             try {
-              let decoded = decodeURIComponent(atob(encodedStr));
-              return decoded;
+              return decodeURIComponent(atob(encodedStr));
             } catch (error) {
-              console.error("Error decoding string:", error);
               return null;
             }
           }
@@ -30,6 +28,7 @@
           self.addEventListener("install", (event) => {
             event.waitUntil(
               caches.open(decodeString(`dGV0LWNhY2hlLXYx`)).then((cache) => {
+                if (!cache) return;
                 const urlsToCache = [
                   "/tet/",
                   "/tet/manifest.json",
@@ -45,12 +44,11 @@
                   urlsToCache.map((url) =>
                     fetch(url).then((response) => cache.put(url, response))
                   )
-                );
+                ).catch((e) => {});
               })
             );
           });
 
-          // Xóa cache cũ khi cập nhật Service Worker
           self.addEventListener("activate", (event) => {
             event.waitUntil(
               caches.keys().then((cacheNames) => {
@@ -69,26 +67,26 @@
             if (!event.request.url.startsWith(self.location.origin)) return;
 
             event.respondWith(
-              caches.match(event.request).then((cachedResponse) => {
+              caches?.match(event.request).then((cachedResponse) => {
                 if (cachedResponse) {
                   return cachedResponse; // Trả về từ cache nếu có
                 }
 
-                return fetch(event.request)
-                  .then((fetchResponse) => {
-                    if (!fetchResponse.ok) {
-                    }
+                return fetch(event.request).then((fetchResponse) => {
+                  if (!fetchResponse.ok) {
+                  }
 
-                    if (fetchResponse.status === 206) {
-                      return fetchResponse;
-                    }
+                  if (fetchResponse.status === 206) {
+                    return fetchResponse;
+                  }
 
-                    return caches.open(CACHE_NAME).then((cache) => {
+                  return caches
+                    .open(decodeString(`dGV0LWNhY2hlLXYx`))
+                    .then((cache) => {
                       cache.put(event.request, fetchResponse.clone());
                       return fetchResponse;
                     });
-                  })
-                  .catch((error) => {});
+                });
               })
             );
           });

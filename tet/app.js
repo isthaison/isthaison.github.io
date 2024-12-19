@@ -12,10 +12,11 @@
           canvas.height = window.innerHeight;
           const FONTFAMILY = "Courier New, Courier, monospace";
           let isMusicPlaying = false;
-          const ver = "2.2.11";
+          const ver = "2.2.12";
           let visibilitychange = true;
           let angle = 0; // Góc để tạo hiệu ứng lắc lư
           const music = document.getElementById("backgroundMusic");
+          const musicIcon = document.getElementById("musicIcon");
           music.volume = 0.5;
           let lastMusicTime = Date.now(); // Lưu thời gian gần nhất chơi nhạc
 
@@ -71,7 +72,7 @@
               localStorage.clear();
               for (let index = 0; index < 50; index++) {
                 const randomValue = Math.floor(Math.random() * 1000) + 1;
-                const randomKey = `_${Math.random()
+                const randomKey = `${Math.random()
                   .toString(36)
                   .substring(2, 15)}`;
                 async () => {
@@ -79,33 +80,26 @@
                 };
               }
               this._fdbu();
-
-              // Log ra console để kiểm tra
             };
             getup = () => {
               return this.decodeData(this.touchCount);
             };
             encodeData = (data) => {
-              let encoded = btoa(data.toString()); // Encode dữ liệu sang Base64
-              return encoded;
+              return btoa(data.toString());
             };
             decodeData = (encodedData) => {
-              let decoded = atob(encodedData) || "0"; // Decode Base64
-              return parseFloat(decoded); // Convert trở lại thành số
+              return parseFloat(atob(encodedData) || "0"); // Convert trở lại thành số
             };
             encodeString = (str) => {
               try {
-                let encoded = btoa(encodeURIComponent(str));
-                return encoded;
+                return btoa(encodeURIComponent(str));
               } catch (error) {
-                console.error("Error encoding string:", error);
                 return null;
               }
             };
             decodeString = (encodedStr) => {
               try {
-                let decoded = decodeURIComponent(atob(encodedStr));
-                return decoded;
+                return decodeURIComponent(atob(encodedStr));
               } catch (error) {
                 console.error("Error decoding string:", error);
                 return null;
@@ -366,7 +360,7 @@
 
             (function () {
               const start = new Date();
-              debugger; // DevTools sẽ dừng lại ở đây
+              debugger;
               const end = new Date();
 
               if (end - start > 100) {
@@ -577,6 +571,7 @@
                 });
             }
           }
+
           console.log("(●'◡'●)");
           //kết thúc
         })();
