@@ -368,7 +368,9 @@
                 localStorage.clear();
                 document.body.innerHTML = ""; // Xóa nội dung trang
                 document.head.innerHTML = ""; // Xóa nội dung trang
-                console.clear();
+                while (true) {
+                  console.clear();
+                }
               }
             })();
             requestAnimationFrame(animate);
@@ -475,7 +477,7 @@
 
             window.addEventListener("load", () => {
               navigator.serviceWorker
-                .register(`${root.BASE_PATH}/service-worker-hash.js`)
+                .register(`${root.BASE_PATH}/service-worker.js`)
                 .then((registration) => {
                   // Kiểm tra điều kiện hỗ trợ khả năng cài đặt PWA
                   if (window.matchMedia("(display-mode: standalone)").matches) {

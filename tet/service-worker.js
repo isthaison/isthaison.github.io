@@ -67,27 +67,52 @@
             if (!event.request.url.startsWith(self.location.origin)) return;
 
             event.respondWith(
-              caches.match(event.request).then((cachedResponse) => {
-                if (cachedResponse) {
-                  return cachedResponse; // Trả về từ cache nếu có
-                }
-
-                return fetch(event.request).then((fetchResponse) => {
-                  if (!fetchResponse.ok) {
+              caches
+                .match(event.request)
+                .then((cachedResponse) => {
+                  if (cachedResponse) {
+                    return cachedResponse; // Trả về từ cache nếu có
                   }
 
-                  if (fetchResponse.status === 206) {
-                    return fetchResponse;
-                  }
+                  return fetch(event.request)
+                    .then((fetchResponse) => {
+                      if (!fetchResponse.ok) {
+                        return fetchResponse; // Trả về phản hồi từ mạng nếu không thể lưu cache
+                      }
 
-                  return caches
-                    .open(decodeString(`dGV0LWNhY2hlLXYx`))
-                    .then((cache) => {
-                      cache.put(event.request, fetchResponse.clone());
-                      return fetchResponse;
+                      if (fetchResponse.status === 206) {
+                        return fetchResponse; // Trả về phản hồi một phần
+                      }
+
+                      const cacheName = decodeString(`dGV0LWNhY2hlLXYx`);
+                      if (!cacheName) {
+                        console.log("Cache name decoding failed");
+                        return fetchResponse;
+                      }
+
+                      return caches
+                        .open(cacheName)
+                        .then((cache) => {
+                          // Thêm vào cache và trả về phản hồi
+                          cache
+                            .put(event.request, fetchResponse.clone())
+                            .catch((error) => {
+                              console.log("Failed to cache request:", error);
+                            });
+                          return fetchResponse;
+                        })
+                        .catch((error) => {
+                          console.log("Failed to open cache:", error);
+                          return fetchResponse; // Trả về phản hồi nếu không thể mở cache
+                        });
+                    })
+                    .catch((error) => {
+                      console.log("Network request failed:", error);
                     });
-                });
-              })
+                })
+                .catch((error) => {
+                  console.log("Cache match failed:", error);
+                })
             );
           });
           //kết thúc
