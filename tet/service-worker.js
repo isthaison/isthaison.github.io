@@ -58,7 +58,7 @@ self.addEventListener('sync', (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  event.repondWith(
+  event.respondWith(
     fetch(event.request).then((response) => {
       const newHeaders = new Headers(response.headers);
       newHeaders.set("X-Content-Type-Options", "nosniff");
