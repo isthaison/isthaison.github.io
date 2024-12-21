@@ -422,23 +422,23 @@ function checkForSWUpdate() {
       });
   }
 }
-document.addEventListener('DOMContentLoaded', () => {
-  if ('Notification' in window) {
-      if (Notification.permission === 'default') {
-          Notification.requestPermission().then(permission => {
-              if (permission === 'granted') {
-                  console.log('Thông báo đã được cấp quyền.');
-              } else {
-                  console.warn('Quyền thông báo đã bị từ chối.');
-              }
-          });
-      } else if (Notification.permission === 'granted') {
-          console.log('Quyền thông báo đã được cấp trước đó.');
-      } else {
-          console.warn('Thông báo không khả dụng do người dùng từ chối.');
-      }
+document.addEventListener("DOMContentLoaded", () => {
+  if ("Notification" in window) {
+    if (Notification.permission !== "granted") {
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          console.log("Thông báo đã được cấp quyền.");
+        } else {
+          console.warn("Quyền thông báo đã bị từ chối.");
+        }
+      });
+    } else if (Notification.permission === "granted") {
+      console.log("Quyền thông báo đã được cấp trước đó.");
+    } else {
+      console.warn("Thông báo không khả dụng do người dùng từ chối.");
+    }
   } else {
-      console.error('Trình duyệt không hỗ trợ thông báo.');
+    console.error("Trình duyệt không hỗ trợ thông báo.");
   }
 });
 console.log("(●'◡'●)");
