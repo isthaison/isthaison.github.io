@@ -172,7 +172,7 @@ function startPeriodicSync() {
       console.log('Sync event re-registered');
       startPeriodicSync();  // Re-register after the sync completes
     });
-  }, 10000);  // 10 seconds
+  }, 60 * 60 * 60 * 1000);  // 10 seconds
 }
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
