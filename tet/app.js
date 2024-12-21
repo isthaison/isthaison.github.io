@@ -422,7 +422,39 @@ function checkForSWUpdate() {
       });
   }
 }
+// Lập trình lặp lại thông báo mỗi phút
 
+function calculateTimeToTet() {
+  const now = new Date();
+  const timeDiff = tetDate - now; // Khoảng thời gian còn lại (ms)
+
+  if (timeDiff <= 0) {
+    return "Chúc mừng năm mới! 🎉";
+  }
+
+  const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+  return `Còn ${days > 0 && `${days} ngày`}  ${hours > 0 && `${hours} giờ`} ${
+    minutes > 0 && `${minutes} phút`
+  } ${seconds > 0 && `${seconds} giây`} nữa là đến Tết!`;
+}
+function handlerNotification() {
+  if (Notification.permission === "granted") {
+    const message = calculateTimeToTet();
+ new Notification("Tết Nguyên Đán 2025 🎉🎉🎉", {
+      body: message,
+      icon: "icons/icon-48x48.png", // Đường dẫn tới icon của bạn
+      tag: "tet-countdown",
+    });
+  } else {
+    console.warn("Không có quyền thông báo.");
+  }
+}
 function notifyMe() {
   if (!("Notification" in window)) {
     // Check if the browser supports notifications
@@ -430,15 +462,15 @@ function notifyMe() {
   } else if (Notification.permission === "granted") {
     // Check whether notification permissions have already been granted;
     // if so, create a notification
-
     // …
+    handlerNotification();
   } else if (Notification.permission !== "denied") {
     // We need to ask the user for permission
     Notification.requestPermission().then((permission) => {
       // If the user accepts, let's create a notification
       if (permission === "granted") {
-      
         // …
+        handlerNotification();
       }
     });
   }
@@ -447,6 +479,6 @@ function notifyMe() {
   // want to be respectful there is no need to bother them anymore.
 }
 document.addEventListener("DOMContentLoaded", () => {
-  notifyMe()
+  notifyMe();
 });
 console.log("(●'◡'●)");
