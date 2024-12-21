@@ -61,10 +61,12 @@ audio {
 
 /* Ngăn chọn văn bản */
 * {
-  user-select: none; /* Không cho phép chọn văn bản */
   -webkit-user-select: none; /* Cho phép chọn văn bản trên các trình duyệt Webkit (Chrome, Safari) */
   -moz-user-select: none; /* Cho phép chọn văn bản trên Firefox */
   -ms-user-select: none; /* Cho phép chọn văn bản trên Internet Explorer */
+  user-select: none; /* Không cho phép chọn văn bản */
+
+
 }
 .mobile-install {
   font-size: 16px;
@@ -74,4 +76,7 @@ audio {
 .desktop-install {
   font-size: 18px;
   padding: 20px;
+}
+h1, h2, h3, h4, h5, h6 {
+  display: none;
 }
