@@ -42,8 +42,10 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
+  
+  });
   handlerNotification(); // Function to send a notification
-});
+
 
 self.addEventListener("fetch", (event) => {
   event.respondWith(
