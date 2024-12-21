@@ -5,6 +5,7 @@ function decodeString(encodedStr) {
     return null;
   }
 }
+const tetDate = new Date("2025-01-29T00:00:00+07:00");
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -42,10 +43,8 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
-  
-  });
-  handlerNotification(); // Function to send a notification
-
+});
+handlerNotification(); // Function to send a notification
 
 self.addEventListener("fetch", (event) => {
   event.respondWith(
@@ -115,7 +114,6 @@ self.addEventListener("fetch", (event) => {
 });
 
 // Lập trình lặp lại thông báo mỗi phút
-const tetDate = new Date("2025-01-29T00:00:00+07:00");
 
 function calculateTimeToTet() {
   const now = new Date();
