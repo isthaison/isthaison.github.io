@@ -165,14 +165,6 @@ function startPeriodicSync() {
   self.registration.sync.register('send-notification').then(() => {
     console.log('Sync event registered');
   });
-
-  // Trigger a sync every 10 seconds
-  setTimeout(() => {
-    self.registration.sync.register('send-notification').then(() => {
-      console.log('Sync event re-registered');
-      startPeriodicSync();  // Re-register after the sync completes
-    });
-  }, 60 * 60 * 60 * 1000);  // 10 seconds
 }
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
