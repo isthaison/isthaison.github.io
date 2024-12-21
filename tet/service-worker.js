@@ -31,7 +31,6 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
@@ -43,18 +42,7 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
-  startPeriodicSync();
-
-});
-
-// Listen for background sync
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'send-notification') {
-    
-    event.waitUntil(
-      handlerNotification()  // Function to send a notification
-    );
-  }
+  handlerNotification(); // Function to send a notification
 });
 
 self.addEventListener("fetch", (event) => {
@@ -159,13 +147,6 @@ function handlerNotification() {
   }
 }
 
-// Function to start the periodic sync every 10 seconds
-function startPeriodicSync() {
-  // Register the sync event initially
-  self.registration.sync.register('send-notification').then(() => {
-    console.log('Sync event registered');
-  });
-}
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
   clients.openWindow("/tet"); // Mở trang chính khi người dùng nhấp vào thông báo
