@@ -1,41 +1,1149 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
-    <base href="/sdc/" />
-    <title>sdc</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="fireworks.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="firework.css">
+    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="letter.css">
+    <link rel="stylesheet" href="timeline.css">
+    <link rel="stylesheet" href="dresscode.css">
+</head>
 
-  </head>
-  <body>  
-    <canvas id="canvas"></canvas>
-    <div class="block-audio">
-      <audio class="exp" src="audio/explosion0.mp3" controls="controls"></audio>
-      <audio class="exp" src="audio/explosion0.mp3" controls="controls"></audio>
-      <audio class="exp" src="audio/explosion0.mp3" controls="controls"></audio>
-      <audio class="exp" src="audio/explosion1.mp3" controls="controls"></audio>
-      <audio class="exp" src="audio/explosion1.mp3" controls="controls"></audio>
-      <audio class="exp" src="audio/explosion1.mp3" controls="controls"></audio>
-      <audio class="exp" src="audio/explosion1.mp3" controls="controls"></audio>
-      <audio class="exp" src="audio/explosion2.mp3" controls="controls"></audio>
-      <audio class="exp" src="audio/explosion2.mp3" controls="controls"></audio>
-      <audio class="exp" src="audio/explosion2.mp3" controls="controls"></audio>
-      <audio class="exp" src="audio/explosion0.mp3" controls="controls"></audio>
-      <audio class="launch" src="audio/explosion0.mp3" controls="controls"></audio>
-      <audio class="launch" src="audio/explosion0.mp3" controls="controls"></audio>
-      <audio class="launch" src="audio/explosion1.mp3" controls="controls"></audio>
-      <audio class="launch" src="audio/explosion1.mp3" controls="controls"></audio>
-      <audio class="launch" src="audio/explosion1.mp3" controls="controls"></audio>
-      <audio class="launch" src="audio/explosion1.mp3" controls="controls"></audio>
-      <audio class="launch" src="audio/explosion2.mp3" controls="controls"></audio>
-      <audio class="launch" src="audio/explosion2.mp3" controls="controls"></audio>
-      <audio class="launch" src="audio/explosion2.mp3" controls="controls"></audio>
+<body>
+    <!-- spellkaster cli -->
+    <div class="sk-cli-cont">
+
+        <div class="sk-cli__noise"></div>
+
+        <div class="sk-cli">
+
+            <!-- top -->
+            <div class="sk-cli__top">
+
+                <!-- top left -->
+                <div class="sk-cli__top__left">
+
+                    <!-- content -->
+                    <div class="sk-cli__panel-content">
+
+                        <!-- simcode -->
+                        <p id="simcode1"></p>
+
+                    </div>
+
+                </div>
+
+                <!-- top center -->
+                <div class="sk-cli__top__center">
+
+                    <!-- content -->
+                    <div class="sk-cli__panel-content">
+
+                        <!-- simcode -->
+                        <p id="simcode2"></p>
+
+                    </div>
+
+                </div>
+
+                <!-- top right -->
+                <div class="sk-cli__top__right">
+
+                    <!-- content -->
+                    <div class="sk-cli__panel-content">
+
+                        <!-- simcode -->
+                        <p id="simcode3"></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- middle -->
+            <div class="sk-cli__middle">
+
+                <!-- middle left -->
+                <div class="sk-cli__middle__left">
+
+                    <!-- middle left top -->
+                    <div class="sk-cli__middle__left__top" style="height: 100%;
+                      position: relative;">
+
+                        <!-- title -->
+                        <div style="position: absolute; 
+                        top: 0px; 
+                        left: calc( 50% - 10.25ch );
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: 1px solid var(--sk-cli-color);
+                        padding: 0.4rem 0.8rem;
+                        background-color: var(--sk-cli-black);
+                        white-space: nowrap;">
+                            <span style="text-align: center;">ASTRO TRANSPILE</span>
+                        </div>
+
+                        <!-- content -->
+                        <div class="sk-cli__panel-content">
+
+                            <!-- simcode -->
+                            <p id="simcode8" style="font-family: fe2o3; 
+                                      text-align: justify; 
+                                      line-break: anywhere; 
+                                      font-size: 1rem;
+                                      line-height: 1.4;
+                                      letter-spacing: 13px;
+                                      text-align: center;"></p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- middle left center -->
+                    <div class="sk-cli__middle__left__center" style="height: 100%; position: relative;">
+
+                        <!-- title -->
+                        <div style="position: absolute; 
+                        top: 0px; 
+                        right: calc( 50% - 7.5ch );
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: 1px solid var(--sk-cli-color);
+                        padding: 0.4rem 0.8rem;
+                        background-color: var(--sk-cli-black);
+                        white-space: nowrap;">
+                            <span style="text-align: center;">ECTO BUILDUP</span>
+                        </div>
+
+                        <!-- content -->
+                        <div class="sk-cli__panel-content"
+                            style="display: flex; flex-direction: column; justify-content: center; gap: 0.25rem; height: 100%; margin-top: 3ch; padding-left: 0;">
+
+                            <!-- simcode -->
+                            <!--             <p id="simcode7"></p>             -->
+                            <!--             <span class="charloader1"></span> -->
+                            <!--             <span class="charloader2"></span> -->
+                            <!--             <span class="charloader3"></span>
+              <span class="charloader4"></span>
+              <span class="charloader5"></span>
+              <span class="charloader6"></span>
+              <span class="charloader7"></span>
+              <span class="charloader8"></span>   
+              <span class="charloader9"></span>             
+              <span class="charloader10"></span>     
+              <span class="charloader11"></span>
+              <span class="charloader12"></span>
+              <span class="charloader13"></span>
+              <span class="charloader14"></span>
+              <span class="charloader15"></span> -->
+
+                            <span class="charloader16" style="min-width: 150px;"></span>
+                            <span class="charloader16b" style="min-width: 150px;"></span>
+                            <span class="charloader16" style="min-width: 150px;"></span>
+                            <span class="charloader16b" style="min-width: 150px;"></span>
+                            <span class="charloader16" style="min-width: 150px;"></span>
+                            <span class="charloader16b" style="min-width: 150px;"></span>
+                            <span class="charloader16" style="min-width: 150px;"></span>
+                            <span class="charloader16b" style="min-width: 150px;"></span>
+                            <span class="charloader16" style="min-width: 150px;"></span>
+
+
+                        </div>
+
+                    </div>
+
+                    <!-- middle left bottom -->
+                    <div class="sk-cli__middle__left__bottom" style="min-height: 150px; 
+                      align-items: center; 
+                      justify-content: center;
+                      position: relative;">
+
+                        <!-- content -->
+                        <div class="sk-cli__panel-content" style="position: relative;">
+
+                            <!-- detection status 1 -->
+                            <div
+                                style="position: absolute; top: 32px; display: inline-flex; gap: 10px; align-items: center;">
+                                <span>MONITORING SEC SWARM</span>
+                                <!--               <span class="charloader1" 
+                      style="padding-right: 10px;"></span> -->
+                                <span class="charloader3" style="padding-right: 10px;"></span>
+                            </div>
+
+                            <!-- simcode -->
+                            <!--             <p id="simcode9"></p>             -->
+
+                            <div id="connecting-dots" class="connecting-dots">
+                                <canvas id="canvas" style="width: 100%; 
+                               height: 100%; 
+                               transform: scale(2.5);">
+                                </canvas>
+                            </div>
+
+                            <!-- detection status 2 -->
+                            <div
+                                style="position: absolute; bottom: 38px; right: 0.6rem; display: inline-flex; gap: 6px; align-items: center;">
+                                <span>[UNDETECTED]</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- middle center --->
+                <div class="sk-cli__middle__center" style="position: relative;">
+
+                    <!-- content - castbox -->
+                    <div id="castbox" class="sk-cli__panel-content" style="display: flex; flex-direction: column;">
+
+                        <!-- title -->
+                        <!--           <h1>SpellKaster</h1> -->
+
+                        <!-- svg -->
+                        <svg class="sk-logo" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 109 26.4"
+                            enable-background="new 0 0 109 26.4" xml:space="preserve" style="margin-bottom: 0.25rem;">
+
+                            <path fill="currentColor" d="M2.2,24.8L0,13.8c4.1,4.1,6.7,5.5,7.9,4.4s0.2-2.9-3.1-5.3S1,8.1,3.2,5.9S9.1,1.7,14.3,0l0.2,10.6
+                            c-2.9-2.6-5-3.3-6.4-2c-1.4,1.3-0.7,3.3,2,6.1s3.1,5.4,1.1,7.8S6.3,25.6,2.2,24.8z"></path>
+                            <path fill="currentColor" d="M18.8,7.2c1.1,0.2,2.1,0.7,2.9,1.4c0.8,0.7,1.2,2.1,1.2,4c0,1.4-0.6,2.5-1.6,3.3c-1,0.8-2.5,1.3-4.3,1.4
+                            c0,1.4,0.2,2.9,0.6,4.6l-4.1-1.5c0.6-3.6,0.6-7.8,0-12.6l0,0c-0.1-0.3-0.1-0.7-0.2-1L15,7.4C16.4,7.1,17.6,7,18.8,7.2z M17,10.5
+                            c-0.1,0.9-0.2,2.2-0.1,4c0.7-0.1,1.4-0.3,2.1-0.7c0.6-0.7,0.9-1.3,1-2c0-0.7-0.3-1.2-0.7-1.4c-0.4-0.2-0.9-0.3-1.4-0.3
+                            C17.5,10.1,17.2,10.2,17,10.5z"></path>
+                            <path fill="currentColor" d="M26.9,9.2c-0.6,1.4-0.8,2.5-0.5,3.2c1.6,0.1,2.9,0.8,3.8,2.1C29.3,15,28,15.2,26.4,15c0,1.3,0.2,2.6,0.3,3.9
+                            c1.5-0.4,2.8-1.2,4.1-2.7c0,3-0.3,4.9-0.8,5.6c-2.8-0.3-5.2-1.2-7.1-2.5c0.6-3.6,0.6-7.3,0-11.1c1.9-1,4.3-1.5,7.1-1.6
+                            c0.5,1.7,0.6,3.4,0.1,5.2C29.2,10.8,28.1,9.9,26.9,9.2z"></path>
+                            <path fill="currentColor" d="M31.8,20.5c0.6-3.6,0.6-7.8,0-12.6l4.4-1.1c-1,4.1-1.2,8.5-0.6,13.2c1.5-0.4,2.8-1.2,4.1-2.7
+                            c0,3-0.3,4.9-0.8,5.6C36.1,22.7,33.7,21.8,31.8,20.5z"></path>
+                            <path fill="currentColor" d="M40.3,20.5c0.6-3.6,0.6-7.8,0-12.6l4.5-1.1c-1,4.1-1.2,8.5-0.6,13.2c1.5-0.4,2.8-1.2,4.1-2.7
+                            c0,3-0.3,4.9-0.8,5.6C44.6,22.7,42.3,21.8,40.3,20.5z"></path>
+                            <path fill="currentColor" d="M53.8,16.5c0.2,2.4,0.4,4.9,0.8,7.4l-5.8-2.2c1.1-6.3,1-12.7-0.3-19.2c2,0,3.9,0.4,5.6,1.1
+                            c-0.3,1.8-0.4,3.7-0.5,5.7c2.2-1.7,3.9-3.9,5.2-6.6L63.3,3c-0.9,2.7-3,5.7-6.4,9c0.8,4.1,4.8,8.4,11.9,13l-1,1.4
+                            C60.7,24.6,56,21.3,53.8,16.5z"></path>
+                            <path fill="currentColor" d="M67.2,19.4c0,0.8,0.2,1.7,0.3,2.5l-3.7-1.3c0.1-5.2,1.2-10,3.5-14.5c3.4,3.7,5.3,9.2,5.9,16.6l-3.6-1.9
+                            c0-0.4-0.1-0.7-0.1-1C68.9,19.6,68.1,19.5,67.2,19.4z M69.2,17.6c-0.4-2.5-0.8-4.2-1.2-5.3c-0.6,1.9-0.8,3.8-0.8,5.8
+                            C67.9,17.8,68.6,17.7,69.2,17.6z"></path>
+                            <path fill="currentColor"
+                                d="M73.8,21.4l-0.3-5.1c2.3,2.1,3.8,2.7,4.5,1.6s-0.1-2.2-2.2-3.1c-2.1-0.9-2.9-2.4-2.3-4.3
+                            c0.6-1.9,3-3.1,7-3.8l0.2,5.3c-1.8-1.6-3.2-1.9-4-0.8c-0.8,1.1-0.1,2.1,2,3.2s2.8,2.6,2.1,4.6S77.8,21.9,73.8,21.4z">
+                            </path>
+                            <path fill="currentColor"
+                                d="M89.1,7c0.5,0.8,0.8,2.4,0.8,5c-0.7-1.4-1.5-2.3-2.3-2.7c-0.6,4.7-0.4,9.1,0.6,13.2l-4.4-1
+                            c0.5-4.2,0.6-8,0.3-11.5c-1.1,0.7-2,1.7-2.8,3.1c0-2.6,0.3-4.3,0.8-5C84.1,7.2,86.5,6.8,89.1,7z"></path>
+                            <path fill="currentColor" d="M94.3,9.2c-0.6,1.4-0.8,2.5-0.5,3.2c1.6,0.1,2.9,0.8,3.8,2.1c-1,0.6-2.2,0.8-3.8,0.6c0,1.3,0.2,2.6,0.3,3.9
+                            c1.5-0.4,2.8-1.2,4.1-2.7c0,3-0.3,4.9-0.8,5.6c-2.8-0.3-5.2-1.2-7.1-2.5c0.6-3.6,0.6-7.3,0-11.1c1.9-1,4.3-1.5,7.1-1.6
+                            c0.5,1.7,0.6,3.4,0.1,5.2C96.5,10.8,95.5,9.9,94.3,9.2z"></path>
+                            <path fill="currentColor"
+                                d="M102.8,17.4c-0.1,0-0.2,0-0.3,0c0,1.4,0.2,2.9,0.6,4.6L99,20.5c0.6-3.6,0.6-7.8,0-12.6l0,0
+                            c-0.1-0.3-0.1-0.7-0.2-1l1.7,0.6c1.4-0.4,2.7-0.5,3.8-0.3c1.1,0.2,2.1,0.7,2.9,1.4c0.8,0.7,1.2,2.1,1.2,4c0,1.4-0.6,2.5-1.6,3.3
+                            c-0.3,0.2-0.6,0.5-1,0.6c0.7,1.9,1.8,3.4,3.2,4.5l-0.5,1.9C106.3,22.9,104.4,21,102.8,17.4z M102.5,10.5c-0.1,0.9-0.2,2.2-0.1,4
+                            c0.7-0.1,1.4-0.3,2.1-0.7c0.6-0.7,0.9-1.3,1-2c0-0.7-0.3-1.2-0.7-1.4c-0.4-0.2-0.9-0.3-1.4-0.3C103.1,10.1,102.8,10.2,102.5,10.5z">
+                            </path>
+                        </svg>
+
+                        <!-- description -->
+                        <span style="text-align: center; margin-bottom: 0.75rem;">Cast spells on internet computer
+                            things</span>
+
+                        <!-- spell input -->
+                        <input type="text" style="margin-bottom: 1rem;">
+
+                        <!-- target input -->
+                        <input type="text" style="margin-bottom: 1rem;">
+
+                        <!-- dev buttons -->
+                        <!--           <button onclick="skcli.togglePanel('t')">top</button>
+            <button onclick="skcli.togglePanel('b')">bottom</button>
+            <button onclick="skcli.togglePanel('l')">left</button>
+            <button onclick="skcli.togglePanel('r')">right</button> -->
+                        <button onclick="skcli.staggerOpenPanels()">all</button>
+                        <button onclick="skcli.writeSimcode()">write</button>
+                        <button onclick="skcli.staggerWriteSimcode()">staggerwrite</button>
+                        <button onclick="skcli.clearSimcode()">clear</button>
+                        <button onclick="skcli.cast()">cast</button>
+
+                    </div>
+
+                    <!-- content - casting -->
+                    <div id="casting" class="sk-cli__panel-content"
+                        style="display: none; flex-direction: column; overflow: hidden;">
+
+                        <!-- animated scroll -->
+                        <div class="sk-cli__scroll">
+
+                            <!-- scroll top -->
+                            <div class="sk-cli__scroll__top">
+
+
+
+                            </div>
+
+                            <!-- scroll body -->
+                            <div class="sk-cli__scroll__body">
+
+                                <!-- top loader 1 -->
+                                <div id="sk-cli__scroll__loader1" class="sk-cli__scroll__loader">
+                                    <div></div>
+                                </div>
+
+                                <!-- top loader 2 -->
+                                <div id="sk-cli__scroll__loader2" class="sk-cli__scroll__loader">
+                                    <div></div>
+                                </div>
+                                <!-- simcode -->
+                                <div class="fireworks" id="fireworks_body">
+                                    <div class="firework">
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                    </div>
+                                    <div class="firework" style="margin-top: -70px">
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                    </div>
+                                    <div class="firework">
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                    </div>
+                                    <div class="firework" style="margin-top: 70px">
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                    </div>
+                                    <div class="firework">
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                    </div>
+                                    <div class="firework" style="margin-top: -70px">
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark silver"></div>
+                                        </div>
+                                    </div>
+                                    <div class="firework">
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                        <div class="explosion">
+                                            <div class="spark gold"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contai_navi" id="navigation_menu">
+
+                                    <!-- Invite -->
+                                    <div class="contai_menu">
+                                        <div id="backboard">
+                                            <pre class="code-column">[+] Booting system...
+[>] 2024...loading......98%.....
+[>] Preparing Year End Party... complete
+[>] Finalizing 2024... done
+[>] Accessing party details... success
+[>] Inviting you to the Year End Party... done
+[>] Proxy connection established.
+[>] Incoming data stream: [Encrypted]
+
+🎊 PARTY TIMEEEEEEE 🎊
+
+[>] 🎉🎉 Hey, Boss and Team! 🎉🎉
+[>] The ultimate Year End Party is happening, and you're ALL invited!
+[>] It's time to bid farewell to 2024 and party like there's no tomorrow! 🎉💃🕺
+[>] Get ready for a day full of surprises, laughs, and maybe a little bit of chaos! 😜
+[>] So, what are you waiting for? Let's end the year with a BANG! 💥
+[>] No RSVP needed—just bring your party spirit and a big smile! 😁
+[>] We can't wait to see you there! 🎊🎉    
+</pre>
+                                        </div>
+                                        <div class="contai_button">
+                                            <button id="start-btn" class="start-button">Access Forbidden Domain</button>
+                                        </div>
+
+                                    </div>
+                                    <!-- Invite -->
+
+                                    <!-- Address -->
+                                    <div class="map_contai" id="map-container">
+                                        <iframe
+                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d611.3873332131584!2d106.6757287929475!3d10.966459950659523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d173cb1f1325%3A0x3f66d9a8659525bf!2zSOG6p20gUsaw4bujdSBUcuG6p24gTG9uZyAz!5e1!3m2!1svi!2sus!4v1735290027880!5m2!1svi!2sus"
+                                            width="100%" height="100%" style="border:0; pointer-events: none;"
+                                            allowfullscreen="" loading="lazy"
+                                            referrerpolicy="no-referrer-when-downgrade">
+                                        </iframe>
+                                        <a 
+                                        href="https://maps.app.goo.gl/CHa1iKGaV8cMTVCw7" 
+                                        target="_blank" 
+                                        style="
+                                            position: absolute; 
+                                            top: 20px; 
+                                            right: 45px; 
+                                            background-color: black; 
+                                            color: #0f0; 
+                                            padding: 17px 15px; 
+                                            text-decoration: none; 
+                                            font-size: 20px; 
+                                            border-radius: 5px;
+                                            box-shadow: 0 4px 6px #0f0;
+                                        ">
+                                        Open in Maps
+                                    </a>
+                                    </div>
+                                    <!-- Address -->
+
+
+                                    <!-- Timeline -->
+                                    <div class="timeline_contai" id="timeline-contai">
+                                        <div class="my-timeline">
+
+                                            <div class="my-container left-container">
+                                                <h5>12:45</h5>
+                                                <div class="text-box">
+                                                    <p>
+                                                        💂‍♀️ Guest reception 💂‍♂️
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="my-container right-container">
+                                                <h5>13:15</h5>
+                                                <div class="text-box">
+                                                    <p>
+                                                        🎉 Opening ceremony 🎉
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="my-container left-container">
+                                                <h5>13:30</h5>
+                                                <div class="text-box">
+                                                    <p>
+                                                        🕺 Opening performance 💃
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="my-container right-container">
+                                                <h5>13:45</h5>
+                                                <div class="text-box">
+                                                    <p>
+                                                        🧧 Lucky draw 🧧
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="my-container left-container">
+                                                <h5>14:00</h5>
+                                                <div class="text-box">
+                                                    <p>
+                                                        🎤 Foreword 🎙️
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="my-container right-container">
+                                                <h5>14:30</h5>
+                                                <div class="text-box">
+                                                    <p>
+                                                        🪁 Participate in games 🎯
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="my-container left-container">
+                                                <h5>17:00</h5>
+                                                <div class="text-box">
+                                                    <p>
+                                                        🎀 Summary 🎀
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Timeline -->
+
+                                    <!-- Dress Code -->
+
+                                    <div class="dresscode_contai" id="dresscode">
+                                        <h1 class="heading">Dress <small>Code</small></h1>
+                                        <div class="palette30">
+                                            <div class="color" data-color="#009900" data-clipboard-text="#009900"><span></span></div>
+                                            <div class="color" data-color="#008800" data-clipboard-text="#008800"><span></span></div>
+                                            <div class="color" data-color="#007700" data-clipboard-text="#007700"><span></span></div>
+                                            <div class="color" data-color="#006600" data-clipboard-text="#006600"><span></span></div>
+                                            <div class="color" data-color="#005500" data-clipboard-text="#005500"><span></span></div>
+                                            <div class="color" data-color="#004400" data-clipboard-text="#004400"><span></span></div>
+                                            <div class="color" data-color="#003300" data-clipboard-text="#003300"><span></span></div>
+                                            <div class="color" data-color="#FF0000" data-clipboard-text="#FF0000"><span></span></div>
+                                            <div class="color" data-color="#CC0000" data-clipboard-text="#CC0000"><span></span></div>
+                                            <div class="color" data-color="#990000" data-clipboard-text="#990000"><span></span></div>
+                                        </div>
+                                        <div class="copied"></div>
+                                    </div>
+
+                                    <!-- Dress Code -->
+
+                                    <ul class="navigation">
+                                        <li class="active">
+                                            <a href="#">
+                                                <span class="icon" id="inviteButton">
+                                                    <ion-icon name="heart-outline"></ion-icon>
+                                                </span>
+                                                <span class="text">Invite</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="icon" id="addressButton">
+                                                    <ion-icon name="airplane-outline"></ion-icon>
+                                                </span>
+                                                <span class="text">Address</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="icon" id="eventButton">
+                                                    <ion-icon name="beer-outline"></ion-icon>
+                                                </span>
+                                                <span class="text">Event</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="icon" id="dressCodeButton">
+                                                    <ion-icon name="shirt-outline"></ion-icon>
+                                                </span>
+                                                <span class="text">DressCode</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- scroll bottom -->
+                            <div class="sk-cli__scroll__bottom">
+
+                                <!-- scroll bottom svg -->
+
+
+                                <span class="sk-cli__scroll__bottom__message1">extracting..</span>
+                                <span class="sk-cli__scroll__bottom__message2">compiling..</span>
+                            </div>
+
+                        </div>
+                        <!-- end scroll -->
+
+                    </div>
+
+                    <!-- open top panel button -->
+                    <button onclick="skcli.togglePanel('t')" style="display: none;
+                         width: fit-content; 
+                         outline: none; 
+                         cursor: pointer;
+                         position: absolute;
+                         top: 0.5rem;
+                         left: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 58 51"
+                            style="width: 1rem;">
+                            <path fill="#00FF1E"
+                                d="M24.75 5.78c1.89-3.25 6.61-3.25 8.5 0l10.04 17.28 10.04 17.28c1.89 3.25-.47 7.32-4.25 7.32H8.92c-3.78 0-6.14-4.07-4.25-7.32l10.04-17.28L24.75 5.78z" />
+                        </svg>
+                    </button>
+
+                    <!-- open right panel button -->
+                    <button onclick="skcli.togglePanel('r')" style="display: none;
+                         width: fit-content; 
+                         outline: none; 
+                         cursor: pointer;
+                         position: absolute;
+                         top: 0.5rem;
+                         right: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 58 51"
+                            style="width: 1rem; transform: rotate(90deg);">
+                            <path fill="#00FF1E"
+                                d="M24.75 5.78c1.89-3.25 6.61-3.25 8.5 0l10.04 17.28 10.04 17.28c1.89 3.25-.47 7.32-4.25 7.32H8.92c-3.78 0-6.14-4.07-4.25-7.32l10.04-17.28L24.75 5.78z" />
+                        </svg>
+                    </button>
+
+                    <!-- open bottom panel button -->
+                    <button onclick="skcli.togglePanel('b')" style="display: none;
+                         width: fit-content; 
+                         outline: none; 
+                         cursor: pointer;
+                         position: absolute;
+                         bottom: 0.5rem;
+                         right: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 58 51"
+                            style="width: 1rem; transform: rotate(180deg);">
+                            <path fill="#00FF1E"
+                                d="M24.75 5.78c1.89-3.25 6.61-3.25 8.5 0l10.04 17.28 10.04 17.28c1.89 3.25-.47 7.32-4.25 7.32H8.92c-3.78 0-6.14-4.07-4.25-7.32l10.04-17.28L24.75 5.78z" />
+                        </svg>
+                    </button>
+
+                    <!-- open left panel button -->
+                    <button onclick="skcli.togglePanel('l')" style="display: none;
+                         width: fit-content; 
+                         outline: none; 
+                         cursor: pointer;
+                         position: absolute;
+                         bottom: 0.5rem;
+                         left: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 58 51"
+                            style="width: 1rem; transform: rotate(-90deg);">
+                            <path fill="#00FF1E"
+                                d="M24.75 5.78c1.89-3.25 6.61-3.25 8.5 0l10.04 17.28 10.04 17.28c1.89 3.25-.47 7.32-4.25 7.32H8.92c-3.78 0-6.14-4.07-4.25-7.32l10.04-17.28L24.75 5.78z" />
+                        </svg>
+                    </button>
+
+                </div>
+
+                <!-- middle right -->
+                <div class="sk-cli__middle__right">
+
+                    <!-- middle right top -->
+                    <div class="sk-cli__middle__right__top" style="min-height: 150px; 
+                      align-items: center; 
+                      justify-content: center;
+                      position: relative;">
+
+                        <!-- title -->
+                        <div style="position: absolute; 
+                        top: 6px; 
+                        left: calc( 50% - 6.5ch );
+                        white-space: nowrap;">
+                            <span style="text-align: center;">FORCE UNLOCK <span class="charloader6"
+                                    style="font-size: 1rem;"></span></span>
+                        </div>
+
+                        <div style="position: absolute;
+                        bottom: -1.25rem;
+                        right: 0;
+                        color: var(--sk-cli-darkgreen)">
+                            <span class="charloader4"
+                                style="font-size: 7rem; opacity: 0.125; user-select: none;"></span>
+                        </div>
+
+                        <div style="position: absolute;
+                        top: -1.25rem;
+                        left: 0;
+                        color: var(--sk-cli-darkgreen);">
+                            <span class="charloader4b"
+                                style="font-size: 7rem; opacity: 0.125; user-select: none;"></span>
+                        </div>
+
+                        <!-- content -->
+                        <div class="sk-cli__panel-content">
+
+                            <!-- simcode -->
+                            <!-- <p id="simcode4"></p> -->
+
+                            <!-- loading cube -->
+                            <div class="loadingcube-cont">
+                                <div class="loadingcube">
+                                    <div class="ft">
+                                        <div class="lcpad">
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rt">
+                                        <div class="lcpad">
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bk">
+                                        <div class="lcpad">
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="lt">
+                                        <div class="lcpad">
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tp">
+                                        <div class="lcpad">
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bm">
+                                        <div class="lcpad">
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="lcpad-row">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end loading cube -->
+
+                        </div>
+
+                    </div>
+
+                    <!-- middle right center -->
+                    <div class="sk-cli__middle__right__center" style="position: relative; height: 100%;">
+
+                        <!-- title -->
+                        <div style="position: absolute; 
+                        top: 0px; 
+                        left: calc( 50% - 7ch );
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: 1px solid var(--sk-cli-color);
+                        padding: 0.4rem 0.8rem;
+                        background-color: var(--sk-cli-black);
+                        white-space: nowrap;">
+                            <span style="text-align: center;">DATA TAP <span class="charloader2"></span></span>
+                        </div>
+
+                        <!-- content -->
+                        <div class="sk-cli__panel-content">
+
+                            <!-- simcode -->
+                            <p id="simcode5" style="word-break: break-all;"></p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- middle right bottom -->
+                    <div class="sk-cli__middle__right__bottom" style="position: relative; height: 100%;">
+
+                        <!-- title -->
+                        <div style="position: absolute; 
+                        top: 0px; 
+                        left: calc( 50% - 8ch );
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: 1px solid var(--sk-cli-color);
+                        padding: 0.4rem 0.8rem;
+                        background-color: var(--sk-cli-black);">
+                            <span style="text-align: center; white-space: nowrap;">DECRYPTING <span
+                                    class="charloader12"></span></span>
+                        </div>
+
+                        <!-- content -->
+                        <div class="sk-cli__panel-content">
+
+                            <!-- simcode -->
+                            <p id="simcode6" style="word-break: break-all; text-align: justify;"></p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- bottom -->
+            <div class="sk-cli__bottom">
+
+                <!-- bottom left -->
+                <div class="sk-cli__bottom__left">
+
+                    <!-- content -->
+                    <div class="sk-cli__panel-content">
+
+                        <!-- simcode -->
+                        <p id="simcode10"></p>
+
+                    </div>
+
+                </div>
+
+                <!-- bottom center -->
+                <div class="sk-cli__bottom__center">
+
+                    <!-- content -->
+                    <div class="sk-cli__panel-content">
+
+                        <!-- simcode -->
+                        <p id="simcode11"></p>
+
+                    </div>
+
+                </div>
+
+                <!-- bottom right -->
+                <div class="sk-cli__bottom__right">
+
+                    <!-- content -->
+                    <div class="sk-cli__panel-content"
+                        style="display: flex; flex-direction: column; gap: 0.25rem; padding-left: 0;">
+
+                        <!-- simcode -->
+                        <p id="simcode12"></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
-    
-    <script src="jQuery.js"></script>
-    <script src="fireworks.js"></script>
-  </body>
+    <!-- end spellkaster cli -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/easing/EasePack.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenLite.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+    <script src="menu.js"></script>
+    <script src="letter.js"></script>
+    <script src="timeline.js"></script>
+    <script src="dresscode.js"></script>
+</body>
+
 </html>
