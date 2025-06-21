@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.css": "https://isthaison.github.io/iot/static/css/main.iot.css",
+    "main.js": "https://isthaison.github.io/iot/static/js/main.iot.js",
+    "index.html": "https://isthaison.github.io/iot/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.iot.css",
+    "static/js/main.iot.js"
+  ]
+}
