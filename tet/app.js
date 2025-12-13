@@ -12,7 +12,7 @@ const musicIcon = document.getElementById("musicIcon");
 music.volume = 0.5;
 let lastMusicTime = Date.now(); // Lưu thời gian gần nhất chơi nhạc
 
-const tetDate = new Date("2025-01-29T00:00:00+07:00");
+const tetDate = new Date("2026-02-17T00:00:00+07:00");
 let fireworks = [];
 let stars = [];
 const locale = {
