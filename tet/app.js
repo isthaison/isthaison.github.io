@@ -16,7 +16,7 @@ const tetDate = new Date("2026-02-17T00:00:00+07:00");
 let fireworks = [];
 let stars = [];
 const locale = {
-  l1: "JUYwJTlGJThFJTg5JTIwQ2glQzMlQkFjJTIwTSVFMSVCQiVBQm5nJTIwTiVDNCU4M20lMjBNJUUxJUJCJTlCaSElMjAlRjAlOUYlOEUlODklMjAyMDI1",
+  l1: "JUYwJTlGJThFJTg5JTIwQ2glQzMlQkFjJTIwTSVFMSVCQiVBQm5nJTIwTiVDNCU4M20lMjBNJUUxJUJCJTlCaSElMjAlRjAlOUYlOEUlODk",
   l2: `QmElQ0MlQTNuJTIwJUM0JTkxYSVDQyU4MyUyMGNoYSVDQyVBM20`,
   l3: `bCVDMyVBMiVDQyU4MG4uJTIwVGglQzMlQTIlQ0MlQTN0JTIwbGElQ0MlODAlMjBkJUM2JUIwJUNDJTgzJTIwZCVDMyVCNCVDQyVBM2klRTIlOUMlQTglRTIlOUMlQTglRjAlOUYlOEMlQjglRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRTIlOUMlQTglRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRjAlOUYlOEUlODklRjAlOUYlOEUlODklRjAlOUYlOEMlQjglRjAlOUYlOEUlODlDaHUlQ0MlODFjJTIwYmElQ0MlQTNuJTIwdmElQ0MlODAlMjBnaWElMjAlQzQlOTFpJUNDJTgwbmglMjBtJUMzJUI0JUNDJUEzdCUyMG4lQzQlODNtJTIwbSVDNiVBMSVDQyU4MWklMjB0cmElQ0MlODBuJTIwbmclQzMlQTIlQ0MlQTNwJTIwbmklQzMlQUElQ0MlODBtJTIwdnVpJTIwdmElQ0MlODAlMjBoYSVDQyVBM25oJTIwcGh1JUNDJTgxYyElMjBNb25nJTIwciVDNCU4MyVDQyU4MG5nJTIwbW8lQ0MlQTNpJTIwJUM0JTkxaSVDMyVBQSVDQyU4MHUlMjBiYSVDQyVBM24lMjBtJUM2JUExJTIwJUM2JUIwJUM2JUExJUNDJTgxYyUyMHNlJUNDJTgzJTIwdHIlQzYlQTElQ0MlODklMjB0aGElQ0MlODBuaCUyMGhpJUMzJUFBJUNDJUEzbiUyMHRoJUM2JUIwJUNDJUEzYyUyQyUyMG1vJUNDJUEzaSUyMGtobyVDQyU4MSUyMGtoJUM0JTgzbiUyMGNoaSVDQyU4OSUyMGxhJUNDJTgwJTIwbmglQzYlQjAlQ0MlODNuZyUyMGMlQzMlQTJ1JTIwY2h1eSVDMyVBQSVDQyVBM24lMjAlQzQlOTFhJUNDJTgzJTIwcXVhLiUyMEhhJUNDJTgzeSUyMGx1JUMzJUI0biUyMGMlQzYlQjAlQzYlQTElQ0MlODBpJTIwdGglQzMlQTIlQ0MlQTN0JTIwdCVDNiVCMCVDNiVBMWklMjB2YSVDQyU4MCUyMHRyYSVDQyU4MG4lMjAlQzQlOTElQzMlQTIlQ0MlODB5JTIwbiVDNCU4M25nJTIwbCVDNiVCMCVDNiVBMSVDQyVBM25nJTIwdHJvbmclMjBuJUM0JTgzbSUyMG0lQzYlQTElQ0MlODFpJTIwbmElQ0MlODB5JTIwbmhlJUNDJTgxISUyMENoJUMzJUJBYyUyMGIlRTElQkElQTFuJTIwbSVFMSVCQiU5OXQlMjBuJUM0JTgzbSUyMG0lQzYlQTElQ0MlODFpJTIwYW4lMjBraGFuZyUyQyUyMHRoJUUxJUJCJThCbmglMjB2JUM2JUIwJUUxJUJCJUEzbmclMkMlMjB2YSVDQyU4MCUyMHRoJUUxJUJBJUFEdCUyMG5oaSVFMSVCQiU4MXUlMjB5JUMzJUFBdSUyMHRoJUM2JUIwJUM2JUExbmchJUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUUyJTlDJUE4JUUyJTlDJUE4JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5JUYwJTlGJThDJUI4JUYwJTlGJThFJTg5`,
   l4: `JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFhYWEwlMjB2JUUxJUJCJTlCaSUyMGdpJUUxJUJBJUEzaSUyMHRoJUM2JUIwJUUxJUJCJTlGbmclMjB4JUUxJUJCJUE5bmclMjAlQzQlOTElQzMlQTFuZyE`,
@@ -26,7 +26,7 @@ const locale = {
   l8: "JUM0JTkwJUMzJUEyeSUyMGwlQzMlQTAlMjBjJUUxJUJCJUE3YSUyMGIlRTElQkElQTFuJTIwJUYwJTlGJThFJTgxJTIwc2l6ZSUyMFMhJTIwQyVFMSVCQiU5MSUyMGclRTElQkElQUZuZyUyMGglQzYlQTFuJTIwbiVFMSVCQiVBRmEh",
   l9: `JUM0JTkwaSVDMyVBQSVDQyU4OW0lMjBzJUMzJUI0JUNDJTgxJTIwY3UlQ0MlODlhJTIwYmElQ0MlQTNuJTNB`,
   l10: `JUYwJTlGJThFJTgx`,
-  l11: `JUYwJTlGJThFJTg5JTIwVCVFMSVCQSVCRnQlMjBOZ3V5JUMzJUFBbiUyMCVDNCU5MCVDMyVBMW4lMjAyMDI1JTIwJUYwJTlGJThFJTg5`,
+  l11: `JUYwJTlGJThFJTg5JTIwVCVFMSVCQSVCRnQlMjBOZ3V5JUMzJUFBbiUyMCVDNCU5MCVDMyVBMW4lMjAlN0J5ZWFyJTdEJTIwJUYwJTlGJThFJTg5`,
   l12: `TmdhJUNDJTgweQ`,
   l13: `R2klQzYlQTElQ0MlODA`,
   l14: `UGh1JUNDJTgxdA`,
@@ -38,31 +38,169 @@ const locale = {
 };
 
 const decodeData = (encodedData) => parseFloat(atob(encodedData) || "0");
-let touchCount = localStorage.getItem(locale.l19) || "MA";
 const BASE_PATH = self.location.pathname.replace(/\/$/, "") || "";
-localStorage.clear();
-for (let index = 0; index < 50; index++) {
-  const randomValue = Math.floor(Math.random() * 1000) + 1;
-  const randomKey = `${Math.random().toString(36).substring(2, 15)}`;
-  async () => {
-    localStorage.setItem(randomKey, encodeData(randomValue));
-  };
+
+// NOTE: Do NOT clear localStorage here — that can erase useful user data.
+// Initialize client-side signed score, rate-limiter, and tamper detection helpers.
+const SECRET_OBF = "kj3f9KJf9s8dFj39fK"; // client-obfuscated secret (not fully secure)
+// CLIENT-ONLY MITIGATIONS: This increases difficulty for casual tampering by signing score and validating periodically.
+// It is NOT a replacement for server-side authoritative score validation. An attacker with access to client JS can still forge signatures.
+const STORAGE_KEYS = { score: locale.l19, sig: `${locale.l19}_sig_v1` };
+let currentScore = 0;
+let tamperDetected = false;
+let incrementTimestamps = []; // timestamps of recent increments (ms)
+
+async function computeHMAC(message) {
+  try {
+    const keyData = new TextEncoder().encode(SECRET_OBF);
+    const key = await crypto.subtle.importKey(
+      "raw",
+      keyData,
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["sign"]
+    );
+    const sig = await crypto.subtle.sign(
+      "HMAC",
+      key,
+      new TextEncoder().encode(String(message))
+    );
+    return Array.from(new Uint8Array(sig))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+  } catch (e) {
+    console.error("computeHMAC error", e);
+    return null;
+  }
 }
+
+async function verifyHMAC(message, signature) {
+  try {
+    const expected = await computeHMAC(message);
+    return expected === signature;
+  } catch (e) {
+    console.error("verifyHMAC error", e);
+    return false;
+  }
+}
+
+async function saveSignedScore(score) {
+  try {
+    const sig = await computeHMAC(String(score));
+    localStorage.setItem(STORAGE_KEYS.score, btoa(String(score)));
+    localStorage.setItem(STORAGE_KEYS.sig, sig); // Keep a lightweight local backup (unsigned) for recovery heuristics
+    try {
+      localStorage.setItem(`${STORAGE_KEYS.score}_bak`, btoa(String(score)));
+    } catch (e) {}
+  } catch (e) {
+    console.error("saveSignedScore error", e);
+  }
+}
+
+async function loadSignedScore() {
+  try {
+    const encoded = localStorage.getItem(STORAGE_KEYS.score);
+    const sig = localStorage.getItem(STORAGE_KEYS.sig);
+    if (!encoded || !sig) {
+      currentScore = 0;
+      await saveSignedScore(0);
+      return;
+    }
+    const score = parseFloat(atob(encoded) || "0");
+    const valid = await verifyHMAC(String(score), sig);
+    if (valid) {
+      currentScore = score;
+      tamperDetected = false;
+    } else {
+      console.warn("Score signature invalid — possible tampering detected.");
+      tamperDetected = true;
+      // Attempt recovery from local backup (unsigned), if reasonable
+      const bak = localStorage.getItem(`${STORAGE_KEYS.score}_bak`);
+      if (bak) {
+        const bakScore = parseFloat(atob(bak) || "0");
+        if (Math.abs(bakScore - score) < 1000) {
+          console.warn("Restoring from unsigned backup.");
+          currentScore = bakScore;
+          await saveSignedScore(currentScore);
+          return;
+        }
+      }
+      // else reset to safe default
+      currentScore = 0;
+      await saveSignedScore(0);
+    }
+  } catch (e) {
+    console.error("loadSignedScore error", e);
+    currentScore = 0;
+  }
+}
+
+// Rate limit helpers
+function pruneTimestamps(windowMs) {
+  const cutoff = Date.now() - windowMs;
+  incrementTimestamps = incrementTimestamps.filter((t) => t >= cutoff);
+}
+
+function canIncrement(delta) {
+  // Basic heuristics
+  pruneTimestamps(1000); // 1s
+  if (incrementTimestamps.length >= 5) return false; // >5 per second
+  pruneTimestamps(60000); // 1m
+  if (incrementTimestamps.length >= 500) return false; // >500 per minute
+  if (Math.abs(delta) > 1000) return false; // very large single change
+  return true;
+}
+
+async function incrementScore(delta) {
+  try {
+    if (!canIncrement(delta)) {
+      console.warn("Rate limit or invalid delta, increment rejected:", delta);
+      return;
+    }
+    incrementTimestamps.push(Date.now());
+    currentScore = Math.max(0, currentScore + Number(delta));
+    await saveSignedScore(currentScore);
+  } catch (e) {
+    console.error("incrementScore error", e);
+  }
+}
+
+// Initialize signed score on load
+(async () => {
+  await loadSignedScore();
+  setInterval(async () => {
+    // Periodic check for tampering (double-check signature)
+    const encoded = localStorage.getItem(STORAGE_KEYS.score);
+    const sig = localStorage.getItem(STORAGE_KEYS.sig);
+    if (encoded && sig) {
+      const score = parseFloat(atob(encoded) || "0");
+      const valid = await verifyHMAC(String(score), sig);
+      if (!valid) {
+        console.warn("Periodic check: tamper detected, resetting score.");
+        tamperDetected = true;
+        currentScore = 0;
+        await saveSignedScore(0);
+      }
+    }
+  }, 5000);
+})();
 const debounce = (func, delay) => {
   let timer;
   return function (...args) {
-    clearTimeout(timer); // Xóa bộ hẹn giờ trước đó
+    clearTimeout(timer);
     timer = setTimeout(() => {
-      func.apply(this, args); // Gọi hàm sau khi hết thời gian delay
+      func.apply(this, args);
     }, delay);
   };
 };
 const touchCountSet = debounce(() => {
-  localStorage.setItem(locale.l19, touchCount);
+  // Persist current score with signature
+  saveSignedScore(currentScore).catch(console.error);
 }, 200);
+// Persist current score once at startup
 touchCountSet();
 
-const getup = () => decodeData(touchCount);
+const getup = () => Number(currentScore || 0);
 
 const encodeData = (data) => btoa(data.toString());
 
@@ -70,9 +208,14 @@ const encodeString = (str) => btoa(encodeURIComponent(str));
 const decodeString = (encodedStr) => decodeURIComponent(atob(encodedStr));
 const randomFrom = () => Math.floor(Math.random() * 4);
 
-const up = (N) => {
-  touchCount = encodeData(decodeData(touchCount) + decodeData(N));
-  touchCountSet();
+const up = async (N) => {
+  try {
+    const delta = decodeData(N);
+    await incrementScore(delta);
+    touchCountSet();
+  } catch (e) {
+    console.error("up error", e);
+  }
 };
 const updateFontSize = () => {
   const canvasWidth = canvas.width;
@@ -194,9 +337,11 @@ canvas.addEventListener("click", (event) => {
 // Vẽ số lần touch
 function drawTouchCount() {
   ctx.font = `bold 12px ${FONTFAMILY}`;
-  ctx.fillStyle = "white";
+  ctx.fillStyle = tamperDetected ? "orange" : "white";
   ctx.textAlign = "left";
-  ctx.fillText(`${decodeString(locale.l9)} ${getup()}`, 20, 50);
+  let text = `${decodeString(locale.l9)} ${getup()}`;
+  if (tamperDetected) text += " (Tamper detected)";
+  ctx.fillText(text, 20, 50);
 }
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -223,7 +368,11 @@ function animate() {
       ctx.fillStyle = "white";
       ctx.font = `bold ${updateFontSize()}px ${FONTFAMILY}`;
       ctx.textAlign = "center";
-      ctx.fillText(tet, canvas.width / 2, canvas.height / 2);
+      ctx.fillText(
+        `${tet} ${tetDate.getFullYear()}`,
+        canvas.width / 2,
+        canvas.height / 2
+      );
       ctx.font = `bold 12px ${FONTFAMILY}`;
       wrapText(
         ctx,
@@ -266,7 +415,10 @@ function animate() {
     )} ${minutes} ${decodeString(locale.l14)} ${seconds} ${decodeString(
       locale.l15
     )}`;
-    const label = decodeString(locale.l11);
+    const label = decodeString(locale.l11).replace(
+      "{year}",
+      tetDate.getFullYear()
+    );
     ctx.fillStyle = "yellow";
     ctx.font = `bold ${fontSize}px ${FONTFAMILY}`;
     ctx.textAlign = "center";
@@ -446,7 +598,7 @@ function calculateTimeToTet() {
 function handlerNotification() {
   if (Notification.permission === "granted") {
     const message = calculateTimeToTet();
- new Notification("Tết Nguyên Đán 2025 🎉🎉🎉", {
+    new Notification("Tết Nguyên Đán 2025 🎉🎉🎉", {
       body: message,
       icon: "icons/icon-48x48.png", // Đường dẫn tới icon của bạn
       tag: "tet-countdown",
@@ -482,3 +634,6 @@ document.addEventListener("DOMContentLoaded", () => {
   notifyMe();
 });
 console.log("(●'◡'●)");
+console.info(
+  "Client-only score protections enabled: signed local storage with periodic validation. For strong security, move score handling to a server."
+);
