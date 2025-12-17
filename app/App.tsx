@@ -230,10 +230,9 @@ function GameMiniCanvas({ isGameOpen, setIsGameOpen }: GameMiniCanvasProps) {
     clampPlayerX(x: number) {
       const W = this.canvas.clientWidth;
       const pad = 32;
-      const gameX = pad + 20;
       return Math.max(
-        gameX + this.player.r + 10,
-        Math.min(W - pad - this.player.r - 10, x)
+        pad + this.player.r,
+        Math.min(W - pad - this.player.r, x)
       );
     }
 
@@ -289,8 +288,8 @@ function GameMiniCanvas({ isGameOpen, setIsGameOpen }: GameMiniCanvasProps) {
         this.player.x += this.player.speed;
 
       this.player.x = Math.max(
-        contentX + this.player.r + 10,
-        Math.min(W - pad - this.player.r - 10, this.player.x)
+        pad + this.player.r,
+        Math.min(W - pad - this.player.r, this.player.x)
       );
 
       for (let i = this.entities.length - 1; i >= 0; i--) {
