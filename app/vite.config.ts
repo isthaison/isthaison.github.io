@@ -17,11 +17,15 @@ export default defineConfig(({ mode }) => {
         workbox: {
           globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
         },
-        includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
+        includeAssets: [
+          "favicon.ico",
+          "apple-touch-icon.png",
+          "masked-icon.svg",
+        ],
         manifest: {
-          name: "Nguyen Thai Son Portfolio",
-          short_name: "Portfolio",
-          description: "Software Engineer & Creative Developer Portfolio",
+          name: "Nguyen Thai Son — Software Engineer",
+          short_name: "SO95 — Software Engineer",
+          description: "Software Engineer & Creative Developer",
           theme_color: "#0f172a",
           background_color: "#0f172a",
           display: "standalone",
