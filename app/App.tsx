@@ -638,7 +638,7 @@ export default function App() {
         <section className="text-center py-20">
           <div className="animate-fade-in">
             <div className="backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl p-12 mb-12 shadow-2xl transition-all duration-500">
-              <h1 className="text-8xl font-extrabold mb-8 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-pulse">
+              <h1 className="font-extrabold mb-8 leading-tight bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-pulse" style={{ fontSize: 'clamp(3rem, 10vw, 8rem)' }}>
                 Nguyen Thai Son
               </h1>
               <p className="text-3xl text-slate-300 mb-12 leading-relaxed">
