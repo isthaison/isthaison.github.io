@@ -1,2 +1,5 @@
-
-tet/Lottery/node_modules/@socket.io/component-emitter/lib/cjs/index.js
+node_modules/
+.DS_Store
+Thumbs.db
+tet/
+wedding/

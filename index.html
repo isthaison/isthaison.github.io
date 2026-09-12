@@ -1,21 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1">
-  <title>Nguyen Thai Son — Software Engineer</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <meta name="description"
-    content="Nguyen Thai Son — Software Engineer & Frontend Developer. Portfolio, contact and projects.">
-
-
-  <script type="module" crossorigin src="/assets/index-BfAo1WMa.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-BRdRe2aK.css">
-<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>So95 - Workspace</title>
+    <link rel="icon" type="image/x-icon" href="20221127213725_IMG_0313.JPG">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: "Inter", sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        }
+        
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #6366f1;
+            margin-bottom: 24px;
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 40px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .social-links a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid #333;
+        }
+        
+        .social-links a:hover {
+            background: #6366f1;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
+        }
+        
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .project-card {
+            background: #111;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #222;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
+        
+        .project-card:hover {
+            border-color: #6366f1;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+        }
+        
+        .project-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+        
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        
+        .project-card p {
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .project-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-top: 16px;
+            background: #1a1a2e;
+            color: #a855f7;
+            border: 1px solid #333;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #555;
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .projects { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
 <body>
-  <div id="root"></div>
+    <section class="hero">
+        <img src="20221127213725_IMG_0313.JPG" alt="Avatar" class="avatar">
+        <h1>Nguyen Thai Son</h1>
+        <p class="tagline">Developer from Binh Duong, VN</p>
+        
+        <div class="social-links">
+            <a href="https://github.com/isthaison" target="_blank" title="GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/is.thaison" target="_blank" title="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://twitter.com/is_thaison" target="_blank" title="Twitter">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.behance.net/isthaison8b30" target="_blank" title="Behance">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.938 4.503c.702 0 1.34.06 1.92.188.577.13 1.07.33 1.485.61.41.28.733.65.96 1.12.225.47.34 1.05.34 1.73 0 .74-.17 1.36-.507 1.86-.338.5-.837.9-1.502 1.22.906.26 1.576.72 2.022 1.37.448.66.665 1.45.665 2.36 0 .75-.13 1.39-.41 1.93-.28.55-.67 1-1.16 1.35-.48.348-1.05.6-1.67.767-.63.16-1.27.25-1.94.25H0V4.51h6.938v-.007zM6.545 10.16c.6 0 1.096-.166 1.486-.5.39-.333.58-.805.58-1.42 0-.36-.06-.655-.19-.88-.13-.23-.3-.415-.52-.555-.21-.14-.46-.23-.73-.28-.28-.05-.56-.07-.84-.07H3.18v3.71h3.365zm.21 5.51c.32 0 .63-.03.92-.09.29-.06.54-.16.76-.3.22-.14.39-.33.51-.58.12-.25.18-.56.18-.95 0-.74-.22-1.27-.66-1.61-.44-.33-.99-.5-1.67-.5H3.18v4.03h3.575zm8.23-8.15h5.37v1.35h-5.37V7.52zm2.69 11.06c.55 0 .99-.14 1.32-.43.33-.29.5-.72.5-1.28h1.78c-.02.93-.3 1.68-.82 2.24-.52.56-1.21.92-2.06 1.07-.85.16-1.69.12-2.51-.11-.82-.24-1.48-.66-1.99-1.27-.51-.61-.89-1.37-1.15-2.29-.26.92-.65 1.68-1.17 2.29-.52.61-1.2 1.03-2.03 1.27-.83.24-1.66.27-2.48.11-.82-.16-1.5-.52-2.03-1.08-.53-.56-.88-1.31-1.05-2.24h1.8c.01.56.18.99.51 1.28.33.29.77.43 1.32.43.45 0 .81-.12 1.07-.36.27-.24.42-.62.45-1.12h-2.77V13.2h2.83c.02-.44.14-.8.36-1.07.22-.28.54-.41.94-.41.42 0 .76.14 1.01.41.26.28.4.63.43 1.07h2.76c-.03-.97-.33-1.75-.88-2.34-.55-.59-1.31-.97-2.27-1.15-.96-.18-1.9-.14-2.82.11-.92.25-1.68.68-2.27 1.28-.59.61-1.03 1.36-1.31 2.27-.28.91-.4 1.89-.35 2.95.26-.92.66-1.67 1.21-2.27.55-.6 1.28-1.03 2.2-1.28.91-.25 1.84-.28 2.78-.08.94.2 1.69.58 2.24 1.16z"/></svg>
+            </a>
+            <a href="https://codepen.io/isthaison" target="_blank" title="CodePen">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.144 13.067v-2.134L16.55 12zm1.856 1.233v3.595c0 .533-.427.929-.96.929H4.92c-.533 0-.96-.396-.96-.929v-3.595l-1.76-.955V17.2c0 .853.693 1.55 1.533 1.55h14.907c.853 0 1.533-.697 1.533-1.55v-3.888l-1.76.955zm-1.76-3.622L16.55 9.2V7.067L18.144 8zm-1.856-3.33V.267c0-.533.427-.93.96-.93h13.44c.533 0 .96.397.96.93v3.848l-1.76-.955V4.2c0-.853-.693-1.55-1.533-1.55H5.413c-.853 0-1.533.697-1.533 1.55v-.99L2.12 4.2V7.82l1.76.955v3.33L2.12 13.07V16.7c0 .853.693 1.55 1.533 1.55h14.907c.853 0 1.533-.697 1.533-1.55v-3.63l-1.76.955v-2.067zm-1.856-1.233L7.8 12l6.544 3.608v-2.134L9.8 12l4.788-2.475v2.134L12.2 12l4.788-2.475zM7.8 9.2v2.134L6.04 10.267 7.8 9.2zm0 5.6v2.134l-1.76-1.067L7.8 14.8z"/></svg>
+            </a>
+            <a href="https://isthaison.github.io/" target="_blank" title="Website">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </a>
+        </div>
+    </section>
+    
+    <section class="projects">
+        <a href="https://isthaison.github.io/tet/" class="project-card" target="_blank">
+            <div class="project-icon">🎆</div>
+            <h3>Dem Nguoc Tet</h3>
+            <p>Dem nguoc Tet Nguyen Dan voi hieu ung phao hoa va nhac nen song dong.</p>
+            <span class="project-tag">PWA</span>
+        </a>
+        
+        <a href="https://isthaison.github.io/wedding/" class="project-card" target="_blank">
+            <div class="project-icon">💒</div>
+            <h3>Wedding Page</h3>
+            <p>Trang cuoi cho Thai Son & Khanh Tran, voi hieu ung trinh chieu anh va am thanh.</p>
+            <span class="project-tag">Event</span>
+        </a>
+        
+        <a href="https://isthaison.github.io/img.html" class="project-card" target="_blank">
+            <div class="project-icon">🖼️</div>
+            <h3>Image to ASCII</h3>
+            <p>Chuyen doi hinh anh sang ki tu ASCII Art truc tiep tren trinh duyet.</p>
+            <span class="project-tag">Tool</span>
+        </a>
+        
+        <a href="https://isthaison.github.io/booking.html" class="project-card" target="_blank">
+            <div class="project-icon">🌊</div>
+            <h3>Wave Animation</h3>
+            <p>Hieu ung song CSS don gian va dep mat.</p>
+            <span class="project-tag">CSS</span>
+        </a>
+        
+        <a href="https://github.com/isthaison/iot" class="project-card" target="_blank">
+            <div class="project-icon">📡</div>
+            <h3>IoT System</h3>
+            <p>He thong quan ly thiet bi IoT voi React frontend.</p>
+            <span class="project-tag">React</span>
+        </a>
+    </section>
+    
+    <footer>
+        <p>2024 Nguyen Thai Son (so95). Built with passion.</p>
+    </footer>
 </body>
-
 </html>
